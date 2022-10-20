@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">GSI</string>
+    <string name="info_acerca_de">descripcion de la clinica/hopital bla bla Esta aplicación nace del grupo 04   </string>
+    <string name="label_bienvenida">Hello ! - Sign in to login</string>
+    <string name="label_registro">Hello ! - Register to be able to enter</string>
+
+    <string name="label_usuario">Email</string>
+    <string name="label_password">Password</string>
+    <string name="label_confirm_password">Confirm Password</string>
+    <string name="label_start_session">Log in</string>
+
+    <string name="hint_nombre">Name</string>
+    <string name="hint_telefono">Phone</string>
+    <string name="hint_correo">Email</string>
+    <string name="btn_agregar">Accept </string>
+    <string name="btn_actualizar">Update</string>
+
+    <string name="btn_login">Log in</string>
+    <string name="btn_register">Sign up</string>
 </resources>

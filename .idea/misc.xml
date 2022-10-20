@@ -4,6 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/layout/activity_main.xml" value="0.12135416666666667" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/drawable/ic_email.xml" value="0.1955" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/drawable/ic_lock.xml" value="0.1955" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_login.xml" value="0.18802083333333333" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_main.xml" value="0.358695652173913" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_registre.xml" value="0.18802083333333333" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_splash_screen.xml" value="0.14266304347826086" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_welcome.xml" value="0.10837438423645321" />
       </map>
     </option>
   </component>
