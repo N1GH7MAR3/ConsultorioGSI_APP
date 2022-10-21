@@ -17,6 +17,7 @@ class SplashScreenActivity : AppCompatActivity() {
     lateinit var BytextView: TextView
     lateinit var nameTextView: TextView
     lateinit var logoImageView: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -58,8 +59,5 @@ class SplashScreenActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }, 3500)
-
-
-
     }
 }
