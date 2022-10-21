@@ -9,16 +9,10 @@
 
 
     <ImageView
-
         android:id="@+id/imageView3"
         android:layout_width="414dp"
-
-
         android:layout_height="307dp"
-
         android:layout_marginBottom="220dp"
-
-
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -26,7 +20,6 @@
         app:srcCompat="@drawable/img" />
 
     <TextView
-
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -52,11 +45,9 @@
         android:layout_marginEnd="22dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3">
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/txtInputUsuario"

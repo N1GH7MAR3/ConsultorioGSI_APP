@@ -18,25 +18,25 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val boton=findViewById<Button>(R.id.hola)
-        boton.setOnClickListener { v-> getAllAlergias()}
+    //    boton.setOnClickListener { v-> getAllAlergias()}
 
     }
-    private fun getAllAlergias(){
-        val alergiaService:Services=RetrofitHelper.getRetrofit().create(Services::class.java)
-        val result =alergiaService.getAllAlergias()
-        result.enqueue(object :Callback<List<Alergia>>{
-            override fun onFailure(call: retrofit2.Call<List<Alergia>>, t: Throwable) {
-                Toast.makeText(this@MainActivity,"Error",Toast.LENGTH_LONG).show()
-            }
-            override fun onResponse(
-                call: retrofit2.Call<List<Alergia>>,
-                response: Response<List<Alergia>>
-            ) {
-                Toast.makeText(this@MainActivity,"OK",Toast.LENGTH_LONG).show()
-            }
-        })
+    //private fun getAllAlergias(){
+    //    val alergiaService:Services=RetrofitHelper.getRetrofit().create(Services::class.java)
+    //    val result =alergiaService.getAllAlergias()
+    //    result.enqueue(object :Callback<List<Alergia>>{
+    //        override fun onFailure(call: retrofit2.Call<List<Alergia>>, t: Throwable) {
+    //            Toast.makeText(this@MainActivity,"Error",Toast.LENGTH_LONG).show()
+    //        }
+    //        override fun onResponse(
+    //            call: retrofit2.Call<List<Alergia>>,
+    //            response: Response<List<Alergia>>
+    //        ) {
+    //            Toast.makeText(this@MainActivity,"OK",Toast.LENGTH_LONG).show()
+    //        }
+    //    })
 
-    }
+    //}
 
 
 }
