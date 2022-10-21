@@ -100,6 +100,7 @@
         android:layout_height="53dp"
 
         android:layout_marginTop="508dp"
+        app:cornerRadius="20dp"
 
         android:text="Iniciar Sesion"
 
@@ -114,11 +115,12 @@
         android:layout_width="252dp"
         android:layout_height="53dp"
 
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="24dp"
 
         android:text="Ingresar como invitado"
-
         android:textColor="@color/gsiAzul"
+
+        app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/txtNuevoUsuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
@@ -128,7 +130,7 @@
         android:id="@+id/txtNuevoUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="60dp"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="sans-serif-light"
