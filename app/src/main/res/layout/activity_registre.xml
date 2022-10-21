@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Nombre"
-            app:startIconDrawable="@drawable/ic_email">
+            app:startIconDrawable="@drawable/ic_account_circle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTexNombre"
@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Apellido Paterno"
-            app:startIconDrawable="@drawable/ic_lock">
+            app:startIconDrawable="@drawable/ic_account_circle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ediTextApePaterno"
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Apellido Materno"
-            app:startIconDrawable="@drawable/ic_lock">
+            app:startIconDrawable="@drawable/ic_account_circle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/ediTextApeMaterno"
@@ -101,7 +101,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Dni"
-            app:startIconDrawable="@drawable/ic_email">
+            app:startIconDrawable="@drawable/ic_account_box">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextDni"
@@ -118,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Direccion"
-            app:startIconDrawable="@drawable/ic_email">
+            app:startIconDrawable="@drawable/ic_home">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextDireccion"
@@ -135,7 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Telefono"
-            app:startIconDrawable="@drawable/ic_email">
+            app:startIconDrawable="@drawable/ic_phone_android">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTelefono"
@@ -169,7 +169,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Contraseña"
-            app:startIconDrawable="@drawable/ic_email">
+            app:startIconDrawable="@drawable/ic_lock">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPassword"
@@ -186,7 +186,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirmar Contraseña"
-            app:startIconDrawable="@drawable/ic_email">
+            app:startIconDrawable="@drawable/ic_lock">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextTexConfirPass"
@@ -201,12 +201,18 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnRegistrate"
+
         android:layout_width="252dp"
         android:layout_height="53dp"
         android:layout_marginStart="79dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="80dp"
         android:text="Registrate"
+
+
+
+        app:cornerRadius="20dp"
+
         android:textColor="@color/gsiAzul"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
