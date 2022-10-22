@@ -3,12 +3,11 @@ package com.example.gsi.Entity
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Alergia(
+data class Turno(
     @SerializedName("id")
     @Expose
     val id:Long,
-    @SerializedName("descripcion")
+    @SerializedName("turno")
     @Expose
-    val descripcion:String
-
+    val turno:String
 )

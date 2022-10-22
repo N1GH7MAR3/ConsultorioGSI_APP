@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/drawable/ic_email.xml" value="0.1565" />
+        <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/layout/activity_dashboard_paciente.xml" value="0.33" />
         <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/layout/activity_login.xml" value="0.1935185185185185" />
         <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/layout/activity_main.xml" value="0.12135416666666667" />
         <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/layout/activity_splash_screen.xml" value="0.18" />
+        <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/xml/network_security_config.xml" value="0.24717948717948718" />
       </map>
     </option>
   </component>

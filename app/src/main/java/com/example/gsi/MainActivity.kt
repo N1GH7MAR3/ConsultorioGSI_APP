@@ -6,7 +6,7 @@ import android.widget.Button
 
 import android.widget.Toast
 import com.example.gsi.Entity.Alergia
-import com.example.gsi.Entity.Alergias
+
 import com.example.gsi.Retrofit.RetrofitHelper
 import com.example.gsi.Service.Services
 import retrofit2.Callback

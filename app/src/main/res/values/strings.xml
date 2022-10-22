@@ -17,4 +17,6 @@
 
     <string name="btn_login">Log in</string>
     <string name="btn_register">Sign up</string>
+    //DASHBOARDPACIENTE
+    <string name="greeting">Hola ,</string>
 </resources>

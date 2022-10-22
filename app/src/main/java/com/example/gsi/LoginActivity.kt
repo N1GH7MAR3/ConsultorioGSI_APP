@@ -34,9 +34,10 @@ class LoginActivity : AppCompatActivity() {
 
 
         btnInvitado.setOnClickListener {
-            val intent = Intent(this@LoginActivity,DashboardInvitadoActivity::class.java)
-            startActivity(intent)
-            finish()
+
+            //val intent = Intent(this@LoginActivity,DashboardInvitadoActivity::class.java)
+            //startActivity(intent)
+            //finish()
         }
         btnLogin.setOnClickListener {
             val usuario=txtUsuario.text.toString()
@@ -49,7 +50,8 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this@LoginActivity,"Ingrese una Contraseña",Toast.LENGTH_LONG).show()
             }
             else{
-            api.VerifyUser(this@LoginActivity,usuario,password).toString()}
+            api.verifyUser(this@LoginActivity,usuario,password)
+            }
         }
         txtNuevoUsuario.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
