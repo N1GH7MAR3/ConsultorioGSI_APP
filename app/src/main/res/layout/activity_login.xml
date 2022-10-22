@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,12 +12,11 @@
         android:id="@+id/imageView3"
         android:layout_width="414dp"
         android:layout_height="307dp"
-        android:layout_marginBottom="220dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        android:layout_marginBottom="440dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/img" />
+        app:srcCompat="@drawable/bg_login" />
 
     <TextView
         android:id="@+id/textView4"
@@ -90,38 +89,42 @@
         android:layout_width="252dp"
         android:layout_height="53dp"
 
-        android:layout_marginTop="508dp"
-        app:cornerRadius="20dp"
+        android:layout_marginStart="79dp"
 
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="80dp"
         android:text="Iniciar Sesion"
-
         android:textColor="@color/gsiAzul"
+        app:cornerRadius="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/btnInvitado"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.4" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnInvitado"
         android:layout_width="252dp"
         android:layout_height="53dp"
 
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="79dp"
+        android:layout_marginTop="92dp"
 
+        android:layout_marginEnd="80dp"
         android:text="Ingresar como invitado"
         android:textColor="@color/gsiAzul"
-
         app:cornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/txtNuevoUsuario"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
     <TextView
         android:id="@+id/txtNuevoUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="48dp"
         android:clickable="true"
         android:focusable="true"
         android:fontFamily="sans-serif-light"
@@ -141,4 +144,4 @@
         tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout >
+</androidx.constraintlayout.widget.ConstraintLayout>

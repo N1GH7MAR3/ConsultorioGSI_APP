@@ -9,6 +9,16 @@
         <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/layout/activity_main.xml" value="0.12135416666666667" />
         <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/layout/activity_splash_screen.xml" value="0.18" />
         <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/xml/network_security_config.xml" value="0.24717948717948718" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/drawable/bottom_background_light_green.xml" value="0.25" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/drawable/card_bg.xml" value="0.281" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/drawable/custom_butom.xml" value="0.2765" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.3" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_invitado.xml" value="0.3" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_paciente.xml" value="0.25" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_login.xml" value="0.2" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_main.xml" value="0.3170289855072464" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_registre.xml" value="0.2" />
+        <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/layout/activity_welcome.xml" value="0.3170289855072464" />
       </map>
     </option>
   </component>
