@@ -12,6 +12,8 @@ interface Services {
     @GET("alergia/listar")
      fun getAllAlergias():Call<List<Alergia>>
 
+    @GET("especialidad/listar")
+    fun getAllEspecialidades():Call<List<Especialidad>>
     @POST("usuario/verifyuser")
     fun verifyUser(@Body body: ValidateUsuario):Call<Usuario>
     @POST("paciente/buscaruser")

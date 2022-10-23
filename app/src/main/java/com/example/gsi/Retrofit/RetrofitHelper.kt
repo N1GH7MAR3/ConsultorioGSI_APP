@@ -16,6 +16,7 @@ class RetrofitHelper {
         val cliente=OkHttpClient.Builder().addInterceptor(interceptor).build()
         val retrofit= Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
+
             .addConverterFactory(GsonConverterFactory.create())
             .client(cliente)
             .build();
