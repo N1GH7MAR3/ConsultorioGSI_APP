@@ -10,6 +10,7 @@ class EspecialidadViewHolder(view: View) :RecyclerView.ViewHolder(view){
     private val binding =ItemEspecialidadesBinding.bind(view)
     fun render(especialidades: Especialidad){
         binding.tvNombreEspecialidad.text=especialidades.nombre
+        val id=especialidades.id
         Glide.with(binding.ivEspecialidad.context).load(especialidades.image).into(binding.ivEspecialidad)
         binding.ivEspecialidad.setOnClickListener {
             Toast.makeText(binding.ivEspecialidad.context,especialidades.nombre,Toast.LENGTH_SHORT).show()

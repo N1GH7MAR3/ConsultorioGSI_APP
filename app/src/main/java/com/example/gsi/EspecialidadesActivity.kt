@@ -1,6 +1,7 @@
 package com.example.gsi
 
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -21,34 +22,16 @@ import retrofit2.Response
 
 
 class EspecialidadesActivity : AppCompatActivity() {
+
     private lateinit var binding: ActivityEspecialidadesBinding
-    private  var list: List<Especialidad> = mutableListOf<Especialidad>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEspecialidadesBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getEspecilidades()
+        Constant.api.getEspecilidades(this@EspecialidadesActivity,binding)
     }
 
 
-    private fun getEspecilidades() {
-        CoroutineScope(Dispatchers.IO).launch {
-            Constant.retrofit.getAllEspecialidades().enqueue(object : Callback<List<Especialidad>> {
-                override fun onResponse(
-                    call: Call<List<Especialidad>>,
-                    response: Response<List<Especialidad>>
-                ) {
-                    val list : List<Especialidad> = response.body()!!
-                    iniRecyclerView(list)
-                }
-                override fun onFailure(call: Call<List<Especialidad>>, t: Throwable) {
-                }
-            })
-        }
-    }
 
-    fun iniRecyclerView(list: List<Especialidad>) {
-        binding.rvEspecialidades.layoutManager = LinearLayoutManager(this)
-        binding.rvEspecialidades.adapter = EspecialidadAdapter(list)
-    }
+
 }
