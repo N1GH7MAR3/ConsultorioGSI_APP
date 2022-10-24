@@ -1,5 +1,6 @@
 package com.example.gsi
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,8 +16,10 @@ class DashboardAdminActivity : AppCompatActivity() {
         setContentView(binding.root)
         val nombre = intent.getStringExtra("nombre")
         binding.txtNombre.text = nombre
-
-
+        binding.cardEspecialidad.setOnClickListener {
+            val intent = Intent(this@DashboardAdminActivity, EspecialidadesAdminActivity::class.java)
+            startActivity(intent)
+        }
         }
 
     

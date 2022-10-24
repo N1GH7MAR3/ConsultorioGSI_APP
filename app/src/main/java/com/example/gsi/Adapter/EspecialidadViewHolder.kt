@@ -5,9 +5,11 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gsi.Entity.Especialidad
-import com.example.gsi.databinding.ItemEspecialidadesBinding
+
+import com.example.gsi.databinding.ItemEspecialidadesPacienteBinding
+
 class EspecialidadViewHolder(view: View) :RecyclerView.ViewHolder(view){
-    private val binding =ItemEspecialidadesBinding.bind(view)
+    private val binding =ItemEspecialidadesPacienteBinding.bind(view)
     fun render(especialidades: Especialidad){
         binding.tvNombreEspecialidad.text=especialidades.nombre
         val id=especialidades.id

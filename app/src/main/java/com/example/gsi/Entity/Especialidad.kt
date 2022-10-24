@@ -4,7 +4,14 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 
-
+data class createEspecialidad(
+    @SerializedName("nombre")
+    @Expose
+    val nombre: String,
+    @SerializedName("image")
+    @Expose
+    val image:String
+)
 data class Especialidad(
     @SerializedName("id")
     @Expose

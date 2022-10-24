@@ -9,7 +9,7 @@ import com.example.gsi.R
 class EspecialidadAdapter(private val especialidades:List<Especialidad>) :RecyclerView.Adapter<EspecialidadViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EspecialidadViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
-        return EspecialidadViewHolder(layoutInflater.inflate(R.layout.item_especialidades,parent,false))
+        return EspecialidadViewHolder(layoutInflater.inflate(R.layout.item_especialidades_paciente,parent,false))
     }
 
     override fun onBindViewHolder(holder: EspecialidadViewHolder, position: Int) {
