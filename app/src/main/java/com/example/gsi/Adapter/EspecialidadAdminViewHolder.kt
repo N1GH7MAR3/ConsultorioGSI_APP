@@ -1,5 +1,6 @@
 package com.example.gsi.Adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.util.Log
 import android.view.View
@@ -11,7 +12,7 @@ import com.example.gsi.Entity.Especialidad
 import com.example.gsi.EspecialidadEditarActivity
 import com.example.gsi.databinding.ItemEspecialidadesAdminBinding
 
-class EspecialidadAdminViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+ class EspecialidadAdminViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val binding = ItemEspecialidadesAdminBinding.bind(view)
 
     fun render(especialidades: Especialidad){
@@ -23,9 +24,12 @@ class EspecialidadAdminViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             intent.putExtra("nombre",especialidades.nombre)
             intent.putExtra("image",especialidades.image)
             binding.btnEditar.context.startActivity(intent)
+            (binding.btnEditar.context as Activity).finish()
         }
         binding.btnEliminar.setOnClickListener {
-            Constant.api.deleteEspecialidad(especialidades.id,binding.btnEditar.context)
+            Constant.api.deleteEspecialidad(especialidades.id,
+                binding.btnEliminar.context as Activity
+            )
         }
     }
 }

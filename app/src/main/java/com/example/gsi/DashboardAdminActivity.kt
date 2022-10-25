@@ -9,7 +9,6 @@ import com.example.gsi.databinding.ActivityDashboardAdminBinding
 
 class DashboardAdminActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDashboardAdminBinding
-    lateinit var cardEspecialidad: CardView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityDashboardAdminBinding.inflate(layoutInflater)
@@ -18,6 +17,10 @@ class DashboardAdminActivity : AppCompatActivity() {
         binding.txtNombre.text = nombre
         binding.cardEspecialidad.setOnClickListener {
             val intent = Intent(this@DashboardAdminActivity, EspecialidadesAdminActivity::class.java)
+            startActivity(intent)
+        }
+        binding.carMedicos.setOnClickListener {
+            val intent=Intent(this@DashboardAdminActivity,MedicosAdminActivity::class.java)
             startActivity(intent)
         }
         }

@@ -28,6 +28,7 @@ class LoginActivity : AppCompatActivity() {
             //startActivity(intent)
             //finish()
         }
+
         binding.btnLogin.setOnClickListener {
             if (username.text.toString() == "" && password.text.toString() == "") {
                 Toast.makeText(
