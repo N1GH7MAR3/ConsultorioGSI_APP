@@ -17,5 +17,9 @@ class CitaPacienteActivity : AppCompatActivity() {
         val dni=intent.getStringExtra("dni")
         Constant.api.getCitasPaciente(dni!!.toInt(),this@CitaPacienteActivity,binding )
 
+        binding.customPrinciapl.btnRegresar.setOnClickListener {
+            finish()
+        }
+
     }
 }
