@@ -57,6 +57,7 @@ open class ApiService {
                                 ).show()
                                 call.cancel()
                             } else if (response.body()?.rol?.nombre.toString() == "admin") {
+                                Toast.makeText(activity,"Ingreso satisfactorio con login",Toast.LENGTH_SHORT).show()
                                 val intent = Intent(activity, DashboardAdminActivity::class.java)
                                 intent.putExtra("nombre", response.body()?.usuario)
                                 activity.startActivity(intent)
@@ -66,6 +67,7 @@ open class ApiService {
                             } else {
                                 username.setText("")
                                 password.setText("")
+                                Toast.makeText(activity,"Ingreso satisfactorio con login",Toast.LENGTH_SHORT).show()
                                 searchPaciente(activity, usuario)
                                 call.cancel()
                                 c1.cancel()
