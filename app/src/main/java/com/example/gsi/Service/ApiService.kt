@@ -8,16 +8,10 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gsi.*
-import com.example.gsi.Adapter.CitaPacienteAdapter
-import com.example.gsi.Adapter.EspecialidadAdapter
-import com.example.gsi.Adapter.EspecialidadAdminAdapter
-import com.example.gsi.Adapter.MedicoAdminAdapter
+import com.example.gsi.Adapter.*
 import com.example.gsi.Constans.Constant
 import com.example.gsi.Entity.*
-import com.example.gsi.databinding.ActivityCitaPacienteBinding
-import com.example.gsi.databinding.ActivityEspecialidadesAdminBinding
-import com.example.gsi.databinding.ActivityEspecialidadesPacienteBinding
-import com.example.gsi.databinding.ActivityMedicosAdminBinding
+import com.example.gsi.databinding.*
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -32,8 +26,8 @@ open class ApiService {
     private var c5 = GlobalScope.launch { }
     private var c6 = GlobalScope.launch { }
     private var c7 = GlobalScope.launch { }
-    private var c8=GlobalScope.launch {  }
-    private  var     c9=GlobalScope.launch {  }
+    private var c8 = GlobalScope.launch { }
+    private var c9 = GlobalScope.launch { }
 
     fun verifyUser(
         activity: Activity,
@@ -44,7 +38,7 @@ open class ApiService {
     ) {
         c1 = GlobalScope.launch(Dispatchers.Main) {
             val user = ValidateUsuario(usuario, contraseña)
-            val call = Constant.retrofit.verifyUser(user).enqueue(
+            Constant.retrofit.verifyUser(user).enqueue(
                 object : Callback<Usuario> {
                     override fun onResponse(
                         call: Call<Usuario>,
@@ -66,7 +60,7 @@ open class ApiService {
                                 val intent = Intent(activity, DashboardAdminActivity::class.java)
                                 intent.putExtra("nombre", response.body()?.usuario)
                                 activity.startActivity(intent)
-                                //activity.finish()
+                                activity.finish()
                                 call.cancel()
                                 c1.cancel()
                             } else {
@@ -90,14 +84,14 @@ open class ApiService {
     fun searchPaciente(activity: Activity, usuario: String) {
         c2 = GlobalScope.launch(Dispatchers.Main) {
             val pac = SearchUsuario(usuario)
-            val call = Constant.retrofit.searchPaciente(pac).enqueue(
+            Constant.retrofit.searchPaciente(pac).enqueue(
                 object : Callback<Paciente> {
                     override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
                         activity.runOnUiThread {
                             if (response.isSuccessful) {
 
                                 val intent = Intent(activity, DashboardPacienteActivity::class.java)
-                                intent.putExtra("dni",response.body()?.dni.toString())
+                                intent.putExtra("dni", response.body()?.dni.toString())
                                 intent.putExtra("nombre", response.body()?.nombre)
                                 activity.startActivity(intent)
                                 //activity.finish()
@@ -127,7 +121,7 @@ open class ApiService {
             binding.rvEspecialidades.adapter = EspecialidadAdapter(list)
         }
         c3 = GlobalScope.launch(Dispatchers.Main) {
-            val call = Constant.retrofit.getAllEspecialidades()
+            Constant.retrofit.getAllEspecialidades()
                 .enqueue(object : Callback<List<Especialidad>> {
                     override fun onResponse(
                         call: Call<List<Especialidad>>,
@@ -140,21 +134,25 @@ open class ApiService {
                             call.cancel()
                         }
                     }
+
                     override fun onFailure(call: Call<List<Especialidad>>, t: Throwable) {
                         Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
                     }
                 })
         }
     }
-    fun getAllMedico(activity: MedicosAdminActivity,
-                      binding: ActivityMedicosAdminBinding){
+
+    fun getAllMedico(
+        activity: MedicosAdminActivity,
+        binding: ActivityMedicosAdminBinding
+    ) {
         fun iniRecyclerView(list: List<Medico>) {
             binding.rvMedico.layoutManager =
                 LinearLayoutManager(activity.applicationContext)
             binding.rvMedico.adapter = MedicoAdminAdapter(list)
         }
         c8 = GlobalScope.launch(Dispatchers.Main) {
-            val call=Constant.retrofit.getAllMedico().enqueue(object :Callback<List<Medico>>{
+            Constant.retrofit.getAllMedico().enqueue(object : Callback<List<Medico>> {
                 override fun onResponse(
                     call: Call<List<Medico>>,
                     response: Response<List<Medico>>
@@ -166,8 +164,9 @@ open class ApiService {
                         call.cancel()
                     }
                 }
+
                 override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
-                    Log.e("hola",t.toString())
+                    Log.e("hola", t.toString())
                 }
             })
         }
@@ -183,7 +182,7 @@ open class ApiService {
             binding.rvEspecialidades.adapter = EspecialidadAdminAdapter(list)
         }
         c4 = GlobalScope.launch(Dispatchers.Main) {
-            val call = Constant.retrofit.getAllEspecialidades()
+            Constant.retrofit.getAllEspecialidades()
                 .enqueue(object : Callback<List<Especialidad>> {
                     override fun onResponse(
                         call: Call<List<Especialidad>>,
@@ -204,6 +203,7 @@ open class ApiService {
                 })
         }
     }
+
     fun createEspecialidad(especialidad: createEspecialidad, context: Context) {
         c7 = GlobalScope.launch(Dispatchers.Main) {
             val call = Constant.retrofit.createEspecialidad(especialidad)
@@ -262,45 +262,49 @@ open class ApiService {
 
     fun deleteEspecialidad(id: Long, activity: Activity) {
         c6 = GlobalScope.launch(Dispatchers.Main) {
-            val call =
-                Constant.retrofit.deleteEspecialidad(id).enqueue(object : Callback<Especialidad> {
-                    override fun onResponse(
-                        call: Call<Especialidad>,
-                        response: Response<Especialidad>
-                    ) {
-                        activity.runOnUiThread {
-                            Toast.makeText(
-                                activity,
-                                "Se ha eliminado la Especialidad",
-                                Toast.LENGTH_SHORT
+
+            Constant.retrofit.deleteEspecialidad(id).enqueue(object : Callback<Especialidad> {
+                override fun onResponse(
+                    call: Call<Especialidad>,
+                    response: Response<Especialidad>
+                ) {
+                    activity.runOnUiThread {
+                        Toast.makeText(
+                            activity,
+                            "Se ha eliminado la Especialidad",
+                            Toast.LENGTH_SHORT
+                        )
+                            .show()
+                        val intent =
+                            Intent(
+                                activity.applicationContext,
+                                EspecialidadesAdminActivity::class.java
                             )
-                                .show()
-                            val intent =
-                                Intent(
-                                    activity.applicationContext,
-                                    EspecialidadesAdminActivity::class.java
-                                )
-                            Thread.sleep(3000)
-                            activity.finish()
-                            activity.startActivity(intent)
-                            call.cancel()
-                        }
+                        Thread.sleep(3000)
+                        activity.finish()
+                        activity.startActivity(intent)
+                        call.cancel()
                     }
-                    override fun onFailure(call: Call<Especialidad>, t: Throwable) {
-                        Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
-                    }
-                })
+                }
+
+                override fun onFailure(call: Call<Especialidad>, t: Throwable) {
+                    Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
+                }
+            })
         }
     }
-    fun getCitasPaciente(dni:Int,activity: CitaPacienteActivity,
-                         binding: ActivityCitaPacienteBinding){
+
+    fun getCitasPaciente(
+        dni: Int, activity: CitaPacienteActivity,
+        binding: ActivityCitaPacienteBinding
+    ) {
         fun iniRecyclerView(list: List<Cita>) {
             binding.rvCita.layoutManager =
                 LinearLayoutManager(activity.applicationContext)
             binding.rvCita.adapter = CitaPacienteAdapter(list)
         }
         c9 = GlobalScope.launch(Dispatchers.Main) {
-            Constant.retrofit.getCitasPaciente(dni).enqueue(object :Callback<List<Cita>>{
+            Constant.retrofit.getCitasPaciente(dni).enqueue(object : Callback<List<Cita>> {
                 override fun onResponse(call: Call<List<Cita>>, response: Response<List<Cita>>) {
                     activity.runOnUiThread {
                         val list: List<Cita> = response.body()!!
@@ -311,23 +315,81 @@ open class ApiService {
                 }
 
                 override fun onFailure(call: Call<List<Cita>>, t: Throwable) {
-                    Log.e("hola",t.toString())
+                    Log.e("hola", t.toString())
                 }
 
             })
         }
 
     }
-    fun createMedico(medico: createMedico,activity: Activity){
-        Constant.retrofit.createMedico(medico).enqueue(object :Callback<createMedico>{
+
+    fun createMedico(medico: createMedico, activity: Activity) {
+        Constant.retrofit.createMedico(medico).enqueue(object : Callback<createMedico> {
             override fun onResponse(call: Call<createMedico>, response: Response<createMedico>) {
-                Toast.makeText(activity,"MEDICO Creado",Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "MEDICO Creado", Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<createMedico>, t: Throwable) {
                 TODO("Not yet implemented")
             }
 
+        })
+
+    }
+
+    fun getProcedimientoxEspecialidad(
+        nombre: String, activity: ProcedimientoPacienteActivity,
+        binding: ActivityProcedimientoPacienteBinding
+    ) {
+        fun iniRecyclerView(list: List<Procedimiento>) {
+            binding.rvProcedimiento.layoutManager =
+                LinearLayoutManager(activity.applicationContext)
+            binding.rvProcedimiento.adapter = ProdecimientoPacienteAdapter(list)
+        }
+        Constant.retrofit.getProcedimientoxEspecialidad(nombre)
+            .enqueue(object : Callback<List<Procedimiento>> {
+                override fun onResponse(
+                    call: Call<List<Procedimiento>>,
+                    response: Response<List<Procedimiento>>
+                ) {
+
+                    val list: List<Procedimiento> = response.body()!!
+                    iniRecyclerView(list)
+                    call.cancel()
+
+                }
+
+                override fun onFailure(call: Call<List<Procedimiento>>, t: Throwable) {
+
+                }
+
+            })
+    }
+    fun getAllMedicoPaciente(
+        nombre: String, nombreprocedimiento: String,
+        activity: MedicoPacienteActivity,
+        binding: ActivityMedicoPacienteBinding
+    ) {
+        fun iniRecyclerView(list: List<Medico>, nombreprocedimiento: String) {
+            binding.rvMedico.layoutManager =
+                LinearLayoutManager(activity.applicationContext)
+            binding.rvMedico.adapter = MedicoPacienteAdapter(list, nombreprocedimiento)
+        }
+        Constant.retrofit.getMedicoxEspecialidad(nombre).enqueue(object :
+            Callback<List<Medico>> {
+            override fun onResponse(
+                call: Call<List<Medico>>,
+                response: Response<List<Medico>>
+            ) {
+                activity.runOnUiThread {
+                    val list: List<Medico> = response.body()!!
+                    iniRecyclerView(list,nombreprocedimiento)
+                    call.cancel()
+                }
+            }
+            override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
+                Log.e("hola", t.toString())
+            }
         })
 
     }

@@ -21,7 +21,9 @@
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_especialidades_paciente.xml" value="0.22" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_login.xml" value="0.2374133949191686" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_agregar.xml" value="0.1" />
+        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_paciente.xml" value="0.1" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_medicos_admin.xml" value="0.22543859649122808" />
+        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_procedimiento_paciente.xml" value="0.1" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_registre.xml" value="0.10555555555555556" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_splash_screen.xml" value="0.22543859649122808" />
@@ -32,6 +34,8 @@
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_especialidades_admin.xml" value="0.22456140350877193" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_especialidades_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_medico_admin.xml" value="0.25" />
+        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_medico_paciente.xml" value="0.22" />
+        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_procedimiento_paciente.xml" value="0.22456140350877193" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/list_medico.xml" value="0.22251082251082252" />
         <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/drawable/bottom_background_light_green.xml" value="0.25" />
         <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/drawable/card_bg.xml" value="0.281" />

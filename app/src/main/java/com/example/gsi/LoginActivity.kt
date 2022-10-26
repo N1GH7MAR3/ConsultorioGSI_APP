@@ -22,7 +22,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         val username = binding.editTextEmailLogin
         val password = binding.editTextPasswordLogin
-
+        binding.txtInputUsuario.requestFocus()
         binding.btnLogin.setOnClickListener {
             if (username.text.toString() == "" && password.text.toString() == "") {
                 Toast.makeText(
@@ -38,23 +38,24 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this@LoginActivity, "Ingrese una Contraseña", Toast.LENGTH_LONG)
                     .show()
             } else {
-
-                    Constant.api.verifyUser(
-                        this@LoginActivity,
-                        username.text.toString(),
-                        password.text.toString(), username, password
-                    )
+                Constant.api.verifyUser(
+                    this@LoginActivity,
+                    username.text.toString(),
+                    password.text.toString(), username, password
+                )
 
 
             }
         }
-        binding.btnInvitado.setOnClickListener{
+        binding.btnInvitado.setOnClickListener {
             val intent = Intent(this@LoginActivity, DashboardInvitadoActivity::class.java)
             startActivity(intent)
+            finish()
         }
         binding.txtNuevoUsuario.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
+            finish()
 
         }
 

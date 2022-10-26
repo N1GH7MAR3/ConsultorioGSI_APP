@@ -21,6 +21,12 @@ interface Services {
     fun getAllEspecialidades():Call<List<Especialidad>>
     @GET("cita/buscardni/{dni}")
     fun getCitasPaciente(@Path ("dni")dni:Int):Call<List<Cita>>
+    @GET("procedimiento/listar")
+    fun getAllProcedimientos():Call<List<Procedimiento>>
+    @GET("procedimiento/buscarxEspecialidad/{nombre}")
+    fun getProcedimientoxEspecialidad(@Path("nombre")nombre:String):Call<List<Procedimiento>>
+    @GET("medico/buscarxEspecialidad/{nombre}")
+    fun getMedicoxEspecialidad(@Path("nombre")nombre: String):Call<List<Medico>>
     @POST("usuario/verifyuser")
     fun verifyUser(@Body body: ValidateUsuario):Call<Usuario>
     @POST("paciente/buscaruser")

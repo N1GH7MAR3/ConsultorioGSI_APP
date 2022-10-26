@@ -24,6 +24,11 @@ class DashboardAdminActivity : AppCompatActivity() {
             startActivity(intent)
 
         }
+        binding.cardCerrarSesion.setOnClickListener {
+            val intent=Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         }
 
     

@@ -13,19 +13,25 @@ class DashboardPacienteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardPacienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val dni=intent.getStringExtra("dni")
+        val dni = intent.getStringExtra("dni")
         val nombre = intent.getStringExtra("nombre")
         binding.txtNombre.text = "Hola, ${nombre}";
         binding.cardEspecialidades.setOnClickListener {
-            val intent = Intent(this@DashboardPacienteActivity, EspecialidadesPacienteActivity::class.java)
+            val intent =
+                Intent(this@DashboardPacienteActivity, EspecialidadesPacienteActivity::class.java)
             startActivity(intent)
         }
         binding.cardCitas.setOnClickListener {
-            val intent=Intent(this@DashboardPacienteActivity,CitaPacienteActivity::class.java)
-            Toast.makeText(this@DashboardPacienteActivity,dni,Toast.LENGTH_SHORT).show()
-            intent.putExtra("dni",dni)
+            val intent = Intent(this@DashboardPacienteActivity, CitaPacienteActivity::class.java)
+            intent.putExtra("dni", dni)
             startActivity(intent)
         }
+        binding.cardCerrarSesion.setOnClickListener {
+            val intent=Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
 
 
     }
