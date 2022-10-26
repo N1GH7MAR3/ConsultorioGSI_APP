@@ -13,7 +13,7 @@ class DashboardPacienteActivity : AppCompatActivity() {
         setContentView(binding.root)
         val nombre = intent.getStringExtra("nombre")
         binding.txtNombre.text = "Hola, $nombre";
-        binding.imageView22.setOnClickListener {
+        binding.cardEspecialidades.setOnClickListener {
             val intent = Intent(this@DashboardPacienteActivity, EspecialidadesPacienteActivity::class.java)
             startActivity(intent)
 

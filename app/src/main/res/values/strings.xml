@@ -32,6 +32,8 @@
     <string name="lbl_ajustes">Ajustes</string>
     <string name="lbl_acercaNosotros">Acerca de Nosotros</string>
     <string name="lbl_ubicacion">¿Donde nos ubicamos?</string>
+    <string name="lbl_perfil">Perfil</string>
+    <string name="lbl_controlSalud">Control Salud</string>
 
 
 </resources>

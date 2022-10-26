@@ -3,9 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#DAD4D4"
     tools:context=".EspecialidadesPacienteActivity">
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvEspecialidades"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_degradado"
+        android:orientation="vertical">
+
+
+        <include
+            android:id="@+id/customPrinciapl"
+            layout="@layout/custom_tolbar_principal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="171dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Especialidades"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:textSize="25dp"
+            android:textColor="@color/gsiAzul"
+            android:layout_marginBottom="20dp">
+
+        </TextView>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvEspecialidades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
 </FrameLayout>

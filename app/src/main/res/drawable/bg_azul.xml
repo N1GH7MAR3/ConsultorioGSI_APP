@@ -5,10 +5,10 @@
 
 
 
-    <solid android:color="@color/gsiCeleste"></solid>
+    <solid android:color="@color/gsiAzul"></solid>
     <corners
-        android:topLeftRadius="40dp"
-        android:topRightRadius="40dp"
+
+        android:radius="20dp"
 
         >
 
