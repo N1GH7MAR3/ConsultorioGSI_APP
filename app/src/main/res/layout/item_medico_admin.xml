@@ -20,15 +20,11 @@
 
         <RelativeLayout
             android:id="@+id/cl1"
-
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="8dp"
             >
-
             <ImageView
-
-
                 android:id="@+id/ivEspecialidad"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -42,17 +38,14 @@
                 android:layout_marginBottom="16dp"
                 android:padding="15dp"
                 android:src="@drawable/ic_account_circle">
-
             </ImageView>
-
             <LinearLayout
                 android:paddingTop="5dp"
                 android:layout_width="244dp"
-                android:layout_height="125dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="7dp"
                 android:layout_toEndOf="@+id/ivEspecialidad"
                 android:orientation="vertical">
-
                 <TextView
                     android:padding="5dp"
                     android:id="@+id/txtNombreCompleto"
@@ -74,7 +67,6 @@
                     android:text="especialidad"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
-
             </LinearLayout>
 
 

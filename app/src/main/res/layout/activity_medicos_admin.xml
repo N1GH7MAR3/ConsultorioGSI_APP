@@ -10,14 +10,11 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_degradado"
         android:orientation="vertical">
-
-
         <include
             android:id="@+id/customPrinciapl"
             layout="@layout/custom_tolbar_principal"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="171dp" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -27,23 +24,18 @@
             android:textSize="25dp"
             android:textColor="@color/gsiAzul"
             android:layout_marginBottom="20dp">
-
         </TextView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvMedico"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
-
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-
+        android:id="@+id/btnRegistrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:clickable="true"
-
-
+        android:layout_margin="15dp"
         android:src="@drawable/ic_baseline_add_24" />
-
 </FrameLayout>

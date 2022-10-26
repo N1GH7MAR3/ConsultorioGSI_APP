@@ -56,6 +56,9 @@ class EspecialidadEditarActivity : AppCompatActivity() {
             binding.txtInputNombre.setText("")
             binding.txtInputImage.setText("")
         }
+        binding.customPrinciapl.btnRegresar.setOnClickListener {
+            finish()
+        }
     }
 
 

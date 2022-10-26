@@ -22,12 +22,6 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         val username = binding.editTextEmailLogin
         val password = binding.editTextPasswordLogin
-        binding.btnInvitado.setOnClickListener {
-
-            //val intent = Intent(this@LoginActivity,DashboardInvitadoActivity::class.java)
-            //startActivity(intent)
-            //finish()
-        }
 
         binding.btnLogin.setOnClickListener {
             if (username.text.toString() == "" && password.text.toString() == "") {
@@ -54,10 +48,14 @@ class LoginActivity : AppCompatActivity() {
 
             }
         }
+        binding.btnInvitado.setOnClickListener{
+            val intent = Intent(this@LoginActivity, DashboardInvitadoActivity::class.java)
+            startActivity(intent)
+        }
         binding.txtNuevoUsuario.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
-            finish()
+
         }
 
 

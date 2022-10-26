@@ -2,7 +2,9 @@ package com.example.gsi
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.gsi.Entity.Cita
 import com.example.gsi.databinding.ActivityDashboardPacienteBinding
 
 class DashboardPacienteActivity : AppCompatActivity() {
@@ -11,12 +13,18 @@ class DashboardPacienteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardPacienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        val dni=intent.getStringExtra("dni")
         val nombre = intent.getStringExtra("nombre")
-        binding.txtNombre.text = "Hola, $nombre";
+        binding.txtNombre.text = "Hola, ${nombre}";
         binding.cardEspecialidades.setOnClickListener {
             val intent = Intent(this@DashboardPacienteActivity, EspecialidadesPacienteActivity::class.java)
             startActivity(intent)
-
+        }
+        binding.cardCitas.setOnClickListener {
+            val intent=Intent(this@DashboardPacienteActivity,CitaPacienteActivity::class.java)
+            Toast.makeText(this@DashboardPacienteActivity,dni,Toast.LENGTH_SHORT).show()
+            intent.putExtra("dni",dni)
+            startActivity(intent)
         }
 
 

@@ -22,6 +22,7 @@ class DashboardAdminActivity : AppCompatActivity() {
         binding.carMedicos.setOnClickListener {
             val intent=Intent(this@DashboardAdminActivity,MedicosAdminActivity::class.java)
             startActivity(intent)
+
         }
         }
 

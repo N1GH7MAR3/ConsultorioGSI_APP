@@ -1,5 +1,6 @@
 package com.example.gsi
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.gsi.Constans.Constant
@@ -12,5 +13,12 @@ class MedicosAdminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         Constant.api.getAllMedico(this@MedicosAdminActivity,binding)
+        binding.customPrinciapl.btnRegresar.setOnClickListener {
+            finish()
+        }
+        binding.btnRegistrar.setOnClickListener {
+            val intent=Intent(this@MedicosAdminActivity,MedicoAgregarActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

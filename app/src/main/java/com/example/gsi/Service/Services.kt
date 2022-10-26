@@ -19,6 +19,8 @@ interface Services {
     fun getAllMedico():Call<List<Medico>>
     @GET("especialidad/listar")
     fun getAllEspecialidades():Call<List<Especialidad>>
+    @GET("cita/buscardni/{dni}")
+    fun getCitasPaciente(@Path ("dni")dni:Int):Call<List<Cita>>
     @POST("usuario/verifyuser")
     fun verifyUser(@Body body: ValidateUsuario):Call<Usuario>
     @POST("paciente/buscaruser")
@@ -30,6 +32,8 @@ interface Services {
     fun deleteEspecialidad(@Path("id")id:Long):Call<Especialidad>
     @POST("especialidad/registrar")
     fun createEspecialidad(@Body body: createEspecialidad):Call<createEspecialidad>
+    @POST("medico/registrar")
+    fun createMedico(@Body body: createMedico):Call<createMedico>
 
 
 

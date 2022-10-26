@@ -13,7 +13,7 @@ import com.example.gsi.databinding.ActivityEspecialidadesPacienteBinding
 
 
 class EspecialidadesPacienteActivity : AppCompatActivity() {
-    private lateinit var binding2: ActivityDashboardPacienteBinding
+
     private lateinit var binding: ActivityEspecialidadesPacienteBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,38 +22,9 @@ class EspecialidadesPacienteActivity : AppCompatActivity() {
         Constant.api.getEspecilidadesPaciente(this@EspecialidadesPacienteActivity, binding)
 
 
-        //tolbar
-        val tolbar :Toolbar= findViewById(R.id.customPrinciapl)
-        setSupportActionBar(tolbar)
-        supportActionBar!!.setDisplayShowTitleEnabled(false)
-
-    }
-
-
-
-
-
-    //tolbar
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        menuInflater.inflate(R.menu.menu_item_principal, menu)
-        return super.onCreateOptionsMenu(menu)
-    }
-    //tolbar
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.iBack_icon -> {
-                //Toast.makeText(this,"buscar", Toast.LENGTH_SHORT).show();
-                val intent = Intent(this@EspecialidadesPacienteActivity, DashboardPacienteActivity::class.java)
-                binding2 = ActivityDashboardPacienteBinding.inflate(layoutInflater)
-                setContentView(binding.root)
-                val nombre = intent.getStringExtra("nombre")
-                binding2.txtNombre.text = "Hola, $nombre";
-                startActivity(intent)
-                finish()
-            }
-
+        binding.customPrinciapl.btnRegresar.setOnClickListener {
+            finish()
         }
-        return super.onOptionsItemSelected(item)
     }
 
 

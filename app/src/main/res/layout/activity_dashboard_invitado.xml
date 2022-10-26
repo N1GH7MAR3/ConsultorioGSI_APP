@@ -287,19 +287,18 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:foregroundGravity="center"
-                        android:src="@drawable/img_citas"
+                        android:src="@drawable/img_ubicacion"
                         app:layout_constraintBottom_toBottomOf="@+id/cl4"
                         app:layout_constraintEnd_toEndOf="@+id/cl4"
                         app:layout_constraintStart_toStartOf="@+id/cl4"
                         app:layout_constraintTop_toTopOf="@+id/cl4">
-
                     </ImageView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_citas"
+                    android:text="@string/lbl_ubicacion"
                     android:textColor="@color/gsiAzul"
                     android:textSize="13dp"
                     android:textStyle="bold">
@@ -361,11 +360,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_cerrarSesion"
+                    android:text="@string/lbl_volver"
                     android:textColor="@color/gsiAzul"
                     android:textSize="13dp"
                     android:textStyle="bold">
-
                 </TextView>
 
             </LinearLayout>

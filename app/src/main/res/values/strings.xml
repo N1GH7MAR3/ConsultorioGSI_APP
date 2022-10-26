@@ -29,6 +29,7 @@
     <string name="lbl_medico">Medicos</string>
     <string name="lbl_citas">Citas</string>
     <string name="lbl_cerrarSesion">Cerrar sesion</string>
+    <string name="lbl_volver">Volver</string>
     <string name="lbl_ajustes">Ajustes</string>
     <string name="lbl_acercaNosotros">Acerca de Nosotros</string>
     <string name="lbl_ubicacion">¿Donde nos ubicamos?</string>

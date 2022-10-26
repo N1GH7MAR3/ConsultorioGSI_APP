@@ -8,11 +8,13 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gsi.*
+import com.example.gsi.Adapter.CitaPacienteAdapter
 import com.example.gsi.Adapter.EspecialidadAdapter
 import com.example.gsi.Adapter.EspecialidadAdminAdapter
 import com.example.gsi.Adapter.MedicoAdminAdapter
 import com.example.gsi.Constans.Constant
 import com.example.gsi.Entity.*
+import com.example.gsi.databinding.ActivityCitaPacienteBinding
 import com.example.gsi.databinding.ActivityEspecialidadesAdminBinding
 import com.example.gsi.databinding.ActivityEspecialidadesPacienteBinding
 import com.example.gsi.databinding.ActivityMedicosAdminBinding
@@ -31,6 +33,7 @@ open class ApiService {
     private var c6 = GlobalScope.launch { }
     private var c7 = GlobalScope.launch { }
     private var c8=GlobalScope.launch {  }
+    private  var     c9=GlobalScope.launch {  }
 
     fun verifyUser(
         activity: Activity,
@@ -94,6 +97,7 @@ open class ApiService {
                             if (response.isSuccessful) {
 
                                 val intent = Intent(activity, DashboardPacienteActivity::class.java)
+                                intent.putExtra("dni",response.body()?.dni.toString())
                                 intent.putExtra("nombre", response.body()?.nombre)
                                 activity.startActivity(intent)
                                 //activity.finish()
@@ -288,8 +292,45 @@ open class ApiService {
                 })
         }
     }
+    fun getCitasPaciente(dni:Int,activity: CitaPacienteActivity,
+                         binding: ActivityCitaPacienteBinding){
+        fun iniRecyclerView(list: List<Cita>) {
+            binding.rvCita.layoutManager =
+                LinearLayoutManager(activity.applicationContext)
+            binding.rvCita.adapter = CitaPacienteAdapter(list)
+        }
+        c9 = GlobalScope.launch(Dispatchers.Main) {
+            Constant.retrofit.getCitasPaciente(dni).enqueue(object :Callback<List<Cita>>{
+                override fun onResponse(call: Call<List<Cita>>, response: Response<List<Cita>>) {
+                    activity.runOnUiThread {
+                        val list: List<Cita> = response.body()!!
+                        iniRecyclerView(list)
+                        call.cancel()
+                        c9.cancel()
+                    }
+                }
 
+                override fun onFailure(call: Call<List<Cita>>, t: Throwable) {
+                    Log.e("hola",t.toString())
+                }
 
+            })
+        }
+
+    }
+    fun createMedico(medico: createMedico,activity: Activity){
+        Constant.retrofit.createMedico(medico).enqueue(object :Callback<createMedico>{
+            override fun onResponse(call: Call<createMedico>, response: Response<createMedico>) {
+                Toast.makeText(activity,"MEDICO Creado",Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onFailure(call: Call<createMedico>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
 
 
 }

@@ -227,7 +227,7 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:foregroundGravity="center"
-                        android:src="@drawable/img_ubicacion"
+                        android:src="@drawable/img_doctor"
                         app:layout_constraintBottom_toBottomOf="@+id/cl3"
                         app:layout_constraintEnd_toEndOf="@+id/cl3"
                         app:layout_constraintStart_toStartOf="@+id/cl3"

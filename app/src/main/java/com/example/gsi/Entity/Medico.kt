@@ -3,10 +3,8 @@ package com.example.gsi.Entity
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-data class Medicos(
-    @SerializedName("id")
-    @Expose
-    val id: Long,
+
+data class createMedico(
     @SerializedName("nombre")
     @Expose
     val nombre: String,
@@ -30,7 +28,14 @@ data class Medicos(
     val sexo: Sexo,
     @SerializedName("turno")
     @Expose
-    val turno: Turno
+    val turno: Turno,
+
+    @SerializedName("horario")
+    @Expose
+    val horario: Horario,
+    @SerializedName("especialidad")
+    @Expose
+    val especialidad: Especialidad
 )
 
 data class Medico(

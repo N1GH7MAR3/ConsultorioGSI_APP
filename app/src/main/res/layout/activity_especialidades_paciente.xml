@@ -27,14 +27,11 @@
             android:textSize="25dp"
             android:textColor="@color/gsiAzul"
             android:layout_marginBottom="20dp">
-
         </TextView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvEspecialidades"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-
-
     </LinearLayout>
 
 </FrameLayout>
