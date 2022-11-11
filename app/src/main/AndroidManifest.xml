@@ -16,14 +16,21 @@
         android:theme="@style/Theme.GSI"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity android:name=".ControlSaludActivity"
-            android:exported="false"/>
-        <activity android:name=".MedicoPacienteActivity"
-            android:exported="false"/>
-        <activity android:name=".ProcedimientoPacienteActivity"
-            android:exported="false"/>
-        <activity android:name=".MedicoAgregarActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".EnfermedadPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ControlSaludActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicoPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProcedimientoPacienteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MedicoAgregarActivity"
+            android:exported="false" />
         <activity
             android:name=".CitaPacienteActivity"
             android:exported="false" />
@@ -51,7 +58,6 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
-
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
@@ -60,22 +66,16 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
-
-        </activity>
-
+            android:exported="true"></activity>
         <activity
             android:name=".WelcomeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" >
-
-        </activity>
+            android:exported="true"></activity>
     </application>
 
 </manifest>

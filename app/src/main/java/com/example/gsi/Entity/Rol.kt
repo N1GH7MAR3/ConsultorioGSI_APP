@@ -2,7 +2,10 @@ package com.example.gsi.Entity
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-
+data class createRolUsuario(
+    @SerializedName("id")
+    @Expose
+    val id:Long)
 data class Rol(
     @SerializedName("id")
     @Expose

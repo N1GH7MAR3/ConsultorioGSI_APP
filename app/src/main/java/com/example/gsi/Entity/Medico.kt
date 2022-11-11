@@ -29,7 +29,6 @@ data class createMedico(
     @SerializedName("turno")
     @Expose
     val turno: Turno,
-
     @SerializedName("horario")
     @Expose
     val horario: Horario,

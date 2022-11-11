@@ -3,11 +3,13 @@ package com.example.gsi.Service
 import android.R
 import android.app.Activity
 import android.content.Context
+import android.content.Entity
 import android.content.Intent
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gsi.*
 import com.example.gsi.Adapter.*
@@ -93,6 +95,7 @@ open class ApiService {
                             val intent = Intent(activity, DashboardPacienteActivity::class.java)
                             intent.putExtra("dni", response.body()?.dni.toString())
                             intent.putExtra("nombre", response.body()?.nombre)
+                            intent.putExtra("enfermedad",response.body()?.enfermedad?.descripcion)
                             activity.startActivity(intent)
                             //activity.finish()
                             call.cancel()
@@ -396,9 +399,9 @@ open class ApiService {
     fun getAllPais(activity: Activity, binding: ActivityRegisterBinding) {
         Constant.retrofit.getAllPais().enqueue(object : Callback<List<Pais>> {
             override fun onResponse(call: Call<List<Pais>>, response: Response<List<Pais>>) {
-                val list= mutableListOf<String>()
+                val list = mutableListOf<String>()
                 val listPais = response.body()
-                for (i in listPais!!.indices) list+=listPais[i].nombre
+                for (i in listPais!!.indices) list += listPais[i].nombre
                 binding.spPais.adapter = ArrayAdapter(
                     activity,
                     R.layout.simple_spinner_dropdown_item,
@@ -416,15 +419,15 @@ open class ApiService {
     }
 
     //Obtener el estadoCivil
-    fun getAllEstadoCivil(activity: Activity, binding: ActivityRegisterBinding){
-        Constant.retrofit.getAllEstadoCivil().enqueue(object :Callback<List<EstadoCivil>>{
+    fun getAllEstadoCivil(activity: Activity, binding: ActivityRegisterBinding) {
+        Constant.retrofit.getAllEstadoCivil().enqueue(object : Callback<List<EstadoCivil>> {
             override fun onResponse(
                 call: Call<List<EstadoCivil>>,
                 response: Response<List<EstadoCivil>>
             ) {
-                val list= mutableListOf<String>()
+                val list = mutableListOf<String>()
                 val listEstadoCivil = response.body()
-                for (i in listEstadoCivil!!.indices) list+=listEstadoCivil[i].nombre
+                for (i in listEstadoCivil!!.indices) list += listEstadoCivil[i].nombre
                 binding.spEstadoCivil.adapter = ArrayAdapter(
                     activity,
                     R.layout.simple_spinner_dropdown_item,
@@ -441,17 +444,18 @@ open class ApiService {
 
     //Obtener el Sexo
 
-    fun getAllSexo(activity: Activity, binding: ActivityRegisterBinding){
-        Constant.retrofit.getAllSexo().enqueue(object :Callback<List<Sexo>>{
+    fun getAllSexo(activity: Activity, binding: ActivityRegisterBinding) {
+        Constant.retrofit.getAllSexo().enqueue(object : Callback<List<Sexo>> {
             override fun onResponse(call: Call<List<Sexo>>, response: Response<List<Sexo>>) {
-                val list= mutableListOf<String>()
+                val list = mutableListOf<String>()
                 val listSexo = response.body()
-                for (i in listSexo!!.indices) list+=listSexo[i].nombre
+                for (i in listSexo!!.indices) list += listSexo[i].nombre
                 binding.spSexo.adapter = ArrayAdapter(
                     activity,
                     R.layout.simple_spinner_dropdown_item,
                     list
                 )
+
             }
 
             override fun onFailure(call: Call<List<Sexo>>, t: Throwable) {
@@ -459,6 +463,151 @@ open class ApiService {
             }
 
         })
+    }
+
+
+
+    fun createUsuarioPacienteControlSalud(
+        binding: ActivityRegisterBinding,
+        usuarioPaciente: createUsuarioPaciente,
+
+        ) {
+        Constant.retrofit.createContactoEmergencia(com.example.gsi.Entity.createContactoEmergencia(""))
+            .enqueue(object : Callback<ContactoEmergencia> {
+                override fun onResponse(
+                    call: Call<ContactoEmergencia>,
+                    response: Response<ContactoEmergencia>
+                ) {
+                    val idCE = putContactoEmergencia(response.body()?.id!!)
+                    Constant.retrofit.createContactoMedico(
+                        com.example.gsi.Entity.createContactoMedico(
+                            ""
+                        )
+                    ).enqueue(object : Callback<ContactoMedico> {
+                        override fun onResponse(
+                            call: Call<ContactoMedico>,
+                            response: Response<ContactoMedico>
+                        ) {
+                            val idCM = putContactoMedico(response.body()?.id!!)
+                            Constant.retrofit.createEnfermedad(
+                                com.example.gsi.Entity.createEnfermedad(
+                                    ""
+                                )
+                            ).enqueue(object : Callback<Enfermedad> {
+                                override fun onResponse(
+                                    call: Call<Enfermedad>,
+                                    response: Response<Enfermedad>
+                                ) {
+                                    val idE = putEnfermedad(response.body()?.id!!)
+                                    Constant.retrofit.createMedicina(
+                                        com.example.gsi.Entity.createMedicina(
+                                            ""
+                                        )
+                                    ).enqueue(object : Callback<Medicina> {
+                                        override fun onResponse(
+                                            call: Call<Medicina>,
+                                            response: Response<Medicina>
+                                        ) {
+                                            val idM = putMedicina(response.body()?.id!!)
+                                            Constant.retrofit.createAlergia(
+                                                com.example.gsi.Entity.createAlergia(
+                                                    ""
+                                                )
+                                            )
+                                                .enqueue(object : Callback<Alergia> {
+                                                    override fun onResponse(
+                                                        call: Call<Alergia>,
+                                                        response: Response<Alergia>
+                                                    ) {
+                                                        val idA = putAlergia(response.body()?.id!!)
+                                                        Constant.retrofit.createUsuario(
+                                                            usuarioPaciente
+                                                        )
+                                                            .enqueue(object : Callback<Usuario> {
+                                                                override fun onResponse(
+                                                                    call: Call<Usuario>,
+                                                                    response: Response<Usuario>
+                                                                ) {
+                                                                    val idU =
+                                                                        putUsuario(response.body()?.id!!)
+                                                                    val pais =
+                                                                        createPais(binding.spPais.selectedItemPosition.toLong() + 1)
+                                                                    val estadoCivil =
+                                                                        createEstadoCivil(binding.spEstadoCivil.selectedItemPosition.toLong() + 1)
+                                                                    val sexo =
+                                                                        createSexo(binding.spSexo.selectedItemPosition.toLong() + 1)
+                                                                    val pac =
+                                                                        com.example.gsi.Entity.createPaciente(
+                                                                            binding.editTextTexNombre.text.toString(),
+                                                                            binding.ediTextApePaterno.text.toString(),
+                                                                            binding.ediTextApeMaterno.text.toString(),
+                                                                            binding.editTextDni.text.toString()
+                                                                                .toInt(),
+                                                                            binding.editTextDireccion.text.toString(),
+                                                                            binding.editTextTelefono.text.toString(),
+                                                                            binding.editTexEmail.text.toString(),
+                                                                            pais,
+                                                                            estadoCivil,
+                                                                            sexo,
+                                                                            idU,
+                                                                            idCE,
+                                                                            idCM,
+                                                                            idE,
+                                                                            idM,
+                                                                            idA
+                                                                        )
+                                                                    Constant.retrofit.createPaciente(
+                                                                        pac
+                                                                    ).enqueue(object :
+                                                                        Callback<Paciente> {
+                                                                        override fun onResponse(
+                                                                            call: Call<Paciente>,
+                                                                            response: Response<Paciente>
+                                                                        ) {
+                                                                            Log.e(
+                                                                                "Paciente",
+                                                                                response.body()
+                                                                                    .toString()
+                                                                            )
+                                                                        }
+                                                                        override fun onFailure(
+                                                                            call: Call<Paciente>,
+                                                                            t: Throwable
+                                                                        ) {
+                                                                        }
+                                                                    })
+                                                                }
+                                                                override fun onFailure(
+                                                                    call: Call<Usuario>,
+                                                                    t: Throwable
+                                                                ) {
+                                                                }
+                                                            })
+                                                    }
+                                                    override fun onFailure(
+                                                        call: Call<Alergia>,
+                                                        t: Throwable
+                                                    ) {
+                                                    }
+                                                }
+                                                )
+                                        }
+                                        override fun onFailure(call: Call<Medicina>, t: Throwable) {
+                                        }
+                                    })
+                                }
+                                override fun onFailure(call: Call<Enfermedad>, t: Throwable) {
+                                }
+                            })
+                        }
+                        override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
+                        }
+                    })
+                }
+                override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
+                }
+            }
+            )
     }
 }
 
