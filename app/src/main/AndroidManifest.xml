@@ -4,7 +4,6 @@
     package="com.example.gsi">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -17,15 +16,14 @@
         android:theme="@style/Theme.GSI"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".MedicoPacienteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ProcedimientoPacienteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MedicoAgregarActivity"
-            android:exported="false" />
+        <activity android:name=".ControlSaludActivity"
+            android:exported="false"/>
+        <activity android:name=".MedicoPacienteActivity"
+            android:exported="false"/>
+        <activity android:name=".ProcedimientoPacienteActivity"
+            android:exported="false"/>
+        <activity android:name=".MedicoAgregarActivity"
+            android:exported="false"/>
         <activity
             android:name=".CitaPacienteActivity"
             android:exported="false" />
@@ -53,6 +51,7 @@
         <activity
             android:name=".RegisterActivity"
             android:exported="true" />
+
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">

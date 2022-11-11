@@ -31,6 +31,11 @@ class DashboardPacienteActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        binding.cardControlSalud.setOnClickListener {
+            val intent=Intent(this,ControlSaludActivity::class.java)
+            startActivity(intent)
+
+        }
 
 
 
