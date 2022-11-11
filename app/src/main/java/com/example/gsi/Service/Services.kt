@@ -11,9 +11,9 @@ interface Services {
     @GET("pais/listar")
     fun getAllPais():Call<List<Pais>>
     @GET("estadocivil/listar")
-    fun getAllEstadoCivil():Call<List<Pais>>
+    fun getAllEstadoCivil():Call<List<EstadoCivil>>
     @GET("sexo/listar")
-    fun getAllSexo():Call<List<Pais>>
+    fun getAllSexo():Call<List<Sexo>>
     @Headers("Accept: application/json")
     @GET("medico/listar")
     fun getAllMedico():Call<List<Medico>>

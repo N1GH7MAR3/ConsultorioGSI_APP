@@ -1,27 +1,29 @@
 package com.example.gsi
 
+import android.R
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.widget.TextView
-
+import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
+import com.example.gsi.Constans.Constant
+import com.example.gsi.Entity.Pais
 import com.example.gsi.databinding.ActivityRegisterBinding
 
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
-    lateinit var txtLogin: TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        txtLogin = findViewById(R.id.txtLogin)
 
-        txtLogin.setOnClickListener {
+        binding.txtLogin.setOnClickListener {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
+        Constant.api.getAllPais(this,binding)
+        Constant.api.getAllEstadoCivil(this,binding)
+        Constant.api.getAllSexo(this,binding)
     }
 }
