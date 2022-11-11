@@ -115,7 +115,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_especialidad"
+                    android:text="@string/lbl_enfermedad"
                     android:textColor="@color/gsiAzul"
                     android:textSize="13dp"
                     android:textStyle="bold">
@@ -176,7 +176,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_acercaNosotros"
+                    android:text="@string/lbl_alergia"
                     android:textColor="@color/gsiAzul"
                     android:textSize="13dp"
                     android:textStyle="bold">
@@ -238,7 +238,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_medico"
+                    android:text="@string/lbl_contacto"
                     android:textColor="@color/gsiAzul"
                     android:textSize="13dp"
                     android:textStyle="bold">
@@ -291,8 +291,7 @@
                         app:layout_constraintBottom_toBottomOf="@+id/cl4"
                         app:layout_constraintEnd_toEndOf="@+id/cl4"
                         app:layout_constraintStart_toStartOf="@+id/cl4"
-                        app:layout_constraintTop_toTopOf="@+id/cl4">
-                    </ImageView>
+                        app:layout_constraintTop_toTopOf="@+id/cl4"></ImageView>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
@@ -363,8 +362,7 @@
                     android:text="@string/lbl_volver"
                     android:textColor="@color/gsiAzul"
                     android:textSize="13dp"
-                    android:textStyle="bold">
-                </TextView>
+                    android:textStyle="bold"></TextView>
 
             </LinearLayout>
 
