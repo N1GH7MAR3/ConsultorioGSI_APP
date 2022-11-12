@@ -56,6 +56,29 @@
         <entry key="..\:/WP_AndroidStucioII/ConsultorioGSI_app/app/src/main/res/menu/menu_item_principal.xml" value="0.3625" />
         <entry key="..\:/WP_AndroidStucioII/ConsultorioGSI_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2695" />
         <entry key="..\:/WP_AndroidStucioII/ConsultorioGSI_app/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2695" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/banner_redondo.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/bg_azul.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/bg_degradado.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/bottom_background_light_green.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/card_bg.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/circle_bg.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/custom_butom.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/green_banner_background.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/ic_lock.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/ic_phone.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/drawable/ic_phone_android.xml" value="0.233" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_acerca_nosotros.xml" value="0.3509963768115942" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_cita_paciente.xml" value="0.3591485507246377" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_control_salud.xml" value="0.3591485507246377" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_dashboard_paciente.xml" value="0.3078125" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_enfermedad_paciente.xml" value="0.33" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_login.xml" value="0.3591485507246377" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_main.xml" value="0.32447916666666665" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_procedimiento_paciente.xml" value="0.32447916666666665" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_register.xml" value="0.3591485507246377" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_splash_screen.xml" value="0.3509963768115942" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/activity_welcome.xml" value="0.3509963768115942" />
+        <entry key="..\:/WP_AndroidStucioII/GSI/app/src/main/res/layout/custom_tolbar_principal.xml" value="0.3078125" />
         <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/drawable/bottom_background_light_green.xml" value="0.25" />
         <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/drawable/card_bg.xml" value="0.281" />
         <entry key="..\:/WP_AndroidStudio/ConsultorioGSI_app/app/src/main/res/drawable/custom_butom.xml" value="0.2765" />

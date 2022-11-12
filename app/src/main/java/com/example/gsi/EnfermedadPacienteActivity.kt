@@ -12,5 +12,9 @@ class EnfermedadPacienteActivity : AppCompatActivity() {
         setContentView(binding.root)
         val enfermedad=intent.getStringExtra("enfermedad")
         binding.txtEnfermedad.text=enfermedad
+
+        binding.btnRegresar.setOnClickListener {
+            finish()
+        }
     }
 }

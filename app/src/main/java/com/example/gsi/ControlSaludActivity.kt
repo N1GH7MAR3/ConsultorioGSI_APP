@@ -17,7 +17,7 @@ class ControlSaludActivity : AppCompatActivity() {
         binding.customPrinciapl.btnRegresar.setOnClickListener {
             finish()
         }
-        binding.cardEspecialidades.setOnClickListener {
+        binding.cardEnfermedades.setOnClickListener {
         val intent=Intent(this,EnfermedadPacienteActivity::class.java)
             intent.putExtra("enfermedad",enfermedad)
             startActivity(intent)

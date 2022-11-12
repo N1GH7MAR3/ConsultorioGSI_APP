@@ -35,5 +35,11 @@ class RegisterActivity : AppCompatActivity() {
             Constant.api.createUsuarioPacienteControlSalud(binding,usuario)
         }
 
+        //toolbar
+        binding.customPrinciapl.btnRegresar.setOnClickListener {
+            val intent1 = Intent(this, LoginActivity::class.java)
+            startActivity(intent1)
+        }
+
     }
 }

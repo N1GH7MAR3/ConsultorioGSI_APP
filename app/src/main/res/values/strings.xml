@@ -42,7 +42,12 @@
     <string name="lbl_contacto">Contacto</string>
     <string name="lbl_cMedico">Medico</string>
     <string name="lbl_cEmergencia">Emergencia</string>
-    <string name="lbl_medicina">Emergencia</string>
+    <string name="lbl_medicina">Medicina</string>
+
+    //REGISTER
+    <string name="lbl_pais">Pais:</string>
+    <string name="lbl_sexo">Sexo:</string>
+    <string name="lbl_estadocivil">Estado Civil:</string>
 
 
 </resources>
