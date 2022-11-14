@@ -400,14 +400,17 @@ open class ApiService {
         Constant.retrofit.getAllPais().enqueue(object : Callback<List<Pais>> {
             override fun onResponse(call: Call<List<Pais>>, response: Response<List<Pais>>) {
                 val list = mutableListOf<String>()
+                list.add(0,"Seleccionar")
                 val listPais = response.body()
                 for (i in listPais!!.indices) list += listPais[i].nombre
+
                 binding.spPais.adapter = ArrayAdapter(
                     activity,
                     R.layout.simple_spinner_dropdown_item,
                     list
-
                 )
+                binding.spPais.setSelection(0)
+
             }
 
             override fun onFailure(call: Call<List<Pais>>, t: Throwable) {
@@ -426,6 +429,7 @@ open class ApiService {
                 response: Response<List<EstadoCivil>>
             ) {
                 val list = mutableListOf<String>()
+                list.add(0,"Seleccionar")
                 val listEstadoCivil = response.body()
                 for (i in listEstadoCivil!!.indices) list += listEstadoCivil[i].nombre
                 binding.spEstadoCivil.adapter = ArrayAdapter(
@@ -433,6 +437,7 @@ open class ApiService {
                     R.layout.simple_spinner_dropdown_item,
                     list
                 )
+                binding.spEstadoCivil.setSelection(0)
             }
 
             override fun onFailure(call: Call<List<EstadoCivil>>, t: Throwable) {
@@ -448,6 +453,7 @@ open class ApiService {
         Constant.retrofit.getAllSexo().enqueue(object : Callback<List<Sexo>> {
             override fun onResponse(call: Call<List<Sexo>>, response: Response<List<Sexo>>) {
                 val list = mutableListOf<String>()
+                list.add(0,"Seleccionar")
                 val listSexo = response.body()
                 for (i in listSexo!!.indices) list += listSexo[i].nombre
                 binding.spSexo.adapter = ArrayAdapter(
@@ -455,7 +461,7 @@ open class ApiService {
                     R.layout.simple_spinner_dropdown_item,
                     list
                 )
-
+                binding.spSexo.setSelection(0)
             }
 
             override fun onFailure(call: Call<List<Sexo>>, t: Throwable) {
@@ -531,11 +537,11 @@ open class ApiService {
                                                                     val idU =
                                                                         putUsuario(response.body()?.id!!)
                                                                     val pais =
-                                                                        createPais(binding.spPais.selectedItemPosition.toLong() + 1)
+                                                                        createPais(binding.spPais.selectedItemPosition.toLong())
                                                                     val estadoCivil =
-                                                                        createEstadoCivil(binding.spEstadoCivil.selectedItemPosition.toLong() + 1)
+                                                                        createEstadoCivil(binding.spEstadoCivil.selectedItemPosition.toLong())
                                                                     val sexo =
-                                                                        createSexo(binding.spSexo.selectedItemPosition.toLong() + 1)
+                                                                        createSexo(binding.spSexo.selectedItemPosition.toLong())
                                                                     val pac =
                                                                         com.example.gsi.Entity.createPaciente(
                                                                             binding.editTextTexNombre.text.toString(),
@@ -564,11 +570,7 @@ open class ApiService {
                                                                             call: Call<Paciente>,
                                                                             response: Response<Paciente>
                                                                         ) {
-                                                                            Log.e(
-                                                                                "Paciente",
-                                                                                response.body()
-                                                                                    .toString()
-                                                                            )
+                                                                            Toast.makeText(binding.btnRegistrate.context,"Usuario/Paciente Registrado con exito",Toast.LENGTH_SHORT).show()
                                                                         }
                                                                         override fun onFailure(
                                                                             call: Call<Paciente>,
