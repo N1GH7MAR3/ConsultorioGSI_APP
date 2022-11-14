@@ -94,6 +94,15 @@ open class ApiService {
                             intent.putExtra("dni", response.body()?.dni.toString())
                             intent.putExtra("nombre", response.body()?.nombre)
                             intent.putExtra("enfermedad",response.body()?.enfermedad?.descripcion)
+                            intent.putExtra("medicina",response.body()?.medicina?.descripcion)
+                            intent.putExtra("apePaterno",response.body()?.apellido_paterno)
+                            intent.putExtra("apeMaterno",response.body()?.apellido_materno)
+                            intent.putExtra("correo",response.body()?.correo)
+                            intent.putExtra("telefono",response.body()?.telefono)
+                            intent.putExtra("direccion",response.body()?.direccion)
+                            intent.putExtra("password",response.body()?.usuario?.contraseña)
+
+
                             activity.startActivity(intent)
                             //activity.finish()
                             call.cancel()
@@ -468,6 +477,8 @@ open class ApiService {
 
         })
     }
+
+
 
 
 

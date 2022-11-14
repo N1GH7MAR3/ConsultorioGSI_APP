@@ -2,48 +2,397 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/gsiCeleste"
+
     tools:context=".AcercaNosotrosActivity">
 
-    <ImageView
 
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-
-
+    <ScrollView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#F5F5F5"
+        app:layout_constraintTop_toTopOf="parent">
 
-        android:layout_marginBottom="124dp"
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
 
-        android:paddingBottom="320dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/fondo1" />
+                android:id="@+id/constraintLayout"
 
-    <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gsiPlomo"
 
-        android:id="@+id/imageView4"
-        android:layout_width="317dp"
+                android:padding="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-
-        android:layout_height="197dp"
-
-        android:layout_marginBottom="208dp"
-
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/logo1" />
+                <Button
 
 
+                    android:id="@+id/btnRegresar"
+
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="6dp"
+                    android:background="@drawable/back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textView2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="44dp"
+
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="6dp"
+                    android:gravity="center"
+                    android:text="@string/lbl_acercaNosotros"
+                    android:textColor="@color/gsiAzul"
+                    android:textSize="30sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+
+                    app:layout_constraintStart_toEndOf="@+id/btnRegresar"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="273dp"
+                android:layout_height="105dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="15dp"
+
+
+                app:srcCompat="@drawable/logo1" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="0.3333"
+                android:background="@drawable/grey_background"
+                android:elevation="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="184dp"
+                            android:layout_height="127dp"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/img_acercagsi" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Acerca del Grupo
+                                Integral de Salud"
+                                android:textColor="@color/gsiVerde"
+                                android:textSize="13dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textView5"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingTop="5dp"
+                                android:text="Grupo de jóvenes empresarios vecinos
+ de la zona de Breña que conociendo
+ los problemas y necesidades del
+ distrito,decidieron formar una alianza
+estratégica con la Municipalidad
+ de Breña y crear un policlínico
+para los vecinos del distrito."
+                                android:textColor="@color/black"
+
+                                android:textSize="9.7dp" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="17dp"
+                android:gravity="center"
+                android:text="Promoviendo la salud y el cuidado
+ a los vecinos de Breña"
+                android:textColor="@color/gsiAzul"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="0.3333"
+                android:background="@drawable/grey_background"
+                android:elevation="5dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="184dp"
+                            android:layout_height="127dp"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/img_director" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:paddingTop="8dp"
+
+                                android:text="Dr. Edmundo Díaz Arana"
+                                android:textColor="@color/gsiVerde"
+                                android:textSize="14dp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/textView6"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:layout_weight="1"
+                                android:paddingTop="5dp"
+                                android:text="Director Médico GSI S.A.C.
+Médico Cirujano
+C.M.P. 18583
+Magister Salud Pública
+Diplomado Salud Ocupacional
+Magister (E) Salud Ocupacional"
+                                android:textColor="@color/black"
+
+                                android:textSize="11dp" />
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="25dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <ImageButton
+                        android:layout_width="65dp"
+
+                        android:layout_height="65dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_fb" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <ImageButton
+                        android:layout_width="65dp"
+
+                        android:layout_height="65dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_whatsapp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp">
+
+                    <ImageButton
+                        android:layout_width="65dp"
+
+                        android:layout_height="65dp"
+                        android:background="@android:color/transparent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_web" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gsiPlomo"
+                android:orientation="horizontal"
+                android:paddingTop="18dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="18dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_margin="7dp"
+                        android:src="@drawable/ic_location_on" />
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_margin="7dp"
+                        android:src="@drawable/ic_location_on" />
+
+                    <ImageView
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_margin="7dp"
+                        android:src="@drawable/ic_location_on" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="18dp"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:text="Av. Venezuela 1650 - Breña
+
+"
+                        android:textColor="@color/white"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:text="Tel: 330-3241 RPC: 943-813645
+
+"
+                        android:textColor="@color/white"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="7dp"
+                        android:text="email: informes@gruposaludintegral.net
+
+"
+                        android:textColor="@color/white"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/logo1">
+
+                    </ImageView>
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

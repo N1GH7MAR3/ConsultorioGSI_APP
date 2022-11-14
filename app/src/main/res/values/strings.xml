@@ -9,11 +9,18 @@
     <string name="label_confirm_password">Confirm Password</string>
     <string name="label_start_session">Log in</string>
 
+
+
     <string name="hint_nombre">Name</string>
     <string name="hint_telefono">Phone</string>
     <string name="hint_correo">Email</string>
+
+    //BUTTONS
     <string name="btn_agregar">Accept </string>
     <string name="btn_actualizar">Update</string>
+    <string name="btn_editar">Editar</string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_guardarCambios">Guardar Cambios</string>
 
     <string name="btn_login">Log in</string>
     <string name="btn_register">Sign up</string>
@@ -48,6 +55,24 @@
     <string name="lbl_pais">Pais:</string>
     <string name="lbl_sexo">Sexo:</string>
     <string name="lbl_estadocivil">Estado Civil:</string>
+
+    //REGISTER
+    <string name="lbl_acercaGrupoSalud">Grupo de jóvenes empresarios vecinos
+ de la zona de Breña que conociendo
+ </string>
+
+    //PERFIL PACIENTE
+    <string name="lbl_nombre">Nombre:</string>
+    <string name="lbl_ApellidoP">Apellido Paterno:</string>
+    <string name="lbl_ApellidoM">Apellido Materno:</string>
+    <string name="lbl_telefono">Pais:</string>
+    <string name="lbl_direccion">Pais:</string>
+
+
+    //ACERCA NOSOTROS
+
+
+
 
 
 </resources>

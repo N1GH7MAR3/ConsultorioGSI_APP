@@ -22,5 +22,14 @@ class ControlSaludActivity : AppCompatActivity() {
             intent.putExtra("enfermedad",enfermedad)
             startActivity(intent)
         }
+
+        //medicina
+        val medicina=intent.getStringExtra("medicina")
+
+        binding.cardMedicina.setOnClickListener {
+            val intent=Intent(this,MedicinaPacienteActivity::class.java)
+            intent.putExtra("medicina",medicina)
+            startActivity(intent)
+        }
     }
 }
