@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
         binding.txtNuevoUsuario.setOnClickListener {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
-            finish()
+
 
         }
 

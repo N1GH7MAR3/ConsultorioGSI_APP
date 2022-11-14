@@ -3,13 +3,11 @@ package com.example.gsi.Service
 import android.R
 import android.app.Activity
 import android.content.Context
-import android.content.Entity
 import android.content.Intent
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gsi.*
 import com.example.gsi.Adapter.*
@@ -571,6 +569,7 @@ open class ApiService {
                                                                             response: Response<Paciente>
                                                                         ) {
                                                                             Toast.makeText(binding.btnRegistrate.context,"Usuario/Paciente Registrado con exito",Toast.LENGTH_SHORT).show()
+                                                                            (binding.btnRegistrate.context as Activity).finish()
                                                                         }
                                                                         override fun onFailure(
                                                                             call: Call<Paciente>,

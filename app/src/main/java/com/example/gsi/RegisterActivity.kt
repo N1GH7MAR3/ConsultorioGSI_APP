@@ -269,7 +269,7 @@ class RegisterActivity : AppCompatActivity() {
                 binding.spSexo.requestFocusFromTouch()
             }
             else {
-                //Constant.api.createUsuarioPacienteControlSalud(binding,usuario)
+                Constant.api.createUsuarioPacienteControlSalud(binding,usuario)
             }
 
 
