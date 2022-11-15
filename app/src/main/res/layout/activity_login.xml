@@ -8,11 +8,23 @@
     android:background="@drawable/login"
     tools:context=".WelcomeActivity">
 
-
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="308dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:gravity="center|center_horizontal"
+        android:text="Bienvenido(a) - Inicia Sesión"
+        android:textColor="@color/gsiVerde"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="361dp"
-        android:layout_height="118dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/txtNuevoUsuario"
         android:layout_marginStart="22dp"
         android:layout_marginTop="30dp"
@@ -62,75 +74,55 @@
 
     </LinearLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnLogin"
-        android:layout_width="252dp"
-        android:layout_height="53dp"
 
-        android:layout_marginStart="79dp"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="12dp"
-        android:text="Iniciar Sesion"
-        android:textColor="@color/gsiAzul"
-        app:cornerRadius="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnInvitado"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnInvitado"
-        android:layout_width="252dp"
-        android:layout_height="53dp"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogin"
+            android:layout_width="252dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="79dp"
+            android:layout_marginEnd="80dp"
+            android:layout_marginBottom="12dp"
+            android:text="Iniciar Sesion"
+            android:textColor="@color/gsiAzul"
+            app:cornerRadius="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/btnInvitado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
-        android:layout_marginStart="79dp"
-        android:layout_marginTop="88dp"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnInvitado"
+            android:layout_width="252dp"
+            android:layout_height="53dp"
+            android:layout_marginStart="79dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginEnd="80dp"
+            android:text="Ingresar como invitado"
+            android:textColor="@color/gsiAzul"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-        android:layout_marginEnd="80dp"
-        android:text="Ingresar como invitado"
-        android:textColor="@color/gsiAzul"
-        app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        <TextView
+            android:id="@+id/txtNuevoUsuario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="sans-serif-light"
+            android:gravity="center|center_horizontal"
+            android:text="Si no tienes cuenta, REGISTRATE"
+            android:textColor="@color/gsiAzul"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnInvitado"
+            tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
 
-    <TextView
-        android:id="@+id/txtNuevoUsuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:fontFamily="sans-serif-light"
-
-        android:gravity="center|center_horizontal"
-        android:paddingTop="5dp"
-        android:text="Si no tienes cuenta, REGISTRATE"
-        android:textColor="@color/gsiAzul"
-
-        android:textSize="18sp"
-
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:gravity="center|center_horizontal"
-        android:text="Bienvenido(a) - Inicia Sesión"
-        android:textColor="@color/gsiVerde"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

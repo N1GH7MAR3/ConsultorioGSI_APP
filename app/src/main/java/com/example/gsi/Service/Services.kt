@@ -40,7 +40,7 @@ interface Services {
     fun verifyUser(@Body body: ValidateUsuario): Call<Usuario>
 
     @POST("paciente/buscaruser")
-    fun searchPaciente(@Body body: SearchUsuario): Call<Paciente>
+    fun searchPaciente(@Body searchUsuario: SearchUsuario): Call<Paciente>
 
     @Headers("Content-Type:application/json")
     @PUT("especialidad/editar/{id}")

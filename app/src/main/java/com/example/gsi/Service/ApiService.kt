@@ -4,6 +4,7 @@ import android.R
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.os.AsyncTask
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.EditText
@@ -19,102 +20,112 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-open class ApiService {
+@OptIn(DelicateCoroutinesApi::class)
+open class ApiService{
 
     //Verificar Existencia del Usuario
     fun verifyUser(
-        activity: Activity,
-        usuario: String,
-        contraseña: String,
+        binding: ActivityLoginBinding,
         username: EditText,
         password: EditText
     ) {
 
-        val user = ValidateUsuario(usuario, contraseña)
+        val user = ValidateUsuario(username.text.toString(), password.text.toString())
+        CoroutineScope(Dispatchers.Main).launch {
+
         Constant.retrofit.verifyUser(user).enqueue(
             object : Callback<Usuario> {
                 override fun onResponse(
                     call: Call<Usuario>,
                     response: Response<Usuario>
                 ) {
-                    activity.runOnUiThread {
-                        if (response.code() == 404) {
-                            Toast.makeText(activity, "Usuario no Registrado", Toast.LENGTH_LONG)
-                                .show()
-                            call.cancel()
-                        } else if (response.body()?.contraseña.toString() != contraseña) {
-                            Toast.makeText(
-                                activity,
-                                "Contraseña Incorrecta",
-                                Toast.LENGTH_LONG
-                            ).show()
-                            call.cancel()
-                        } else if (response.body()?.rol?.nombre.toString() == "admin") {
-                            Toast.makeText(
-                                activity,
-                                "Ingreso satisfactorio con login",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            val intent = Intent(activity, DashboardAdminActivity::class.java)
-                            intent.putExtra("nombre", response.body()?.usuario)
-                            activity.startActivity(intent)
-                            activity.finish()
-                            call.cancel()
-                        } else {
-                            username.setText("")
-                            password.setText("")
-                            Toast.makeText(
-                                activity,
-                                "Ingreso satisfactorio con login",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                            searchPaciente(activity, usuario)
-                            call.cancel()
-                        }
+                    if (response.code() == 404) {
+                        binding.txtInputUsuario.isErrorEnabled=true
+                        binding.txtInputUsuario.error="Usuario no Existe"
+                        call.cancel()
+                    } else if (response.body()?.contraseña.toString() != password.text.toString()) {
+                        binding.txtInputPassword.isErrorEnabled=true
+                        binding.txtInputPassword.error="Contraseña Incorrecta"
+                        call.cancel()
+                    } else if (response.body()?.rol?.nombre.toString() == "admin") {
+                        Toast.makeText(
+                            binding.btnLogin.context,
+                            "Ingreso satisfactorio con login",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val intent = Intent(binding.txtInputPassword.context, DashboardAdminActivity::class.java)
+                        intent.putExtra("nombre", response.body()?.usuario)
+                        binding.btnLogin.context.startActivity(intent)
+                        (binding.btnLogin.context as Activity).finish()
+                        call.cancel()
+                    } else {
+                        Toast.makeText(
+                            binding.txtInputPassword.context,
+                            "Ingreso satisfactorio con login",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        val intent = Intent(binding.txtInputPassword.context, DashboardPacienteActivity::class.java)
+                        intent.putExtra("usuario", response.body()?.usuario)
+                        binding.btnLogin.context.startActivity(intent)
+                        (binding.btnLogin.context as Activity).finish()
+                        call.cancel()
                     }
                 }
 
+
                 override fun onFailure(call: Call<Usuario>, t: Throwable) {
-                    Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
+                    Toast.makeText(binding.txtInputPassword.context, Constant.NoInternet, Toast.LENGTH_LONG).show()
                 }
             }
         )
+
+        }
     }
 
 
     //Buscar Paciente para obtener nombre y dni
-    fun searchPaciente(activity: Activity, usuario: String) {
+    fun searchPaciente(binding: ActivityDashboardPacienteBinding, usuario: String) {
         val pac = SearchUsuario(usuario)
+        CoroutineScope(Dispatchers.Main).launch {
         Constant.retrofit.searchPaciente(pac).enqueue(
             object : Callback<Paciente> {
                 override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
-                    activity.runOnUiThread {
-                        if (response.isSuccessful) {
-                            val intent = Intent(activity, DashboardPacienteActivity::class.java)
-                            intent.putExtra("dni", response.body()?.dni.toString())
-                            intent.putExtra("nombre", response.body()?.nombre)
-                            intent.putExtra("enfermedad",response.body()?.enfermedad?.descripcion)
-                            intent.putExtra("medicina",response.body()?.medicina?.descripcion)
+                    if (response.isSuccessful) {
+                        binding.txtNombre.text = response.body()?.nombre
+                        binding.imagePerfil.setOnClickListener {
+                            val intent=Intent(binding.cardAcercaNosotros.context,PacientePerfilActivity::class.java)
+                            intent.putExtra("id",response.body()?.id.toString())
+                            intent.putExtra("nombre",response.body()?.nombre)
                             intent.putExtra("apePaterno",response.body()?.apellido_paterno)
                             intent.putExtra("apeMaterno",response.body()?.apellido_materno)
-                            intent.putExtra("correo",response.body()?.correo)
-                            intent.putExtra("telefono",response.body()?.telefono)
+                            intent.putExtra("dni", response.body()?.dni.toString())
                             intent.putExtra("direccion",response.body()?.direccion)
+                            intent.putExtra("telefono",response.body()?.telefono)
+                            intent.putExtra("correo",response.body()?.correo)
+                            intent.putExtra("paisid",response.body()?.pais?.id.toString())
+                            intent.putExtra("paisnombre",response.body()?.pais?.nombre)
+                            intent.putExtra("estadocivilid",response.body()?.estadoCivil?.id.toString())
+                            intent.putExtra("estadocivilnombre",response.body()?.estadoCivil?.nombre)
+                            intent.putExtra("sexoid",response.body()?.sexo?.id.toString())
+                            intent.putExtra("sexonombre",response.body()?.sexo?.nombre)
+                            intent.putExtra("usuarioid",response.body()?.usuario?.id.toString())
+                            intent.putExtra("usuario",response.body()?.usuario?.usuario)
                             intent.putExtra("password",response.body()?.usuario?.contraseña)
+                            binding.cardAcercaNosotros.context.startActivity(intent)
 
-
-                            activity.startActivity(intent)
-                            //activity.finish()
-                            call.cancel()
                         }
                     }
                 }
 
                 override fun onFailure(call: Call<Paciente>, t: Throwable) {
-                    Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
+                    Toast.makeText(
+                        binding.cardAcercaNosotros.context,
+                        Constant.NoInternet,
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-            }
-        )
+            })}
+
     }
 
 
@@ -140,13 +151,11 @@ open class ApiService {
                         call.cancel()
                     }
                 }
-
                 override fun onFailure(call: Call<List<Especialidad>>, t: Throwable) {
                     Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
                 }
             })
     }
-
 
     //Obtener todos los medicos
     fun getAllMedico(
@@ -403,11 +412,11 @@ open class ApiService {
     }
 
     //Obtener los paises
-    fun getAllPais(activity: Activity, binding: ActivityRegisterBinding) {
+    fun getAllPais(activity: Activity, binding: ActivityRegisterBinding,paisid: String) {
         Constant.retrofit.getAllPais().enqueue(object : Callback<List<Pais>> {
             override fun onResponse(call: Call<List<Pais>>, response: Response<List<Pais>>) {
                 val list = mutableListOf<String>()
-                list.add(0,"Seleccionar")
+                list.add(0, "Seleccionar")
                 val listPais = response.body()
                 for (i in listPais!!.indices) list += listPais[i].nombre
 
@@ -416,7 +425,12 @@ open class ApiService {
                     R.layout.simple_spinner_dropdown_item,
                     list
                 )
-                binding.spPais.setSelection(0)
+                if (paisid.isEmpty()){
+                    binding.spPais.setSelection(0)
+                }else{
+                    binding.spPais.setSelection(paisid.toInt())
+                }
+
 
             }
 
@@ -429,14 +443,14 @@ open class ApiService {
     }
 
     //Obtener el estadoCivil
-    fun getAllEstadoCivil(activity: Activity, binding: ActivityRegisterBinding) {
+    fun getAllEstadoCivil(activity: Activity, binding: ActivityRegisterBinding,estadocivilid:String) {
         Constant.retrofit.getAllEstadoCivil().enqueue(object : Callback<List<EstadoCivil>> {
             override fun onResponse(
                 call: Call<List<EstadoCivil>>,
                 response: Response<List<EstadoCivil>>
             ) {
                 val list = mutableListOf<String>()
-                list.add(0,"Seleccionar")
+                list.add(0, "Seleccionar")
                 val listEstadoCivil = response.body()
                 for (i in listEstadoCivil!!.indices) list += listEstadoCivil[i].nombre
                 binding.spEstadoCivil.adapter = ArrayAdapter(
@@ -444,7 +458,10 @@ open class ApiService {
                     R.layout.simple_spinner_dropdown_item,
                     list
                 )
-                binding.spEstadoCivil.setSelection(0)
+                if(estadocivilid.isEmpty()){
+                binding.spEstadoCivil.setSelection(0)}else{
+                    binding.spEstadoCivil.setSelection(estadocivilid.toInt())
+                }
             }
 
             override fun onFailure(call: Call<List<EstadoCivil>>, t: Throwable) {
@@ -456,11 +473,11 @@ open class ApiService {
 
     //Obtener el Sexo
 
-    fun getAllSexo(activity: Activity, binding: ActivityRegisterBinding) {
+    fun getAllSexo(activity: Activity, binding: ActivityRegisterBinding,sexoid:String) {
         Constant.retrofit.getAllSexo().enqueue(object : Callback<List<Sexo>> {
             override fun onResponse(call: Call<List<Sexo>>, response: Response<List<Sexo>>) {
                 val list = mutableListOf<String>()
-                list.add(0,"Seleccionar")
+                list.add(0, "Seleccionar")
                 val listSexo = response.body()
                 for (i in listSexo!!.indices) list += listSexo[i].nombre
                 binding.spSexo.adapter = ArrayAdapter(
@@ -468,7 +485,11 @@ open class ApiService {
                     R.layout.simple_spinner_dropdown_item,
                     list
                 )
-                binding.spSexo.setSelection(0)
+                if(sexoid.isEmpty()){
+                binding.spSexo.setSelection(0)}
+                else{
+                    binding.spSexo.setSelection(sexoid.toInt())
+                }
             }
 
             override fun onFailure(call: Call<List<Sexo>>, t: Throwable) {
@@ -477,9 +498,6 @@ open class ApiService {
 
         })
     }
-
-
-
 
 
     fun createUsuarioPacienteControlSalud(
@@ -579,9 +597,14 @@ open class ApiService {
                                                                             call: Call<Paciente>,
                                                                             response: Response<Paciente>
                                                                         ) {
-                                                                            Toast.makeText(binding.btnRegistrate.context,"Usuario/Paciente Registrado con exito",Toast.LENGTH_SHORT).show()
+                                                                            Toast.makeText(
+                                                                                binding.btnRegistrate.context,
+                                                                                "Usuario/Paciente Registrado con exito",
+                                                                                Toast.LENGTH_SHORT
+                                                                            ).show()
                                                                             (binding.btnRegistrate.context as Activity).finish()
                                                                         }
+
                                                                         override fun onFailure(
                                                                             call: Call<Paciente>,
                                                                             t: Throwable
@@ -589,6 +612,7 @@ open class ApiService {
                                                                         }
                                                                     })
                                                                 }
+
                                                                 override fun onFailure(
                                                                     call: Call<Usuario>,
                                                                     t: Throwable
@@ -596,6 +620,7 @@ open class ApiService {
                                                                 }
                                                             })
                                                     }
+
                                                     override fun onFailure(
                                                         call: Call<Alergia>,
                                                         t: Throwable
@@ -604,18 +629,22 @@ open class ApiService {
                                                 }
                                                 )
                                         }
+
                                         override fun onFailure(call: Call<Medicina>, t: Throwable) {
                                         }
                                     })
                                 }
+
                                 override fun onFailure(call: Call<Enfermedad>, t: Throwable) {
                                 }
                             })
                         }
+
                         override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
                         }
                     })
                 }
+
                 override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
                 }
             }

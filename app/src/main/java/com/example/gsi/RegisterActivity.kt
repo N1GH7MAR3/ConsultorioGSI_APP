@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
+import androidx.core.view.isVisible
 import com.example.gsi.Constans.Constant
 import com.example.gsi.Entity.createRolUsuario
 import com.example.gsi.Entity.createUsuarioPaciente
@@ -21,16 +22,48 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Constant.api.getAllPais(this, binding)
-        Constant.api.getAllEstadoCivil(this, binding)
-        Constant.api.getAllSexo(this, binding)
+
+
+        val id=intent.getStringExtra("id")
+        val nombre=intent.getStringExtra("nombre")
+        val apePaterno=intent.getStringExtra("apePaterno")
+        val apeMaterno=intent.getStringExtra("apeMaterno")
+        val dni=intent.getStringExtra("dni")
+        val direccion=intent.getStringExtra("direccion")
+        val telefono=intent.getStringExtra("telefono")
+        val correo=intent.getStringExtra("correo")
+        val paisid=intent.getStringExtra("paisid")
+        val paisnombre=intent.getStringExtra("paisnombre")
+        val estadocivilid=intent.getStringExtra("estadocivilid")
+        val sexoid=intent.getStringExtra("sexoid")
+        val usuarioid=intent.getStringExtra("usuarioid")
+        val password=intent.getStringExtra("password")
+
+        Constant.api.getAllPais(this, binding,paisid!!)
+        Constant.api.getAllEstadoCivil(this, binding,estadocivilid!!)
+        Constant.api.getAllSexo(this, binding,sexoid!!)
+
+        binding.editTextTexNombre.setText(nombre)
+        binding.ediTextApePaterno.setText(apePaterno)
+        binding.ediTextApeMaterno.setText(apeMaterno)
+        binding.editTextDni.setText(dni)
+        binding.editTextDireccion.setText(direccion)
+        binding.editTextTelefono.setText(telefono)
+        binding.editTexEmail.setText(correo)
+        binding.editTextPassword.setText(password)
+
+
+        if(id!!.isNotEmpty()){
+            binding.textView3.text="Editar Perfil"
+            binding.btnRegistrate.text = "Editar Perfil"
+            binding.txtLogin.isVisible=false
+        }
         binding.txtInputEmail.isErrorEnabled = false
         binding.txtLogin.setOnClickListener {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
-
 
         binding.editTextTexNombre.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -172,8 +205,10 @@ class RegisterActivity : AppCompatActivity() {
                 ) {
                     binding.txtInputEmail.error = "Debe ingresar su Email"
                     binding.txtInputEmail.isErrorEnabled = true
-                }else if (binding.editTexEmail.text.toString().matches(("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+").toString().toRegex())){
-                }else{
+                } else if (binding.editTexEmail.text.toString()
+                        .matches(("[a-zA-Z0-9._-]+@[a-z]+\\.[a-z]+").toString().toRegex())
+                ) {
+                } else {
                     binding.txtInputEmail.isErrorEnabled = true
                     binding.txtInputEmail.error = "Email invalido"
                 }
@@ -228,11 +263,10 @@ class RegisterActivity : AppCompatActivity() {
                 binding.editTextDni.text.toString(), binding.editTextDni.text.toString(),
                 createRolUsuario(1)
             )
-            Log.e("pais",(binding.spPais.selectedItemPosition.toLong()).toString())
+
             if (binding.editTextTexNombre.text.toString().isEmpty()) {
                 binding.editTextTexNombre.requestFocus()
                 binding.txtInputNombre.error = "Ingrese su Nombre"
-                binding.txtInputNombre.isErrorEnabled = true
             } else if (binding.ediTextApePaterno.text.toString().isEmpty()) {
                 binding.ediTextApePaterno.requestFocus()
                 binding.txtInputApePaterno.error = "Debe ingresar su Apellido Paterno"
@@ -260,25 +294,30 @@ class RegisterActivity : AppCompatActivity() {
             } else if (binding.editTextPassword.text.toString() != binding.editTextTexConfirPass.text.toString()) {
                 binding.editTextTexConfirPass.requestFocus()
                 binding.txtInputConfirPass.error = "La contraseña no concuerda"
-            }else if(binding.spPais.selectedItemPosition==0){
+            } else if (binding.spPais.selectedItemPosition == 0) {
                 binding.spPais.requestFocusFromTouch()
-            }else if(binding.spEstadoCivil.selectedItemPosition==0){
+            } else if (binding.spEstadoCivil.selectedItemPosition == 0) {
                 binding.spEstadoCivil.requestFocusFromTouch()
-            }
-            else if(binding.spSexo.selectedItemPosition==0){
+            } else if (binding.spSexo.selectedItemPosition == 0) {
                 binding.spSexo.requestFocusFromTouch()
-            }
-            else {
-                Constant.api.createUsuarioPacienteControlSalud(binding,usuario)
+            } else {
+                if (id.isEmpty()){
+                Constant.api.createUsuarioPacienteControlSalud(binding, usuario)}
+                else{
+
+                }
             }
 
 
         }
         //toolbar
         binding.customPrinciapl.btnRegresar.setOnClickListener {
+            if (id.isNotEmpty()){
+                finish()
+            }else{
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
-            finish()
+            finish()}
         }
 
     }

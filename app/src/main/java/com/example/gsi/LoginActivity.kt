@@ -2,15 +2,13 @@ package com.example.gsi
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.EditText
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gsi.Constans.Constant
 import com.example.gsi.databinding.ActivityLoginBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import java.lang.Thread.*
 
 
 class LoginActivity : AppCompatActivity() {
@@ -23,25 +21,54 @@ class LoginActivity : AppCompatActivity() {
         val username = binding.editTextEmailLogin
         val password = binding.editTextPasswordLogin
         binding.txtInputUsuario.requestFocus()
-        binding.btnLogin.setOnClickListener {
-            if (username.text.toString() == "" && password.text.toString() == "") {
-                Toast.makeText(
-                    this@LoginActivity,
-                    "Ingrese su Usuario y contraseña",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-                username.requestFocus()
+        username.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
 
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (s.toString().isNotEmpty()) {
+                    binding.txtInputUsuario.isErrorEnabled = false
+                }
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    binding.txtInputUsuario.error = "Ingrese un Usuario"
+                    binding.txtInputUsuario.isErrorEnabled = true
+                }
+            }
+        })
+        password.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                if (s.toString().isNotEmpty()) {
+                    binding.txtInputPassword.isErrorEnabled = false
+                }
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    binding.txtInputPassword.error = "Ingrese su Contraseña"
+                    binding.txtInputPassword.isErrorEnabled = true
+                }
+            }
+        })
+
+        binding.btnLogin.setOnClickListener {
+            if (username.text.toString() == "") {
+                binding.txtInputUsuario.error = "Ingrese un Usuario"
+                username.requestFocus()
             } else if (password.text.toString() == "") {
-                binding.txtInputPassword.requestFocus()
-                Toast.makeText(this@LoginActivity, "Ingrese una Contraseña", Toast.LENGTH_LONG)
-                    .show()
+                binding.txtInputPassword.error = "Ingres su Contraseña"
+                password.requestFocus()
             } else {
                 Constant.api.verifyUser(
-                    this@LoginActivity,
-                    username.text.toString(),
-                    password.text.toString(), username, password
+                    binding,
+                    username,
+                    password
                 )
 
 
@@ -61,6 +88,12 @@ class LoginActivity : AppCompatActivity() {
 
 
     }
+
+
+
+
+
+
 
 
 }
