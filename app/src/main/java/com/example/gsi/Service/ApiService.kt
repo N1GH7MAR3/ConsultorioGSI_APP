@@ -422,7 +422,7 @@ open class ApiService {
                 LinearLayoutManager(binding.rvEspecialidades.context.applicationContext)
             binding.rvEspecialidades.adapter = EspecialidadAdapter(list)
         }
-        binding.txtEspecialidad.text="Cargando Especialidades..."
+        binding.txtEspecialidad.text = "Cargando Especialidades..."
         Constant.retrofit.getAllEspecialidades()
             .enqueue(object : Callback<List<Especialidad>> {
                 override fun onResponse(
@@ -432,7 +432,7 @@ open class ApiService {
                     (binding.rvEspecialidades.context as Activity).runOnUiThread {
                         val list: List<Especialidad> = response.body()!!
                         iniRecyclerView(list)
-                        binding.txtEspecialidad.text="Especialidades"
+                        binding.txtEspecialidad.text = "Especialidades"
                         call.cancel()
                     }
                 }
@@ -455,7 +455,7 @@ open class ApiService {
                 LinearLayoutManager(binding.rvPaciente.context.applicationContext)
             binding.rvPaciente.adapter = PacienteAdapter(list)
         }
-        binding.txtPaciente.text="Cargando Pacientes..."
+        binding.txtPaciente.text = "Cargando Pacientes..."
         Constant.retrofit.getAllPacientes()
             .enqueue(object : Callback<List<Paciente>> {
                 override fun onResponse(
@@ -465,7 +465,7 @@ open class ApiService {
                     (binding.rvPaciente.context as Activity).runOnUiThread {
                         val list: List<Paciente> = response.body()!!
                         iniRecyclerView(list)
-                        binding.txtPaciente.text="Pacientes"
+                        binding.txtPaciente.text = "Pacientes"
 
                     }
                 }
@@ -480,37 +480,41 @@ open class ApiService {
             })
     }
 
+
     //Obtener todos los medicos
     fun getAllMedico(
         activity: MedicosAdminActivity,
         binding: ActivityMedicosAdminBinding,
-        esp:String
+        esp: String
     ) {
         fun iniRecyclerView(list: List<Medico>) {
             binding.rvMedico.layoutManager =
                 LinearLayoutManager(activity.applicationContext)
             binding.rvMedico.adapter = MedicoAdminAdapter(list)
         }
-        binding.txtMedicos.text="Cargando Medicos..."
+        binding.txtMedicos.text = "Cargando Medicos..."
         Constant.retrofit.getAllMedico().enqueue(object : Callback<List<Medico>> {
             override fun onResponse(
                 call: Call<List<Medico>>,
                 response: Response<List<Medico>>
             ) {
                 activity.runOnUiThread {
-
                     val list: List<Medico> = response.body()!!
-                    for (i in list.indices) {
-                        if (list[i].especialidad.nombre==esp){
-                            val listesp : MutableList<Medico> = mutableListOf(list[i])
-                            Log.e("hioas",listesp.toString())
-                            iniRecyclerView(listesp)
-                        }else{
-                            iniRecyclerView(list)
-                            binding.txtMedicos.text="Medicos"
-                            call.cancel()
+                    val lesp: MutableList<Medico> = mutableListOf()
+                    if(esp.isEmpty()){
+                        iniRecyclerView(list)
+                        binding.txtMedicos.text = "Medicos"
+                    }else{
+                        for (i in list.indices) {
+                            if (list[i].especialidad.nombre == esp) {
+                                val listaesp: List<Medico> = mutableListOf(list[i])
+                                lesp += listaesp
+                                binding.txtMedicos.text = "Medicos"
+                            }
                         }
-                        }
+                        iniRecyclerView(lesp)
+                    }
+
 
                 }
             }
@@ -518,649 +522,699 @@ open class ApiService {
             override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
                 Log.e("hola", t.toString())
             }
+
         })
     }
 
 
-    //Obtener las especialidades para la vista del Admin
-    fun getEspecilidadesAdmin(
-        activity: EspecialidadesAdminActivity,
-        binding: ActivityEspecialidadesAdminBinding
-    ) {
-        fun iniRecyclerView(list: List<Especialidad>) {
-            binding.rvEspecialidades.layoutManager =
-                LinearLayoutManager(activity.applicationContext)
-            binding.rvEspecialidades.adapter = EspecialidadAdminAdapter(list)
+
+
+
+        //Obtener las especialidades para la vista del Admin
+        fun getEspecilidadesAdmin(
+            activity: EspecialidadesAdminActivity,
+            binding: ActivityEspecialidadesAdminBinding
+        ) {
+            fun iniRecyclerView(list: List<Especialidad>) {
+                binding.rvEspecialidades.layoutManager =
+                    LinearLayoutManager(activity.applicationContext)
+                binding.rvEspecialidades.adapter = EspecialidadAdminAdapter(list)
+            }
+            binding.txtEspecialidad.text = "Cargando Especialidades..."
+            Constant.retrofit.getAllEspecialidades()
+                .enqueue(object : Callback<List<Especialidad>> {
+                    override fun onResponse(
+                        call: Call<List<Especialidad>>,
+                        response: Response<List<Especialidad>>
+                    ) {
+                        activity.runOnUiThread {
+                            val list: List<Especialidad> = response.body()!!
+                            iniRecyclerView(list)
+                            binding.txtEspecialidad.text = "Especialidades"
+                            call.cancel()
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<List<Especialidad>>, t: Throwable) {
+                        Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
+                    }
+                })
+
         }
-        binding.txtEspecialidad.text="Cargando Especialidades..."
-        Constant.retrofit.getAllEspecialidades()
-            .enqueue(object : Callback<List<Especialidad>> {
-                override fun onResponse(
-                    call: Call<List<Especialidad>>,
-                    response: Response<List<Especialidad>>
-                ) {
-                    activity.runOnUiThread {
-                        val list: List<Especialidad> = response.body()!!
-                        iniRecyclerView(list)
-                        binding.txtEspecialidad.text="Especialidades"
-                        call.cancel()
+
+        //Crear Especialidad
+        fun createEspecialidad(
+            especialidad: createEspecialidad,
+            binding: ActivityEspecialidadEditarBinding
+        ) {
+            Constant.retrofit.createEspecialidad(especialidad)
+                .enqueue(object : Callback<createEspecialidad> {
+                    override fun onResponse(
+                        call: Call<createEspecialidad>,
+                        response: Response<createEspecialidad>
+                    ) {
+                        (binding.btnGuardar.context as Activity).runOnUiThread {
+                            val intent =
+                                Intent(
+                                    binding.btnGuardar.context,
+                                    EspecialidadesAdminActivity::class.java
+                                )
+                            Thread.sleep(3000)
+                            binding.btnGuardar.context.startActivity(intent)
+                            (binding.btnGuardar.context as Activity).finish()
+                            call.cancel()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<createEspecialidad>, t: Throwable) {
+                        Toast.makeText(
+                            binding.btnGuardar.context,
+                            Constant.NoInternet,
+                            Toast.LENGTH_LONG
+                        ).show()
 
                     }
-                }
 
-                override fun onFailure(call: Call<List<Especialidad>>, t: Throwable) {
-                    Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
-                }
-            })
+                })
+        }
 
-    }
 
-    //Crear Especialidad
-    fun createEspecialidad(
-        especialidad: createEspecialidad,
-        binding: ActivityEspecialidadEditarBinding
-    ) {
-        Constant.retrofit.createEspecialidad(especialidad)
-            .enqueue(object : Callback<createEspecialidad> {
-                override fun onResponse(
-                    call: Call<createEspecialidad>,
-                    response: Response<createEspecialidad>
-                ) {
-                    (binding.btnGuardar.context as Activity).runOnUiThread {
-                        val intent =
-                            Intent(
+        //Editar Especialidad
+        fun updateEspecialidad(
+            id: Long,
+            especialidad: Especialidad,
+            binding: ActivityEspecialidadEditarBinding
+        ) {
+            Constant.retrofit.updateEspecialidad(id, especialidad)
+                .enqueue(object : Callback<Especialidad> {
+                    override fun onResponse(
+                        call: Call<Especialidad>,
+                        response: Response<Especialidad>
+                    ) {
+                        (binding.btnGuardar.context as Activity).runOnUiThread {
+                            Toast.makeText(
                                 binding.btnGuardar.context,
-                                EspecialidadesAdminActivity::class.java
+                                "Se ha Editado la Especialidad",
+                                Toast.LENGTH_SHORT
                             )
-                        Thread.sleep(3000)
-                        binding.btnGuardar.context.startActivity(intent)
-                        (binding.btnGuardar.context as Activity).finish()
-                        call.cancel()
+                                .show()
+                            val intent =
+                                Intent(
+                                    binding.btnGuardar.context,
+                                    EspecialidadesAdminActivity::class.java
+                                )
+                            binding.btnGuardar.context.startActivity(intent)
+                            (binding.btnGuardar.context as Activity).finish()
+                        }
                     }
-                }
 
-                override fun onFailure(call: Call<createEspecialidad>, t: Throwable) {
-                    Toast.makeText(
-                        binding.btnGuardar.context,
-                        Constant.NoInternet,
-                        Toast.LENGTH_LONG
-                    ).show()
-
-                }
-
-            })
-    }
+                    override fun onFailure(call: Call<Especialidad>, t: Throwable) {
+                        Toast.makeText(
+                            binding.btnGuardar.context,
+                            Constant.NoInternet,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                })
+        }
 
 
-    //Editar Especialidad
-    fun updateEspecialidad(
-        id: Long,
-        especialidad: Especialidad,
-        binding: ActivityEspecialidadEditarBinding
-    ) {
-        Constant.retrofit.updateEspecialidad(id, especialidad)
-            .enqueue(object : Callback<Especialidad> {
+        //Eliminar Especialidad
+        fun deleteEspecialidad(id: Long, binding: ItemEspecialidadesAdminBinding, esp: String) {
+            Constant.retrofit.deleteEspecialidad(id).enqueue(object : Callback<Especialidad> {
                 override fun onResponse(
                     call: Call<Especialidad>,
                     response: Response<Especialidad>
                 ) {
-                    (binding.btnGuardar.context as Activity).runOnUiThread {
-                        Toast.makeText(
-                            binding.btnGuardar.context,
-                            "Se ha Editado la Especialidad",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                        val intent =
-                            Intent(
-                                binding.btnGuardar.context,
-                                EspecialidadesAdminActivity::class.java
+                    if (response.body()?.nombre != null) {
+                        (binding.btnEditar.context as Activity).runOnUiThread {
+                            Toast.makeText(
+                                binding.btnEditar.context,
+                                "Se ha eliminado la Especialidad",
+                                Toast.LENGTH_SHORT
                             )
-                        binding.btnGuardar.context.startActivity(intent)
-                        (binding.btnGuardar.context as Activity).finish()
+                                .show()
+                            val intent =
+                                Intent(
+                                    binding.btnEditar.context.applicationContext,
+                                    EspecialidadesAdminActivity::class.java
+                                )
+                            Thread.sleep(3000)
+                            (binding.btnEditar.context as Activity)
+                            binding.btnEditar.context.startActivity(intent)
+                        }
+                    } else {
+                        val dialog = AlertDialog.Builder(binding.btnEliminar.context)
+                        dialog.setTitle("Eliminar Especialidad")
+                        dialog.setMessage("Primero debe eliminar medicos y procedimientos asoaciadas a esta especialidad")
+                        dialog.setCancelable(false)
+                        dialog.setPositiveButton("Confirmar",
+                            DialogInterface.OnClickListener { dialog, id ->
+                                val intent = Intent(
+                                    binding.ivEspecialidad.context,
+                                    MedicosAdminActivity::class.java
+                                )
+                                intent.putExtra("esp", esp)
+                                binding.tvNombreEspecialidad.context.startActivity(intent)
+                            }
+
+                        )
+                        dialog.show()
                     }
                 }
 
                 override fun onFailure(call: Call<Especialidad>, t: Throwable) {
+
+                }
+
+            })
+        }
+
+
+        //Obtener Citas del Paciente
+        fun getCitasPaciente(
+            dni: Int, activity: CitaPacienteActivity,
+            binding: ActivityCitaPacienteBinding
+        ) {
+            fun iniRecyclerView(list: List<Cita>) {
+                binding.rvCita.layoutManager =
+                    LinearLayoutManager(activity.applicationContext)
+                binding.rvCita.adapter = CitaPacienteAdapter(list)
+            }
+            Constant.retrofit.getCitasPaciente(dni).enqueue(object : Callback<List<Cita>> {
+                override fun onResponse(
+                    call: Call<List<Cita>>,
+                    response: Response<List<Cita>>
+                ) {
+                    activity.runOnUiThread {
+                        val list: List<Cita> = response.body()!!
+                        iniRecyclerView(list)
+                        call.cancel()
+                    }
+                }
+
+                override fun onFailure(call: Call<List<Cita>>, t: Throwable) {
+                    Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
+                }
+
+            })
+        }
+
+
+        //Crear Medico
+        fun createMedico(medico: createMedico, binding: ActivityMedicosAdminBinding) {
+            Constant.retrofit.createMedico(medico).enqueue(object : Callback<createMedico> {
+                override fun onResponse(
+                    call: Call<createMedico>,
+                    response: Response<createMedico>
+                ) {
                     Toast.makeText(
-                        binding.btnGuardar.context,
+                        binding.rvMedico.context,
+                        "MEDICO Creado",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+
+                override fun onFailure(call: Call<createMedico>, t: Throwable) {
+                    TODO("Not yet implemented")
+                }
+
+            })
+
+        }
+
+        //Obtener los procedimientos por especialidad
+        fun getProcedimientoxEspecialidad(
+            nombre: String, activity: ProcedimientoPacienteActivity,
+            binding: ActivityProcedimientoPacienteBinding
+        ) {
+            fun iniRecyclerView(list: List<Procedimiento>) {
+                binding.rvProcedimiento.layoutManager =
+                    LinearLayoutManager(activity.applicationContext)
+                binding.rvProcedimiento.adapter = ProdecimientoPacienteAdapter(list)
+            }
+            Constant.retrofit.getProcedimientoxEspecialidad(nombre)
+                .enqueue(object : Callback<List<Procedimiento>> {
+                    override fun onResponse(
+                        call: Call<List<Procedimiento>>,
+                        response: Response<List<Procedimiento>>
+                    ) {
+
+                        val list: List<Procedimiento> = response.body()!!
+                        iniRecyclerView(list)
+                        call.cancel()
+
+                    }
+
+                    override fun onFailure(call: Call<List<Procedimiento>>, t: Throwable) {
+                        Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
+
+                    }
+
+                })
+        }
+
+        //Obtener Medicos para la vista del Paciente
+        fun getAllMedicoPaciente(
+            nombre: String, nombreprocedimiento: String,
+            activity: MedicoPacienteActivity,
+            binding: ActivityMedicoPacienteBinding
+        ) {
+            fun iniRecyclerView(list: List<Medico>, nombreprocedimiento: String) {
+                binding.rvMedico.layoutManager =
+                    LinearLayoutManager(activity.applicationContext)
+                binding.rvMedico.adapter = MedicoPacienteAdapter(list, nombreprocedimiento)
+            }
+            binding.txtMedicos.text = "Cargando Medicos..."
+            Constant.retrofit.getMedicoxEspecialidad(nombre).enqueue(object :
+                Callback<List<Medico>> {
+                override fun onResponse(
+                    call: Call<List<Medico>>,
+                    response: Response<List<Medico>>
+                ) {
+                    activity.runOnUiThread {
+                        val list: List<Medico> = response.body()!!
+                        iniRecyclerView(list, nombreprocedimiento)
+                        binding.txtMedicos.text = "Medicos"
+                        call.cancel()
+                    }
+                }
+
+                override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
+                    Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
+                }
+            })
+
+        }
+
+        //Obtener los paises
+        fun getAllPais(binding: ActivityRegisterBinding, paisid: String) {
+            Constant.retrofit.getAllPais().enqueue(object : Callback<List<Pais>> {
+                override fun onResponse(
+                    call: Call<List<Pais>>,
+                    response: Response<List<Pais>>
+                ) {
+                    val list = mutableListOf<String>()
+                    list.add(0, "Seleccionar")
+                    val listPais = response.body()
+                    for (i in listPais!!.indices) list += listPais[i].nombre
+
+                    binding.spPais.adapter = ArrayAdapter(
+                        binding.btnRegistrate.context,
+                        R.layout.simple_spinner_dropdown_item,
+                        list
+                    )
+                    if (paisid.isEmpty()) {
+                        binding.spPais.setSelection(0)
+                    } else {
+                        binding.spPais.setSelection(paisid.toInt())
+                    }
+
+
+                }
+
+                override fun onFailure(call: Call<List<Pais>>, t: Throwable) {
+                    Toast.makeText(
+                        binding.btnRegistrate.context,
+                        Constant.NoInternet,
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
+
+            })
+        }
+
+        //Obtener el estadoCivil
+        fun getAllEstadoCivil(binding: ActivityRegisterBinding, estadocivilid: String) {
+            Constant.retrofit.getAllEstadoCivil().enqueue(object : Callback<List<EstadoCivil>> {
+                override fun onResponse(
+                    call: Call<List<EstadoCivil>>,
+                    response: Response<List<EstadoCivil>>
+                ) {
+                    val list = mutableListOf<String>()
+                    list.add(0, "Seleccionar")
+                    val listEstadoCivil = response.body()
+                    for (i in listEstadoCivil!!.indices) list += listEstadoCivil[i].nombre
+                    binding.spEstadoCivil.adapter = ArrayAdapter(
+                        binding.btnRegistrate.context,
+                        R.layout.simple_spinner_dropdown_item,
+                        list
+                    )
+                    if (estadocivilid.isEmpty()) {
+                        binding.spEstadoCivil.setSelection(0)
+                    } else {
+                        binding.spEstadoCivil.setSelection(estadocivilid.toInt())
+                    }
+                }
+
+                override fun onFailure(call: Call<List<EstadoCivil>>, t: Throwable) {
+                    Toast.makeText(
+                        binding.btnRegistrate.context,
                         Constant.NoInternet,
                         Toast.LENGTH_LONG
                     ).show()
                 }
+
             })
-    }
+        }
+
+        //Obtener el Sexo
+        fun getAllSexo(binding: ActivityRegisterBinding, sexoid: String) {
+            Constant.retrofit.getAllSexo().enqueue(object : Callback<List<Sexo>> {
+                override fun onResponse(
+                    call: Call<List<Sexo>>,
+                    response: Response<List<Sexo>>
+                ) {
+                    val list = mutableListOf<String>()
+                    list.add(0, "Seleccionar")
+                    val listSexo = response.body()
+                    for (i in listSexo!!.indices) list += listSexo[i].nombre
+                    binding.spSexo.adapter = ArrayAdapter(
+                        binding.btnRegistrate.context,
+                        R.layout.simple_spinner_dropdown_item,
+                        list
+                    )
+                    if (sexoid.isEmpty()) {
+                        binding.spSexo.setSelection(0)
+                    } else {
+                        binding.spSexo.setSelection(sexoid.toInt())
+                    }
+                }
+
+                override fun onFailure(call: Call<List<Sexo>>, t: Throwable) {
+                    Toast.makeText(
+                        binding.btnRegistrate.context,
+                        Constant.NoInternet,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+            })
+        }
 
 
-    //Eliminar Especialidad
-    fun deleteEspecialidad(id: Long, binding: ItemEspecialidadesAdminBinding,esp: String) {
-        Constant.retrofit.deleteEspecialidad(id).enqueue(object : Callback<Especialidad> {
-            override fun onResponse(
-                call: Call<Especialidad>,
-                response: Response<Especialidad>
+        fun createUsuarioPacienteControlSalud(
+            binding: ActivityRegisterBinding,
+            usuarioPaciente: createUsuarioPaciente,
+
             ) {
-                if (response.body()?.nombre != null) {
-                    (binding.btnEditar.context as Activity).runOnUiThread {
-                        Toast.makeText(
-                            binding.btnEditar.context,
-                            "Se ha eliminado la Especialidad",
-                            Toast.LENGTH_SHORT
+            Constant.retrofit.createContactoEmergencia(
+                com.example.gsi.Entity.createContactoEmergencia(
+                    ""
+                )
+            )
+                .enqueue(object : Callback<ContactoEmergencia> {
+                    override fun onResponse(
+                        call: Call<ContactoEmergencia>,
+                        response: Response<ContactoEmergencia>
+                    ) {
+                        val idCE = putContactoEmergencia(response.body()?.id!!)
+                        Constant.retrofit.createContactoMedico(
+                            com.example.gsi.Entity.createContactoMedico(
+                                ""
+                            )
+                        ).enqueue(object : Callback<ContactoMedico> {
+                            override fun onResponse(
+                                call: Call<ContactoMedico>,
+                                response: Response<ContactoMedico>
+                            ) {
+                                val idCM = putContactoMedico(response.body()?.id!!)
+                                Constant.retrofit.createEnfermedad(
+                                    com.example.gsi.Entity.createEnfermedad(
+                                        ""
+                                    )
+                                ).enqueue(object : Callback<Enfermedad> {
+                                    override fun onResponse(
+                                        call: Call<Enfermedad>,
+                                        response: Response<Enfermedad>
+                                    ) {
+                                        val idE = putEnfermedad(response.body()?.id!!)
+                                        Constant.retrofit.createMedicina(
+                                            com.example.gsi.Entity.createMedicina(
+                                                ""
+                                            )
+                                        ).enqueue(object : Callback<Medicina> {
+                                            override fun onResponse(
+                                                call: Call<Medicina>,
+                                                response: Response<Medicina>
+                                            ) {
+                                                val idM = putMedicina(response.body()?.id!!)
+                                                Constant.retrofit.createAlergia(
+                                                    com.example.gsi.Entity.createAlergia(
+                                                        ""
+                                                    )
+                                                )
+                                                    .enqueue(object : Callback<Alergia> {
+                                                        override fun onResponse(
+                                                            call: Call<Alergia>,
+                                                            response: Response<Alergia>
+                                                        ) {
+                                                            val idA =
+                                                                putAlergia(response.body()?.id!!)
+                                                            Constant.retrofit.createUsuario(
+                                                                usuarioPaciente
+                                                            )
+                                                                .enqueue(object :
+                                                                    Callback<Usuario> {
+                                                                    override fun onResponse(
+                                                                        call: Call<Usuario>,
+                                                                        response: Response<Usuario>
+                                                                    ) {
+                                                                        val idU =
+                                                                            putUsuario(response.body()?.id!!)
+                                                                        val pais =
+                                                                            createPais(binding.spPais.selectedItemPosition.toLong())
+                                                                        val estadoCivil =
+                                                                            createEstadoCivil(
+                                                                                binding.spEstadoCivil.selectedItemPosition.toLong()
+                                                                            )
+                                                                        val sexo =
+                                                                            createSexo(binding.spSexo.selectedItemPosition.toLong())
+                                                                        val pac =
+                                                                            com.example.gsi.Entity.createPaciente(
+                                                                                binding.editTextTexNombre.text.toString(),
+                                                                                binding.ediTextApePaterno.text.toString(),
+                                                                                binding.ediTextApeMaterno.text.toString(),
+                                                                                binding.editTextDni.text.toString()
+                                                                                    .toInt(),
+                                                                                binding.editTextDireccion.text.toString(),
+                                                                                binding.editTextTelefono.text.toString(),
+                                                                                binding.editTexEmail.text.toString(),
+                                                                                pais,
+                                                                                estadoCivil,
+                                                                                sexo,
+                                                                                idU,
+                                                                                idCE,
+                                                                                idCM,
+                                                                                idE,
+                                                                                idM,
+                                                                                idA
+                                                                            )
+                                                                        Constant.retrofit.createPaciente(
+                                                                            pac
+                                                                        ).enqueue(object :
+                                                                            Callback<Paciente> {
+                                                                            override fun onResponse(
+                                                                                call: Call<Paciente>,
+                                                                                response: Response<Paciente>
+                                                                            ) {
+                                                                                Toast.makeText(
+                                                                                    binding.btnRegistrate.context,
+                                                                                    "Usuario/Paciente Registrado con exito",
+                                                                                    Toast.LENGTH_SHORT
+                                                                                ).show()
+                                                                                (binding.btnRegistrate.context as Activity).finish()
+                                                                            }
+
+                                                                            override fun onFailure(
+                                                                                call: Call<Paciente>,
+                                                                                t: Throwable
+                                                                            ) {
+                                                                            }
+                                                                        })
+                                                                    }
+
+                                                                    override fun onFailure(
+                                                                        call: Call<Usuario>,
+                                                                        t: Throwable
+                                                                    ) {
+                                                                    }
+                                                                })
+                                                        }
+
+                                                        override fun onFailure(
+                                                            call: Call<Alergia>,
+                                                            t: Throwable
+                                                        ) {
+                                                        }
+                                                    }
+                                                    )
+                                            }
+
+                                            override fun onFailure(
+                                                call: Call<Medicina>,
+                                                t: Throwable
+                                            ) {
+                                            }
+                                        })
+                                    }
+
+                                    override fun onFailure(
+                                        call: Call<Enfermedad>,
+                                        t: Throwable
+                                    ) {
+                                    }
+                                })
+                            }
+
+                            override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
+                            }
+                        })
+                    }
+
+                    override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
+                    }
+                }
+                )
+        }
+
+        fun updateAlergia(
+            id: Long,
+            alergia: createAlergia,
+            binding: ActivityAlergiaPacienteBinding,
+            usuario: String
+        ) {
+            Constant.retrofit.updateAlergia(id, alergia).enqueue(object : Callback<Alergia> {
+                override fun onResponse(call: Call<Alergia>, response: Response<Alergia>) {
+                    val intent =
+                        Intent(
+                            binding.txtAlergia.context,
+                            binding.txtAlergia.context::class.java
                         )
-                            .show()
+                    intent.putExtra("usuario", usuario)
+                    intent.putExtra("alergiaid", response.body()?.id.toString())
+                    intent.putExtra("alergia", response.body()?.descripcion)
+                    binding.txtAlergia.context.startActivity(intent)
+                    (binding.txtAlergia.context as Activity).finish()
+                }
+
+                override fun onFailure(call: Call<Alergia>, t: Throwable) {
+                }
+            })
+        }
+
+        fun updateContactoEmergencia(
+            id: Long,
+            contactoEmergencia: createContactoEmergencia,
+            binding: ActivityContactoEmergenciaPacienteBinding,
+            usuario: String
+        ) {
+            Constant.retrofit.updateContactoEmergencia(id, contactoEmergencia)
+                .enqueue(object : Callback<ContactoEmergencia> {
+                    override fun onResponse(
+                        call: Call<ContactoEmergencia>,
+                        response: Response<ContactoEmergencia>
+                    ) {
+                        val intent = Intent(
+                            binding.txtContactoEmergencia.context,
+                            binding.txtContactoEmergencia.context::class.java
+                        )
+                        intent.putExtra("usuario", usuario)
+                        intent.putExtra("contactoemergenciaid", response.body()?.id.toString())
+                        intent.putExtra("contactoemergencia", response.body()?.descripcion)
+                        binding.txtContactoEmergencia.context.startActivity(intent)
+                        (binding.txtContactoEmergencia.context as Activity).finish()
+                    }
+
+                    override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
+                    }
+                })
+        }
+
+        fun updateContactoMedico(
+            id: Long,
+            contactoMedico: createContactoMedico,
+            binding: ActivityContactoMedicoPacienteBinding,
+            usuario: String
+        ) {
+            Constant.retrofit.updateContactoMedico(id, contactoMedico)
+                .enqueue(object : Callback<ContactoMedico> {
+                    override fun onResponse(
+                        call: Call<ContactoMedico>,
+                        response: Response<ContactoMedico>
+                    ) {
+                        val intent = Intent(
+                            binding.txtContactoMedico.context,
+                            binding.txtContactoMedico.context::class.java
+                        )
+                        intent.putExtra("usuario", usuario)
+                        intent.putExtra("contactomedicoid", response.body()?.id.toString())
+                        intent.putExtra("contactomedico", response.body()?.descripcion)
+                        binding.txtContactoMedico.context.startActivity(intent)
+                        (binding.txtContactoMedico.context as Activity).finish()
+                    }
+
+                    override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
+                    }
+                })
+        }
+
+        fun updateEnfermedad(
+            id: Long,
+            enfermedad: createEnfermedad,
+            binding: ActivityEnfermedadPacienteBinding,
+            usuario: String
+        ) {
+            Constant.retrofit.updateEnfermedad(id, enfermedad)
+                .enqueue(object : Callback<Enfermedad> {
+                    override fun onResponse(
+                        call: Call<Enfermedad>,
+                        response: Response<Enfermedad>
+                    ) {
                         val intent =
                             Intent(
-                                binding.btnEditar.context.applicationContext,
-                                EspecialidadesAdminActivity::class.java
+                                binding.txtEnfermedad.context,
+                                binding.txtEnfermedad.context::class.java
                             )
-                        Thread.sleep(3000)
-                        (binding.btnEditar.context as Activity)
-                        binding.btnEditar.context.startActivity(intent)
+                        intent.putExtra("usuario", usuario)
+                        intent.putExtra("enfermedadid", response.body()?.id.toString())
+                        intent.putExtra("enfermedad", response.body()?.descripcion)
+                        binding.txtEnfermedad.context.startActivity(intent)
+                        (binding.txtEnfermedad.context as Activity).finish()
                     }
-                } else {
-                    val dialog = AlertDialog.Builder(binding.btnEliminar.context)
-                    dialog.setTitle("Eliminar Especialidad")
-                    dialog.setMessage("Primero debe eliminar medicos y procedimientos asoaciadas a esta especialidad")
-                    dialog.setCancelable(false)
-                    dialog.setPositiveButton("Confirmar",
-                        DialogInterface.OnClickListener { dialog, id ->
-                        val intent=Intent(binding.ivEspecialidad.context,MedicosAdminActivity::class.java)
-                        intent.putExtra("esp",esp)
-                            binding.tvNombreEspecialidad.context.startActivity(intent)
-                        }
 
-                    )
-                    dialog.show()
-                }
-            }
-
-            override fun onFailure(call: Call<Especialidad>, t: Throwable) {
-
-            }
-
-        })
-    }
-
-
-    //Obtener Citas del Paciente
-    fun getCitasPaciente(
-        dni: Int, activity: CitaPacienteActivity,
-        binding: ActivityCitaPacienteBinding
-    ) {
-        fun iniRecyclerView(list: List<Cita>) {
-            binding.rvCita.layoutManager =
-                LinearLayoutManager(activity.applicationContext)
-            binding.rvCita.adapter = CitaPacienteAdapter(list)
+                    override fun onFailure(call: Call<Enfermedad>, t: Throwable) {
+                    }
+                })
         }
-        Constant.retrofit.getCitasPaciente(dni).enqueue(object : Callback<List<Cita>> {
-            override fun onResponse(call: Call<List<Cita>>, response: Response<List<Cita>>) {
-                activity.runOnUiThread {
-                    val list: List<Cita> = response.body()!!
-                    iniRecyclerView(list)
-                    call.cancel()
-                }
-            }
 
-            override fun onFailure(call: Call<List<Cita>>, t: Throwable) {
-                Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
-            }
-
-        })
-    }
-
-
-    //Crear Medico
-    fun createMedico(medico: createMedico, binding: ActivityMedicosAdminBinding) {
-        Constant.retrofit.createMedico(medico).enqueue(object : Callback<createMedico> {
-            override fun onResponse(call: Call<createMedico>, response: Response<createMedico>) {
-                Toast.makeText(binding.rvMedico.context, "MEDICO Creado", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onFailure(call: Call<createMedico>, t: Throwable) {
-                TODO("Not yet implemented")
-            }
-
-        })
-
-    }
-
-    //Obtener los procedimientos por especialidad
-    fun getProcedimientoxEspecialidad(
-        nombre: String, activity: ProcedimientoPacienteActivity,
-        binding: ActivityProcedimientoPacienteBinding
-    ) {
-        fun iniRecyclerView(list: List<Procedimiento>) {
-            binding.rvProcedimiento.layoutManager =
-                LinearLayoutManager(activity.applicationContext)
-            binding.rvProcedimiento.adapter = ProdecimientoPacienteAdapter(list)
-        }
-        Constant.retrofit.getProcedimientoxEspecialidad(nombre)
-            .enqueue(object : Callback<List<Procedimiento>> {
-                override fun onResponse(
-                    call: Call<List<Procedimiento>>,
-                    response: Response<List<Procedimiento>>
-                ) {
-
-                    val list: List<Procedimiento> = response.body()!!
-                    iniRecyclerView(list)
-                    call.cancel()
-
-                }
-
-                override fun onFailure(call: Call<List<Procedimiento>>, t: Throwable) {
-                    Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
-
-                }
-
-            })
-    }
-
-    //Obtener Medicos para la vista del Paciente
-    fun getAllMedicoPaciente(
-        nombre: String, nombreprocedimiento: String,
-        activity: MedicoPacienteActivity,
-        binding: ActivityMedicoPacienteBinding
-    ) {
-        fun iniRecyclerView(list: List<Medico>, nombreprocedimiento: String) {
-            binding.rvMedico.layoutManager =
-                LinearLayoutManager(activity.applicationContext)
-            binding.rvMedico.adapter = MedicoPacienteAdapter(list, nombreprocedimiento)
-        }
-        binding.txtMedicos.text="Cargando Medicos..."
-        Constant.retrofit.getMedicoxEspecialidad(nombre).enqueue(object :
-            Callback<List<Medico>> {
-            override fun onResponse(
-                call: Call<List<Medico>>,
-                response: Response<List<Medico>>
-            ) {
-                activity.runOnUiThread {
-                    val list: List<Medico> = response.body()!!
-                    iniRecyclerView(list, nombreprocedimiento)
-                    binding.txtMedicos.text="Medicos"
-                    call.cancel()
-                }
-            }
-
-            override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
-                Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
-            }
-        })
-
-    }
-
-    //Obtener los paises
-    fun getAllPais(binding: ActivityRegisterBinding, paisid: String) {
-        Constant.retrofit.getAllPais().enqueue(object : Callback<List<Pais>> {
-            override fun onResponse(call: Call<List<Pais>>, response: Response<List<Pais>>) {
-                val list = mutableListOf<String>()
-                list.add(0, "Seleccionar")
-                val listPais = response.body()
-                for (i in listPais!!.indices) list += listPais[i].nombre
-
-                binding.spPais.adapter = ArrayAdapter(
-                    binding.btnRegistrate.context,
-                    R.layout.simple_spinner_dropdown_item,
-                    list
-                )
-                if (paisid.isEmpty()) {
-                    binding.spPais.setSelection(0)
-                } else {
-                    binding.spPais.setSelection(paisid.toInt())
-                }
-
-
-            }
-
-            override fun onFailure(call: Call<List<Pais>>, t: Throwable) {
-                Toast.makeText(
-                    binding.btnRegistrate.context,
-                    Constant.NoInternet,
-                    Toast.LENGTH_LONG
-                ).show()
-
-            }
-
-        })
-    }
-
-    //Obtener el estadoCivil
-    fun getAllEstadoCivil(binding: ActivityRegisterBinding, estadocivilid: String) {
-        Constant.retrofit.getAllEstadoCivil().enqueue(object : Callback<List<EstadoCivil>> {
-            override fun onResponse(
-                call: Call<List<EstadoCivil>>,
-                response: Response<List<EstadoCivil>>
-            ) {
-                val list = mutableListOf<String>()
-                list.add(0, "Seleccionar")
-                val listEstadoCivil = response.body()
-                for (i in listEstadoCivil!!.indices) list += listEstadoCivil[i].nombre
-                binding.spEstadoCivil.adapter = ArrayAdapter(
-                    binding.btnRegistrate.context,
-                    R.layout.simple_spinner_dropdown_item,
-                    list
-                )
-                if (estadocivilid.isEmpty()) {
-                    binding.spEstadoCivil.setSelection(0)
-                } else {
-                    binding.spEstadoCivil.setSelection(estadocivilid.toInt())
-                }
-            }
-
-            override fun onFailure(call: Call<List<EstadoCivil>>, t: Throwable) {
-                Toast.makeText(
-                    binding.btnRegistrate.context,
-                    Constant.NoInternet,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-
-        })
-    }
-
-    //Obtener el Sexo
-    fun getAllSexo(binding: ActivityRegisterBinding, sexoid: String) {
-        Constant.retrofit.getAllSexo().enqueue(object : Callback<List<Sexo>> {
-            override fun onResponse(call: Call<List<Sexo>>, response: Response<List<Sexo>>) {
-                val list = mutableListOf<String>()
-                list.add(0, "Seleccionar")
-                val listSexo = response.body()
-                for (i in listSexo!!.indices) list += listSexo[i].nombre
-                binding.spSexo.adapter = ArrayAdapter(
-                    binding.btnRegistrate.context,
-                    R.layout.simple_spinner_dropdown_item,
-                    list
-                )
-                if (sexoid.isEmpty()) {
-                    binding.spSexo.setSelection(0)
-                } else {
-                    binding.spSexo.setSelection(sexoid.toInt())
-                }
-            }
-
-            override fun onFailure(call: Call<List<Sexo>>, t: Throwable) {
-                Toast.makeText(
-                    binding.btnRegistrate.context,
-                    Constant.NoInternet,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-
-        })
-    }
-
-
-    fun createUsuarioPacienteControlSalud(
-        binding: ActivityRegisterBinding,
-        usuarioPaciente: createUsuarioPaciente,
-
+        fun updateMedicina(
+            id: Long,
+            medicina: createMedicina,
+            binding: ActivityMedicinaPacienteBinding,
+            usuario: String
         ) {
-        Constant.retrofit.createContactoEmergencia(com.example.gsi.Entity.createContactoEmergencia(""))
-            .enqueue(object : Callback<ContactoEmergencia> {
-                override fun onResponse(
-                    call: Call<ContactoEmergencia>,
-                    response: Response<ContactoEmergencia>
-                ) {
-                    val idCE = putContactoEmergencia(response.body()?.id!!)
-                    Constant.retrofit.createContactoMedico(
-                        com.example.gsi.Entity.createContactoMedico(
-                            ""
+            Constant.retrofit.updateMedicina(id, medicina).enqueue(object : Callback<Medicina> {
+                override fun onResponse(call: Call<Medicina>, response: Response<Medicina>) {
+                    val intent =
+                        Intent(
+                            binding.txtMedicina.context,
+                            binding.txtMedicina.context::class.java
                         )
-                    ).enqueue(object : Callback<ContactoMedico> {
-                        override fun onResponse(
-                            call: Call<ContactoMedico>,
-                            response: Response<ContactoMedico>
-                        ) {
-                            val idCM = putContactoMedico(response.body()?.id!!)
-                            Constant.retrofit.createEnfermedad(
-                                com.example.gsi.Entity.createEnfermedad(
-                                    ""
-                                )
-                            ).enqueue(object : Callback<Enfermedad> {
-                                override fun onResponse(
-                                    call: Call<Enfermedad>,
-                                    response: Response<Enfermedad>
-                                ) {
-                                    val idE = putEnfermedad(response.body()?.id!!)
-                                    Constant.retrofit.createMedicina(
-                                        com.example.gsi.Entity.createMedicina(
-                                            ""
-                                        )
-                                    ).enqueue(object : Callback<Medicina> {
-                                        override fun onResponse(
-                                            call: Call<Medicina>,
-                                            response: Response<Medicina>
-                                        ) {
-                                            val idM = putMedicina(response.body()?.id!!)
-                                            Constant.retrofit.createAlergia(
-                                                com.example.gsi.Entity.createAlergia(
-                                                    ""
-                                                )
-                                            )
-                                                .enqueue(object : Callback<Alergia> {
-                                                    override fun onResponse(
-                                                        call: Call<Alergia>,
-                                                        response: Response<Alergia>
-                                                    ) {
-                                                        val idA = putAlergia(response.body()?.id!!)
-                                                        Constant.retrofit.createUsuario(
-                                                            usuarioPaciente
-                                                        )
-                                                            .enqueue(object : Callback<Usuario> {
-                                                                override fun onResponse(
-                                                                    call: Call<Usuario>,
-                                                                    response: Response<Usuario>
-                                                                ) {
-                                                                    val idU =
-                                                                        putUsuario(response.body()?.id!!)
-                                                                    val pais =
-                                                                        createPais(binding.spPais.selectedItemPosition.toLong())
-                                                                    val estadoCivil =
-                                                                        createEstadoCivil(binding.spEstadoCivil.selectedItemPosition.toLong())
-                                                                    val sexo =
-                                                                        createSexo(binding.spSexo.selectedItemPosition.toLong())
-                                                                    val pac =
-                                                                        com.example.gsi.Entity.createPaciente(
-                                                                            binding.editTextTexNombre.text.toString(),
-                                                                            binding.ediTextApePaterno.text.toString(),
-                                                                            binding.ediTextApeMaterno.text.toString(),
-                                                                            binding.editTextDni.text.toString()
-                                                                                .toInt(),
-                                                                            binding.editTextDireccion.text.toString(),
-                                                                            binding.editTextTelefono.text.toString(),
-                                                                            binding.editTexEmail.text.toString(),
-                                                                            pais,
-                                                                            estadoCivil,
-                                                                            sexo,
-                                                                            idU,
-                                                                            idCE,
-                                                                            idCM,
-                                                                            idE,
-                                                                            idM,
-                                                                            idA
-                                                                        )
-                                                                    Constant.retrofit.createPaciente(
-                                                                        pac
-                                                                    ).enqueue(object :
-                                                                        Callback<Paciente> {
-                                                                        override fun onResponse(
-                                                                            call: Call<Paciente>,
-                                                                            response: Response<Paciente>
-                                                                        ) {
-                                                                            Toast.makeText(
-                                                                                binding.btnRegistrate.context,
-                                                                                "Usuario/Paciente Registrado con exito",
-                                                                                Toast.LENGTH_SHORT
-                                                                            ).show()
-                                                                            (binding.btnRegistrate.context as Activity).finish()
-                                                                        }
-
-                                                                        override fun onFailure(
-                                                                            call: Call<Paciente>,
-                                                                            t: Throwable
-                                                                        ) {
-                                                                        }
-                                                                    })
-                                                                }
-
-                                                                override fun onFailure(
-                                                                    call: Call<Usuario>,
-                                                                    t: Throwable
-                                                                ) {
-                                                                }
-                                                            })
-                                                    }
-
-                                                    override fun onFailure(
-                                                        call: Call<Alergia>,
-                                                        t: Throwable
-                                                    ) {
-                                                    }
-                                                }
-                                                )
-                                        }
-
-                                        override fun onFailure(call: Call<Medicina>, t: Throwable) {
-                                        }
-                                    })
-                                }
-
-                                override fun onFailure(call: Call<Enfermedad>, t: Throwable) {
-                                }
-                            })
-                        }
-
-                        override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
-                        }
-                    })
-                }
-
-                override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
-                }
-            }
-            )
-    }
-
-    fun updateAlergia(
-        id: Long,
-        alergia: createAlergia,
-        binding: ActivityAlergiaPacienteBinding,
-        usuario: String
-    ) {
-        Constant.retrofit.updateAlergia(id, alergia).enqueue(object : Callback<Alergia> {
-            override fun onResponse(call: Call<Alergia>, response: Response<Alergia>) {
-                val intent =
-                    Intent(binding.txtAlergia.context, binding.txtAlergia.context::class.java)
-                intent.putExtra("usuario", usuario)
-                intent.putExtra("alergiaid", response.body()?.id.toString())
-                intent.putExtra("alergia", response.body()?.descripcion)
-                binding.txtAlergia.context.startActivity(intent)
-                (binding.txtAlergia.context as Activity).finish()
-            }
-
-            override fun onFailure(call: Call<Alergia>, t: Throwable) {
-            }
-        })
-    }
-
-    fun updateContactoEmergencia(
-        id: Long,
-        contactoEmergencia: createContactoEmergencia,
-        binding: ActivityContactoEmergenciaPacienteBinding,
-        usuario: String
-    ) {
-        Constant.retrofit.updateContactoEmergencia(id, contactoEmergencia)
-            .enqueue(object : Callback<ContactoEmergencia> {
-                override fun onResponse(
-                    call: Call<ContactoEmergencia>,
-                    response: Response<ContactoEmergencia>
-                ) {
-                    val intent = Intent(
-                        binding.txtContactoEmergencia.context,
-                        binding.txtContactoEmergencia.context::class.java
-                    )
                     intent.putExtra("usuario", usuario)
-                    intent.putExtra("contactoemergenciaid", response.body()?.id.toString())
-                    intent.putExtra("contactoemergencia", response.body()?.descripcion)
-                    binding.txtContactoEmergencia.context.startActivity(intent)
-                    (binding.txtContactoEmergencia.context as Activity).finish()
+                    intent.putExtra("medicinaid", response.body()?.id.toString())
+                    intent.putExtra("medicina", response.body()?.descripcion)
+                    binding.txtMedicina.context.startActivity(intent)
+                    (binding.txtMedicina.context as Activity).finish()
                 }
 
-                override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
+                override fun onFailure(call: Call<Medicina>, t: Throwable) {
                 }
             })
+        }
     }
-
-    fun updateContactoMedico(
-        id: Long,
-        contactoMedico: createContactoMedico,
-        binding: ActivityContactoMedicoPacienteBinding,
-        usuario: String
-    ) {
-        Constant.retrofit.updateContactoMedico(id, contactoMedico)
-            .enqueue(object : Callback<ContactoMedico> {
-                override fun onResponse(
-                    call: Call<ContactoMedico>,
-                    response: Response<ContactoMedico>
-                ) {
-                    val intent = Intent(
-                        binding.txtContactoMedico.context,
-                        binding.txtContactoMedico.context::class.java
-                    )
-                    intent.putExtra("usuario", usuario)
-                    intent.putExtra("contactomedicoid", response.body()?.id.toString())
-                    intent.putExtra("contactomedico", response.body()?.descripcion)
-                    binding.txtContactoMedico.context.startActivity(intent)
-                    (binding.txtContactoMedico.context as Activity).finish()
-                }
-
-                override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
-                }
-            })
-    }
-
-    fun updateEnfermedad(
-        id: Long,
-        enfermedad: createEnfermedad,
-        binding: ActivityEnfermedadPacienteBinding,
-        usuario: String
-    ) {
-        Constant.retrofit.updateEnfermedad(id, enfermedad).enqueue(object : Callback<Enfermedad> {
-            override fun onResponse(call: Call<Enfermedad>, response: Response<Enfermedad>) {
-                val intent =
-                    Intent(binding.txtEnfermedad.context, binding.txtEnfermedad.context::class.java)
-                intent.putExtra("usuario", usuario)
-                intent.putExtra("enfermedadid", response.body()?.id.toString())
-                intent.putExtra("enfermedad", response.body()?.descripcion)
-                binding.txtEnfermedad.context.startActivity(intent)
-                (binding.txtEnfermedad.context as Activity).finish()
-            }
-
-            override fun onFailure(call: Call<Enfermedad>, t: Throwable) {
-            }
-        })
-    }
-
-    fun updateMedicina(
-        id: Long,
-        medicina: createMedicina,
-        binding: ActivityMedicinaPacienteBinding,
-        usuario: String
-    ) {
-        Constant.retrofit.updateMedicina(id, medicina).enqueue(object : Callback<Medicina> {
-            override fun onResponse(call: Call<Medicina>, response: Response<Medicina>) {
-                val intent =
-                    Intent(binding.txtMedicina.context, binding.txtMedicina.context::class.java)
-                intent.putExtra("usuario", usuario)
-                intent.putExtra("medicinaid", response.body()?.id.toString())
-                intent.putExtra("medicina", response.body()?.descripcion)
-                binding.txtMedicina.context.startActivity(intent)
-                (binding.txtMedicina.context as Activity).finish()
-            }
-
-            override fun onFailure(call: Call<Medicina>, t: Throwable) {
-            }
-        })
-    }
-}
 
 
 

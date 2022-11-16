@@ -3,6 +3,7 @@ package com.example.gsi
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.gsi.Constans.Constant
 import com.example.gsi.databinding.ActivityMedicosAdminBinding
 
