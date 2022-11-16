@@ -70,14 +70,26 @@ interface Services {
     @POST("contactoemergencia/registrar")
     fun createContactoEmergencia(@Body body: createContactoEmergencia): Call<ContactoEmergencia>
 
+    @PUT("contactoemergencia/editar/{id}")
+    fun updateContactoEmergencia(@Path("id") id: Long,@Body contactoEmergencia: createContactoEmergencia): Call<ContactoEmergencia>
+
     @POST("contactomedico/registrar")
     fun createContactoMedico(@Body body: createContactoMedico): Call<ContactoMedico>
+
+    @PUT("contactomedico/editar/{id}")
+    fun updateContactoMedico(@Path("id") id: Long,@Body contactoMedico: createContactoMedico): Call<ContactoMedico>
 
     @POST("enfermedad/registrar")
     fun createEnfermedad(@Body body: createEnfermedad): Call<Enfermedad>
 
+    @PUT("enfermedad/editar/{id}")
+    fun updateEnfermedad(@Path("id") id: Long,@Body enfermedad: createEnfermedad): Call<Enfermedad>
+
     @POST("medicina/registrar")
     fun createMedicina(@Body body: createMedicina): Call<Medicina>
+
+    @PUT("medicina/editar/{id}")
+    fun updateMedicina(@Path("id") id: Long,@Body medicina: createMedicina): Call<Medicina>
 
 
 }
