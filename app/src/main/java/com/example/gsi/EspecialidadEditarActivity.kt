@@ -43,14 +43,13 @@ class EspecialidadEditarActivity : AppCompatActivity() {
                 )
                 Constant.api.createEspecialidad(
                     espc,
-                    this@EspecialidadEditarActivity
+                    binding
                 )
             }else{
                 val esp=Especialidad(id!!.toLong(),binding.txtInputNombre.text.toString(),
                     binding.txtInputImage.text.toString())
-                Constant.api.updateEspecialidad(id.toLong(),esp,this@EspecialidadEditarActivity)
+                Constant.api.updateEspecialidad(id.toLong(),esp,binding)
             }
-
         }
         binding.btnLimpiar.setOnClickListener {
             binding.txtInputNombre.setText("")

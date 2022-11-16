@@ -19,6 +19,7 @@
             tools:layout_editor_absoluteY="171dp" />
 
         <TextView
+            android:id="@+id/txtEspecialidad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Especialidades"

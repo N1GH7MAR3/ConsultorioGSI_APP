@@ -19,7 +19,7 @@ class EspecialidadesPacienteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEspecialidadesPacienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Constant.api.getEspecilidadesPaciente(this@EspecialidadesPacienteActivity, binding)
+        Constant.api.getEspecilidadesPaciente(binding)
 
 
         binding.customPrinciapl.btnRegresar.setOnClickListener {

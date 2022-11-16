@@ -22,12 +22,16 @@ class DashboardAdminActivity : AppCompatActivity() {
         binding.carMedicos.setOnClickListener {
             val intent=Intent(this@DashboardAdminActivity,MedicosAdminActivity::class.java)
             startActivity(intent)
-
         }
         binding.cardCerrarSesion.setOnClickListener {
             val intent=Intent(this,LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }
+        binding.cardPaciente.setOnClickListener {
+            val intent=Intent(this@DashboardAdminActivity,ListaPacienteAdminActivity::class.java)
+
+            startActivity(intent)
         }
         }
 

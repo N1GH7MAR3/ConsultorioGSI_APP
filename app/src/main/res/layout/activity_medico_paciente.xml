@@ -16,6 +16,7 @@
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="171dp" />
         <TextView
+            android:id="@+id/txtMedicos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Medicos"

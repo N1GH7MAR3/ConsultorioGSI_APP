@@ -20,7 +20,6 @@
     <string name="btn_editar">Editar</string>
     <string name="btn_cancelar">Cancelar</string>
     <string name="btn_guardarCambios">Guardar Cambios</string>
-
     <string name="btn_login">Log in</string>
     <string name="btn_register">Sign up</string>
 
@@ -41,6 +40,7 @@
     <string name="lbl_ubicacion">¿Donde nos ubicamos?</string>
     <string name="lbl_perfil">Perfil</string>
     <string name="lbl_controlSalud">Control Salud</string>
+    <string name="lbl_paciente">Pacientes</string>
 
     //CONTROL SALUD
     <string name="lbl_enfermedad">Enfermedades</string>

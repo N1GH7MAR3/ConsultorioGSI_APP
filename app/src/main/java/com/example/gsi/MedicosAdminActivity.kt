@@ -12,7 +12,8 @@ class MedicosAdminActivity : AppCompatActivity() {
         binding= ActivityMedicosAdminBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        Constant.api.getAllMedico(this@MedicosAdminActivity,binding)
+        val esp=intent.getStringExtra("esp")
+        Constant.api.getAllMedico(this@MedicosAdminActivity,binding,esp!!)
         binding.customPrinciapl.btnRegresar.setOnClickListener {
             finish()
         }
