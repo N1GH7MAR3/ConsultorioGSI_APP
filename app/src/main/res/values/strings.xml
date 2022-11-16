@@ -10,7 +10,6 @@
     <string name="label_start_session">Log in</string>
 
 
-
     <string name="hint_nombre">Name</string>
     <string name="hint_telefono">Phone</string>
     <string name="hint_correo">Email</string>
@@ -70,9 +69,6 @@
 
 
     //ACERCA NOSOTROS
-
-
-
 
 
 </resources>

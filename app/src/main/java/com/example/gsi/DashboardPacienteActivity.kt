@@ -16,44 +16,18 @@ class DashboardPacienteActivity : AppCompatActivity() {
         setContentView(binding.root)
         val usuario = intent.getStringExtra("usuario")
         Constant.api.searchPaciente(binding, usuario!!)
-        val dni = intent.getStringExtra("dni")
-        val nombre = intent.getStringExtra("nombre")
-        val enfermedad=intent.getStringExtra("enfermedad")
-        val medicina=intent.getStringExtra("medicina")
-
-        //perfil
-        val apePaterno=intent.getStringExtra("apePaterno")
-        val apeMaterno=intent.getStringExtra("apeMaterno")
-        val telefono=intent.getStringExtra("telefono")
-        val direccion=intent.getStringExtra("direccion")
-        val correo=intent.getStringExtra("correo")
-        val password=intent.getStringExtra("password")
-        val sexoid=intent.getStringExtra("sexoid")
 
 
         binding.cardEspecialidades.setOnClickListener {
-            val intent =
-                Intent(this@DashboardPacienteActivity, EspecialidadesPacienteActivity::class.java)
+            val intent = Intent(this@DashboardPacienteActivity, EspecialidadesPacienteActivity::class.java)
             startActivity(intent)
         }
-        binding.cardCitas.setOnClickListener {
-            val intent = Intent(this@DashboardPacienteActivity, CitaPacienteActivity::class.java)
-            intent.putExtra("dni", dni)
-            startActivity(intent)
-        }
+
         binding.cardCerrarSesion.setOnClickListener {
             val intent=Intent(this,LoginActivity::class.java)
             startActivity(intent)
             finish()
         }
-        binding.cardControlSalud.setOnClickListener {
-            val intent=Intent(this,ControlSaludActivity::class.java)
-            intent.putExtra("enfermedad",enfermedad)
-            intent.putExtra("medicina",medicina)
-            startActivity(intent)
-
-        }
-
 
         binding.cardAcercaNosotros.setOnClickListener {
             val intent=Intent(this,AcercaNosotrosActivity::class.java)

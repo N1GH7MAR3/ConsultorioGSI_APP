@@ -304,7 +304,11 @@ class RegisterActivity : AppCompatActivity() {
             } else if (binding.spSexo.selectedItemPosition == 0) {
                 binding.spSexo.requestFocusFromTouch()
             } else {
+                if(!id.isNullOrEmpty()){
+                Constant.api.createUsuarioPacienteControlSalud(binding,usuario)}
+                else{
 
+                }
             }
 
 

@@ -112,6 +112,20 @@ open class ApiService{
                             intent.putExtra("usuario",response.body()?.usuario?.usuario)
                             intent.putExtra("password",response.body()?.usuario?.contraseña)
                             binding.cardAcercaNosotros.context.startActivity(intent)
+                        }
+                        binding.cardCitas.setOnClickListener {
+                            val intent = Intent(binding.cardAcercaNosotros.context, CitaPacienteActivity::class.java)
+                            intent.putExtra("dni", response.body()?.dni.toString())
+                            binding.cardAcercaNosotros.context.startActivity(intent)
+                        }
+                        binding.cardControlSalud.setOnClickListener {
+                            val intent=Intent(binding.cardAcercaNosotros.context,ControlSaludActivity::class.java)
+                            intent.putExtra("contactoemergencia",response.body()?.contactoEmergencia?.descripcion)
+                            intent.putExtra("contactomedico",response.body()?.contactoMedico?.descripcion)
+                            intent.putExtra("enfermedad",response.body()?.enfermedad?.descripcion)
+                            intent.putExtra("medicina",response.body()?.medicina?.descripcion)
+                            intent.putExtra("alergia",response.body()?.alergia?.descripcion)
+                            binding.cardAcercaNosotros.context.startActivity(intent)
 
                         }
                     }
