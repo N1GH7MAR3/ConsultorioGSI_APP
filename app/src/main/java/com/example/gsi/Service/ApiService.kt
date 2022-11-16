@@ -19,6 +19,7 @@ import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.invoke.ConstantCallSite
 
 @OptIn(DelicateCoroutinesApi::class)
 open class ApiService{
@@ -224,6 +225,83 @@ open class ApiService{
                 })}
 
     }
+    fun searchPaciente(binding: ActivityContactoEmergenciaPacienteBinding, usuario: String) {
+        val pac = SearchUsuario(usuario)
+        CoroutineScope(Dispatchers.Main).launch {
+            Constant.retrofit.searchPaciente(pac).enqueue(
+                object : Callback<Paciente> {
+                    override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
+                        if (response.isSuccessful) {
+                            binding.txtContactoEmergencia.setText(response.body()?.contactoEmergencia?.descripcion)
+                        }
+                    }
+                    override fun onFailure(call: Call<Paciente>, t: Throwable) {
+                        Toast.makeText(
+                            binding.btnRegresar.context,
+                            Constant.NoInternet,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                })}
+    }
+    fun searchPaciente(binding: ActivityContactoMedicoPacienteBinding, usuario: String) {
+        val pac = SearchUsuario(usuario)
+        CoroutineScope(Dispatchers.Main).launch {
+            Constant.retrofit.searchPaciente(pac).enqueue(
+                object : Callback<Paciente> {
+                    override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
+                        if (response.isSuccessful) {
+                            binding.txtContactoMedico.setText(response.body()?.contactoMedico?.descripcion)
+                        }
+                    }
+                    override fun onFailure(call: Call<Paciente>, t: Throwable) {
+                        Toast.makeText(
+                            binding.btnRegresar.context,
+                            Constant.NoInternet,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                })}
+    }
+    fun searchPaciente(binding: ActivityEnfermedadPacienteBinding, usuario: String) {
+        val pac = SearchUsuario(usuario)
+        CoroutineScope(Dispatchers.Main).launch {
+            Constant.retrofit.searchPaciente(pac).enqueue(
+                object : Callback<Paciente> {
+                    override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
+                        if (response.isSuccessful) {
+                            binding.txtEnfermedad.setText(response.body()?.enfermedad?.descripcion)
+                        }
+                    }
+                    override fun onFailure(call: Call<Paciente>, t: Throwable) {
+                        Toast.makeText(
+                            binding.btnRegresar.context,
+                            Constant.NoInternet,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                })}
+    }
+    fun searchPaciente(binding: ActivityMedicinaPacienteBinding, usuario: String) {
+        val pac = SearchUsuario(usuario)
+        CoroutineScope(Dispatchers.Main).launch {
+            Constant.retrofit.searchPaciente(pac).enqueue(
+                object : Callback<Paciente> {
+                    override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
+                        if (response.isSuccessful) {
+                            binding.txtMedicina.setText(response.body()?.medicina?.descripcion)
+                        }
+                    }
+                    override fun onFailure(call: Call<Paciente>, t: Throwable) {
+                        Toast.makeText(
+                            binding.btnRegresar.context,
+                            Constant.NoInternet,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                })}
+    }
+
 
 
     //Obtener todas las especialidades
@@ -754,19 +832,74 @@ open class ApiService{
                 intent.putExtra("usuario",usuario)
                 intent.putExtra("alergiaid",response.body()?.id.toString())
                 intent.putExtra("alergia",response.body()?.descripcion)
-                Log.e("hj",response.body()?.descripcion.toString())
                 binding.txtAlergia.context.startActivity(intent)
                 (binding.txtAlergia.context as Activity).finish()
-
-
             }
-
             override fun onFailure(call: Call<Alergia>, t: Throwable) {
-
             }
-
         })
-
+    }
+    fun updateContactoEmergencia(id:Long,contactoEmergencia: createContactoEmergencia,binding:ActivityContactoEmergenciaPacienteBinding,usuario: String){
+        Constant.retrofit.updateContactoEmergencia(id,contactoEmergencia).enqueue(object : Callback<ContactoEmergencia>{
+            override fun onResponse(
+                call: Call<ContactoEmergencia>,
+                response: Response<ContactoEmergencia>
+            ) {
+                val intent= Intent(binding.txtContactoEmergencia.context, binding.txtContactoEmergencia.context::class.java)
+                intent.putExtra("usuario",usuario)
+                intent.putExtra("contactoemergenciaid",response.body()?.id.toString())
+                intent.putExtra("contactoemergencia",response.body()?.descripcion)
+                binding.txtContactoEmergencia.context.startActivity(intent)
+                (binding.txtContactoEmergencia.context as Activity).finish()
+            }
+            override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
+            }
+        })
+    }
+    fun updateContactoMedico(id: Long,contactoMedico: createContactoMedico,binding: ActivityContactoMedicoPacienteBinding,usuario: String){
+        Constant.retrofit.updateContactoMedico(id,contactoMedico).enqueue(object : Callback<ContactoMedico>{
+            override fun onResponse(
+                call: Call<ContactoMedico>,
+                response: Response<ContactoMedico>
+            ) {
+                val intent= Intent(binding.txtContactoMedico.context, binding.txtContactoMedico.context::class.java)
+                intent.putExtra("usuario",usuario)
+                intent.putExtra("contactomedicoid",response.body()?.id.toString())
+                intent.putExtra("contactomedico",response.body()?.descripcion)
+                binding.txtContactoMedico.context.startActivity(intent)
+                (binding.txtContactoMedico.context as Activity).finish()
+            }
+            override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
+            }
+        })
+    }
+    fun updateEnfermedad(id: Long,enfermedad: createEnfermedad,binding:ActivityEnfermedadPacienteBinding,usuario: String){
+        Constant.retrofit.updateEnfermedad(id,enfermedad).enqueue(object : Callback<Enfermedad>{
+            override fun onResponse(call: Call<Enfermedad>, response: Response<Enfermedad>) {
+                val intent= Intent(binding.txtEnfermedad.context, binding.txtEnfermedad.context::class.java)
+                intent.putExtra("usuario",usuario)
+                intent.putExtra("enfermedadid",response.body()?.id.toString())
+                intent.putExtra("enfermedad",response.body()?.descripcion)
+                binding.txtEnfermedad.context.startActivity(intent)
+                (binding.txtEnfermedad.context as Activity).finish()
+            }
+            override fun onFailure(call: Call<Enfermedad>, t: Throwable) {
+            }
+        })
+    }
+    fun updateMedicina(id: Long,medicina: createMedicina,binding:ActivityMedicinaPacienteBinding,usuario: String){
+        Constant.retrofit.updateMedicina(id,medicina).enqueue(object :Callback<Medicina>{
+            override fun onResponse(call: Call<Medicina>, response: Response<Medicina>) {
+                val intent= Intent(binding.txtMedicina.context, binding.txtMedicina.context::class.java)
+                intent.putExtra("usuario",usuario)
+                intent.putExtra("medicinaid",response.body()?.id.toString())
+                intent.putExtra("medicina",response.body()?.descripcion)
+                binding.txtMedicina.context.startActivity(intent)
+                (binding.txtMedicina.context as Activity).finish()
+            }
+            override fun onFailure(call: Call<Medicina>, t: Throwable) {
+            }
+        })
     }
 }
 
