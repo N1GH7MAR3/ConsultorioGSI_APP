@@ -71,4 +71,10 @@
     //ACERCA NOSOTROS
 
 
+    //ALERT DIALOG
+    <string name="success">Success</string>
+    <string name="warning">Warning</string>
+    <string name="error">Error</string>
+
+
 </resources>

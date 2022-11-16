@@ -17,6 +17,15 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".CitaRegistrarActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ListaPacienteAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".AlergiaPacienteActivity"
             android:exported="false" />
         <activity
