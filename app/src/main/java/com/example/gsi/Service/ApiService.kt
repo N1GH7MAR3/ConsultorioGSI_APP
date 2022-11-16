@@ -67,7 +67,6 @@ open class ApiService{
                         val intent = Intent(binding.txtInputPassword.context, DashboardPacienteActivity::class.java)
                         intent.putExtra("usuario", response.body()?.usuario)
                         binding.btnLogin.context.startActivity(intent)
-                        (binding.btnLogin.context as Activity).finish()
                         call.cancel()
                     }
                 }
@@ -112,6 +111,7 @@ open class ApiService{
                             intent.putExtra("usuario",response.body()?.usuario?.usuario)
                             intent.putExtra("password",response.body()?.usuario?.contraseña)
                             binding.cardAcercaNosotros.context.startActivity(intent)
+
                         }
                         binding.cardCitas.setOnClickListener {
                             val intent = Intent(binding.cardAcercaNosotros.context, CitaPacienteActivity::class.java)
@@ -120,6 +120,12 @@ open class ApiService{
                         }
                         binding.cardControlSalud.setOnClickListener {
                             val intent=Intent(binding.cardAcercaNosotros.context,ControlSaludActivity::class.java)
+                            intent.putExtra("usuario",response.body()?.usuario?.usuario)
+                            intent.putExtra("contactoemergenciaid",response.body()?.contactoEmergencia?.id.toString())
+                            intent.putExtra("contactomedicoid",response.body()?.contactoMedico?.id.toString())
+                            intent.putExtra("enfermedadid",response.body()?.enfermedad?.id.toString())
+                            intent.putExtra("medicinaid",response.body()?.medicina?.id.toString())
+                            intent.putExtra("alergiaid",response.body()?.alergia?.id.toString())
                             intent.putExtra("contactoemergencia",response.body()?.contactoEmergencia?.descripcion)
                             intent.putExtra("contactomedico",response.body()?.contactoMedico?.descripcion)
                             intent.putExtra("enfermedad",response.body()?.enfermedad?.descripcion)
@@ -139,6 +145,83 @@ open class ApiService{
                     ).show()
                 }
             })}
+
+    }
+
+    fun searchPaciente(binding: ActivityControlSaludBinding, usuario: String) {
+        val pac = SearchUsuario(usuario)
+        CoroutineScope(Dispatchers.Main).launch {
+            Constant.retrofit.searchPaciente(pac).enqueue(
+                object : Callback<Paciente> {
+                    override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
+                        if (response.isSuccessful) {
+
+                            binding.cardContactoEmergencia.setOnClickListener {
+                                val intent=Intent(binding.cardAlergias.context,ContactoEmergenciaPacienteActivity::class.java)
+                                intent.putExtra("usuario",usuario)
+                                intent.putExtra("contactoemergenciaid",response.body()?.contactoEmergencia?.id.toString())
+                                intent.putExtra("contactoemergencia",response.body()?.contactoEmergencia?.descripcion)
+                                binding.cardAlergias.context.startActivity(intent)
+                            }
+                            binding.cardContactoMedico.setOnClickListener {
+                                val intent=Intent(binding.cardAlergias.context,ContactoMedicoPacienteActivity::class.java)
+                                intent.putExtra("usuario",usuario)
+                                intent.putExtra("contactomedicoid",response.body()?.contactoMedico?.id.toString())
+                                intent.putExtra("contactomedico",response.body()?.contactoMedico?.descripcion)
+                                binding.cardAlergias.context.startActivity(intent)
+                            }
+                            binding.cardEnfermedades.setOnClickListener {
+                                val intent=Intent(binding.cardAlergias.context,EnfermedadPacienteActivity::class.java)
+                                intent.putExtra("usuario",usuario)
+                                intent.putExtra("enfermedadid",response.body()?.enfermedad?.id.toString())
+                                intent.putExtra("enfermedad",response.body()?.enfermedad?.descripcion)
+                                binding.cardAlergias.context.startActivity(intent)
+                            }
+                            binding.cardMedicina.setOnClickListener {
+                                val intent=Intent(binding.cardAlergias.context,MedicinaPacienteActivity::class.java)
+                                intent.putExtra("usuario",usuario)
+                                intent.putExtra("medicinaid",response.body()?.medicina?.id.toString())
+                                intent.putExtra("medicina",response.body()?.medicina?.descripcion)
+                                binding.cardAlergias.context.startActivity(intent)
+                            }
+                            binding.cardAlergias.setOnClickListener {
+                                val intent=Intent(binding.cardAlergias.context,AlergiaPacienteActivity::class.java)
+                                intent.putExtra("usuario",usuario)
+                                intent.putExtra("alergiaid",response.body()?.alergia?.id.toString())
+                                binding.cardAlergias.context.startActivity(intent)
+                            }
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<Paciente>, t: Throwable) {
+                        Toast.makeText(
+                            binding.cardAlergias.context,
+                            Constant.NoInternet,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                })}
+
+    }
+    fun searchPaciente(binding: ActivityAlergiaPacienteBinding, usuario: String) {
+        val pac = SearchUsuario(usuario)
+        CoroutineScope(Dispatchers.Main).launch {
+            Constant.retrofit.searchPaciente(pac).enqueue(
+                object : Callback<Paciente> {
+                    override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
+                        if (response.isSuccessful) {
+                            binding.txtAlergia.setText(response.body()?.alergia?.descripcion)
+                        }
+                    }
+                    override fun onFailure(call: Call<Paciente>, t: Throwable) {
+                        Toast.makeText(
+                            binding.btnRegresar.context,
+                            Constant.NoInternet,
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                })}
 
     }
 
@@ -663,6 +746,27 @@ open class ApiService{
                 }
             }
             )
+    }
+    fun updateAlergia(id:Long,alergia: createAlergia,binding:ActivityAlergiaPacienteBinding,usuario: String){
+        Constant.retrofit.updateAlergia(id,alergia).enqueue(object :Callback<Alergia>{
+            override fun onResponse(call: Call<Alergia>, response: Response<Alergia>) {
+                val intent= Intent(binding.txtAlergia.context, binding.txtAlergia.context::class.java)
+                intent.putExtra("usuario",usuario)
+                intent.putExtra("alergiaid",response.body()?.id.toString())
+                intent.putExtra("alergia",response.body()?.descripcion)
+                Log.e("hj",response.body()?.descripcion.toString())
+                binding.txtAlergia.context.startActivity(intent)
+                (binding.txtAlergia.context as Activity).finish()
+
+
+            }
+
+            override fun onFailure(call: Call<Alergia>, t: Throwable) {
+
+            }
+
+        })
+
     }
 }
 

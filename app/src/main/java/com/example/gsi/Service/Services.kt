@@ -64,6 +64,9 @@ interface Services {
     @POST("alergia/registrar")
     fun createAlergia(@Body body: createAlergia): Call<Alergia>
 
+    @PUT("alergia/editar/{id}")
+    fun updateAlergia(@Path("id") id: Long,@Body alergia: createAlergia): Call<Alergia>
+
     @POST("contactoemergencia/registrar")
     fun createContactoEmergencia(@Body body: createContactoEmergencia): Call<ContactoEmergencia>
 

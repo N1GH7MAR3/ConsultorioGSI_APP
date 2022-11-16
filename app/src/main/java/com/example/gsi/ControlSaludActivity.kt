@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.example.gsi.Constans.Constant
 import com.example.gsi.databinding.ActivityControlSaludBinding
 import com.example.gsi.databinding.ActivityMedicoAgregarBinding
 
@@ -13,38 +14,12 @@ class ControlSaludActivity : AppCompatActivity() {
         binding= ActivityControlSaludBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val contactoemergencia=intent.getStringExtra("contactoemergencia")
-        val contactomedico=intent.getStringExtra("contactomedico")
-        val enfermedad=intent.getStringExtra("enfermedad")
-        val medicina=intent.getStringExtra("medicina")
-        val alergia=intent.getStringExtra("alergia")
+        val usuario=intent.getStringExtra("usuario")
+        Constant.api.searchPaciente(binding, usuario!!)
         binding.customPrinciapl.btnRegresar.setOnClickListener {
+            val intent=Intent(this,DashboardPacienteActivity::class.java)
+            intent.putExtra("usuario",usuario)
             finish()
-        }
-        binding.cardContactoEmergencia.setOnClickListener {
-            val intent=Intent(this,ContactoEmergenciaPacienteActivity::class.java)
-            intent.putExtra("contactoemergencia",contactoemergencia)
-            startActivity(intent)
-        }
-        binding.cardContactoMedico.setOnClickListener {
-            val intent=Intent(this,ContactoMedicoPacienteActivity::class.java)
-            intent.putExtra("contactomedico",contactomedico)
-            startActivity(intent)
-        }
-        binding.cardEnfermedades.setOnClickListener {
-        val intent=Intent(this,EnfermedadPacienteActivity::class.java)
-            intent.putExtra("enfermedad",enfermedad)
-            startActivity(intent)
-        }
-        binding.cardMedicina.setOnClickListener {
-            val intent=Intent(this,MedicinaPacienteActivity::class.java)
-            intent.putExtra("medicina",medicina)
-            startActivity(intent)
-        }
-        binding.cardAlergias.setOnClickListener {
-            val intent=Intent(this,AlergiaPacienteActivity::class.java)
-            intent.putExtra("alergia",alergia)
-            startActivity(intent)
         }
     }
 }
