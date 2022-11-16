@@ -17,18 +17,20 @@ interface Services {
     @GET("sexo/listar")
     fun getAllSexo(): Call<List<Sexo>>
 
-    @Headers("Accept: application/json")
     @GET("medico/listar")
     fun getAllMedico(): Call<List<Medico>>
 
     @GET("especialidad/listar")
     fun getAllEspecialidades(): Call<List<Especialidad>>
 
-    @GET("cita/buscardni/{dni}")
-    fun getCitasPaciente(@Path("dni") dni: Int): Call<List<Cita>>
-
     @GET("procedimiento/listar")
     fun getAllProcedimientos(): Call<List<Procedimiento>>
+
+    @GET("paciente/listar")
+    fun getAllPacientes(): Call<List<Paciente>>
+
+    @GET("cita/buscardni/{dni}")
+    fun getCitasPaciente(@Path("dni") dni: Int): Call<List<Cita>>
 
     @GET("procedimiento/buscarxEspecialidad/{nombre}")
     fun getProcedimientoxEspecialidad(@Path("nombre") nombre: String): Call<List<Procedimiento>>
@@ -42,7 +44,6 @@ interface Services {
     @POST("paciente/buscaruser")
     fun searchPaciente(@Body searchUsuario: SearchUsuario): Call<Paciente>
 
-    @Headers("Content-Type:application/json")
     @PUT("especialidad/editar/{id}")
     fun updateEspecialidad(@Path("id") id: Long, @Body body: Especialidad): Call<Especialidad>
 

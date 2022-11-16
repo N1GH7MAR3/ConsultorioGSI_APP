@@ -33,7 +33,6 @@ open class ApiService{
 
         val user = ValidateUsuario(username.text.toString(), password.text.toString())
         CoroutineScope(Dispatchers.Main).launch {
-
         Constant.retrofit.verifyUser(user).enqueue(
             object : Callback<Usuario> {
                 override fun onResponse(
