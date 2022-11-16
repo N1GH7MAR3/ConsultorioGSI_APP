@@ -22,8 +22,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
         val id=intent.getStringExtra("id")
         val nombre=intent.getStringExtra("nombre")
         val apePaterno=intent.getStringExtra("apePaterno")
@@ -32,33 +30,37 @@ class RegisterActivity : AppCompatActivity() {
         val direccion=intent.getStringExtra("direccion")
         val telefono=intent.getStringExtra("telefono")
         val correo=intent.getStringExtra("correo")
-        val paisid=intent.getStringExtra("paisid")
+        var paisid=intent.getStringExtra("paisid")
         val paisnombre=intent.getStringExtra("paisnombre")
-        val estadocivilid=intent.getStringExtra("estadocivilid")
-        val sexoid=intent.getStringExtra("sexoid")
+        var estadocivilid=intent.getStringExtra("estadocivilid")
+        var sexoid=intent.getStringExtra("sexoid")
         val usuarioid=intent.getStringExtra("usuarioid")
         val password=intent.getStringExtra("password")
 
-        Constant.api.getAllPais(this, binding,paisid!!)
-        Constant.api.getAllEstadoCivil(this, binding,estadocivilid!!)
-        Constant.api.getAllSexo(this, binding,sexoid!!)
-
-        binding.editTextTexNombre.setText(nombre)
-        binding.ediTextApePaterno.setText(apePaterno)
-        binding.ediTextApeMaterno.setText(apeMaterno)
-        binding.editTextDni.setText(dni)
-        binding.editTextDireccion.setText(direccion)
-        binding.editTextTelefono.setText(telefono)
-        binding.editTexEmail.setText(correo)
-        binding.editTextPassword.setText(password)
 
 
-        if(id!!.isNotEmpty()){
+
+        if (!id.isNullOrEmpty()) {
             binding.textView3.text="Editar Perfil"
             binding.btnRegistrate.text = "Editar Perfil"
             binding.txtLogin.isVisible=false
+            binding.editTextTexNombre.setText(nombre)
+            binding.ediTextApePaterno.setText(apePaterno)
+            binding.ediTextApeMaterno.setText(apeMaterno)
+            binding.editTextDni.setText(dni)
+            binding.editTextDireccion.setText(direccion)
+            binding.editTextTelefono.setText(telefono)
+            binding.editTexEmail.setText(correo)
+            binding.editTextPassword.setText(password)
         }
-        binding.txtInputEmail.isErrorEnabled = false
+        if(paisid.isNullOrEmpty()|| estadocivilid.isNullOrEmpty()||sexoid.isNullOrEmpty()){
+            paisid="0"
+            estadocivilid="0"
+            sexoid="0"
+        }
+        Constant.api.getAllPais(this, binding,paisid)
+        Constant.api.getAllEstadoCivil(this, binding,estadocivilid)
+        Constant.api.getAllSexo(this, binding,sexoid)
         binding.txtLogin.setOnClickListener {
             val intent = Intent(this@RegisterActivity, LoginActivity::class.java)
             startActivity(intent)
@@ -105,6 +107,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
         })
+
         binding.ediTextApeMaterno.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -301,18 +304,14 @@ class RegisterActivity : AppCompatActivity() {
             } else if (binding.spSexo.selectedItemPosition == 0) {
                 binding.spSexo.requestFocusFromTouch()
             } else {
-                if (id.isEmpty()){
-                Constant.api.createUsuarioPacienteControlSalud(binding, usuario)}
-                else{
 
-                }
             }
 
 
         }
         //toolbar
         binding.customPrinciapl.btnRegresar.setOnClickListener {
-            if (id.isNotEmpty()){
+            if (!id.isNullOrEmpty()){
                 finish()
             }else{
             val intent = Intent(this, LoginActivity::class.java)
