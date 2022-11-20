@@ -103,6 +103,11 @@ open class ApiService {
                     override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
                         if (response.isSuccessful) {
                             binding.txtNombre.text = response.body()?.nombre
+                            if(response.body()?.sexo?.nombre=="Femenino"){
+                                binding.imagePerfil.setImageResource(com.example.gsi.R.drawable.female)
+                            }else{
+                                binding.imagePerfil.setImageResource(com.example.gsi.R.drawable.ic_account_circle)
+                            }
                             binding.imagePerfil.setOnClickListener {
                                 val intent = Intent(
                                     binding.cardAcercaNosotros.context,
@@ -501,7 +506,7 @@ open class ApiService {
                 activity.runOnUiThread {
                     val list: List<Medico> = response.body()!!
                     val lesp: MutableList<Medico> = mutableListOf()
-                    if(esp.isEmpty()){
+                    if(esp == "null"){
                         iniRecyclerView(list)
                         binding.txtMedicos.text = "Medicos"
                     }else{
@@ -514,8 +519,6 @@ open class ApiService {
                         }
                         iniRecyclerView(lesp)
                     }
-
-
                 }
             }
 
