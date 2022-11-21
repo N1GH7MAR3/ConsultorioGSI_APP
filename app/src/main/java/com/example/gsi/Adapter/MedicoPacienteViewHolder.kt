@@ -5,6 +5,7 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gsi.Entity.Medico
 import com.example.gsi.Entity.Procedimiento
+import com.example.gsi.R
 import com.example.gsi.databinding.ItemMedicoPacienteBinding
 
 class MedicoPacienteViewHolder (view:View):RecyclerView.ViewHolder (view){
@@ -15,5 +16,10 @@ class MedicoPacienteViewHolder (view:View):RecyclerView.ViewHolder (view){
         binding.txtEspecialidad.text=medicos.especialidad.nombre
         binding.txtProcedimiento.text=procedimiento
         binding.txtdni.text=medicos.dni
+        if (medicos.sexo.nombre=="Femenino"){
+            binding.ivEspecialidad.setImageResource(R.drawable.female)
+        }else{
+            binding.ivEspecialidad.setImageResource(R.drawable.ic_account_circle)
+        }
     }
 }

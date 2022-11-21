@@ -13,7 +13,7 @@
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_alergia_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_contacto_emergencia_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_contacto_medico_paciente.xml" value="0.2131578947368421" />
-        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.18518518518518517" />
+        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.25" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_invitado.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_enfermedad_paciente.xml" value="0.22543859649122808" />
@@ -36,23 +36,7 @@
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_especialidades_admin.xml" value="0.22456140350877193" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_especialidades_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_lista_paciente.xml" value="0.22543859649122808" />
-<<<<<<< HEAD
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_acerca_nosotros.xml" value="0.18" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_alergia_paciente.xml" value="0.18" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_cita_paciente.xml" value="0.2484375" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_cita_registrar.xml" value="0.2484375" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_contacto_emergencia_paciente.xml" value="0.2484375" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_contacto_medico_paciente.xml" value="0.2484375" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_control_salud.xml" value="0.33" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.2484375" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_invitado.xml" value="0.2484375" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_paciente.xml" value="0.33" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_medicina_paciente.xml" value="0.2484375" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/item_cita_paciente.xml" value="0.2484375" />
-        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/layout_error_dailog.xml" value="0.22" />
-=======
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_medico_admin.xml" value="0.22543859649122808" />
->>>>>>> fcd083b7143e1404378523737bc489d943f10f16
         <entry key="..\:/WP_AndroidStucioII/ConsultorioGSI_app/app/src/main/res/drawable/bg_degradado.xml" value="0.2655" />
         <entry key="..\:/WP_AndroidStucioII/ConsultorioGSI_app/app/src/main/res/drawable/bottom_background_light_green.xml" value="0.34" />
         <entry key="..\:/WP_AndroidStucioII/ConsultorioGSI_app/app/src/main/res/drawable/card_bg.xml" value="0.277" />
