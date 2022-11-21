@@ -32,7 +32,7 @@
     <string name="lbl_especialidad">Especialidades</string>
     <string name="lbl_procedimineto">Procedimientos</string>
     <string name="lbl_medico">Medicos</string>
-    <string name="lbl_citas">Citas</string>
+    <string name="lbl_recita">Reservar Cita</string>
     <string name="lbl_cerrarSesion">Cerrar sesion</string>
     <string name="lbl_volver">Volver</string>
     <string name="lbl_ajustes">Ajustes</string>
@@ -49,6 +49,7 @@
     <string name="lbl_cMedico">Medico</string>
     <string name="lbl_cEmergencia">Emergencia</string>
     <string name="lbl_medicina">Medicina</string>
+    <string name="lbl_cita">Citas</string>
 
     //REGISTER
     <string name="lbl_pais">Pais:</string>

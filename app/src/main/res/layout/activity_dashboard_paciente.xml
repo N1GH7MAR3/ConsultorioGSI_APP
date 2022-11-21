@@ -40,7 +40,7 @@
             android:layout_width="62dp"
             android:layout_height="62dp"
             android:layout_alignParentRight="true"
-            android:src="@drawable/img_perfil2" />
+            android:src="@drawable/img_boy" />
     </RelativeLayout>
 
 
@@ -279,7 +279,7 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:foregroundGravity="center"
-                        android:src="@drawable/img_perfil"
+                        android:src="@drawable/img_reservar"
                         app:layout_constraintBottom_toBottomOf="@+id/cl4"
                         app:layout_constraintEnd_toEndOf="@+id/cl4"
                         app:layout_constraintStart_toStartOf="@+id/cl4"
@@ -291,7 +291,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_citas"
+                    android:text="@string/lbl_recita"
                     android:textColor="@color/gsiAzul"
                     android:textSize="13dp"
                     android:textStyle="bold">
@@ -341,7 +341,7 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:foregroundGravity="center"
-                        android:src="@drawable/img_medico"
+                        android:src="@drawable/img_controlsalud"
                         app:layout_constraintBottom_toBottomOf="@+id/cl5"
                         app:layout_constraintEnd_toEndOf="@+id/cl5"
                         app:layout_constraintStart_toStartOf="@+id/cl5"

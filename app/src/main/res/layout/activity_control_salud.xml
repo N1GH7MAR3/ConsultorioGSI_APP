@@ -324,6 +324,67 @@
 
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardCita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_row="2"
+                android:layout_rowWeight="1"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_gravity="fill"
+                android:backgroundTint="@color/gsiVerde"
+                app:cardCornerRadius="15dp"
+                app:cardElevation="10dp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+
+                        android:id="@+id/cl5"
+
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:background="@drawable/circle_bg"
+
+                        >
+
+                        <ImageView
+                            android:id="@+id/imageView7"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:foregroundGravity="center"
+                            android:src="@drawable/img_citas"
+                            app:layout_constraintBottom_toBottomOf="@+id/cl5"
+                            app:layout_constraintEnd_toEndOf="@+id/cl5"
+                            app:layout_constraintStart_toStartOf="@+id/cl5"
+                            app:layout_constraintTop_toTopOf="@+id/cl5">
+
+                        </ImageView>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/lbl_cita"
+                        android:textColor="@color/gsiAzul"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+
+
+
+                </LinearLayout>
+
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cardMedicina"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
