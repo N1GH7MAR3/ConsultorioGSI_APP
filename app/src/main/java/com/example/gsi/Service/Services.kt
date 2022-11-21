@@ -20,11 +20,15 @@ interface Services {
     @GET("medico/listar")
     fun getAllMedico(): Call<List<Medico>>
 
+    @GET("medico_procedimiento/listarpxm/{id}")
+    fun getAllProcedimientosxMedico(@Path("id")id: Long): Call<List<Procedimiento>>
+
     @GET("especialidad/listar")
     fun getAllEspecialidades(): Call<List<Especialidad>>
 
     @GET("procedimiento/listar")
     fun getAllProcedimientos(): Call<List<Procedimiento>>
+
 
     @GET("paciente/listar")
     fun getAllPacientes(): Call<List<Paciente>>
@@ -66,31 +70,37 @@ interface Services {
     fun createAlergia(@Body body: createAlergia): Call<Alergia>
 
     @PUT("alergia/editar/{id}")
-    fun updateAlergia(@Path("id") id: Long,@Body alergia: createAlergia): Call<Alergia>
+    fun updateAlergia(@Path("id") id: Long, @Body alergia: createAlergia): Call<Alergia>
 
     @POST("contactoemergencia/registrar")
     fun createContactoEmergencia(@Body body: createContactoEmergencia): Call<ContactoEmergencia>
 
     @PUT("contactoemergencia/editar/{id}")
-    fun updateContactoEmergencia(@Path("id") id: Long,@Body contactoEmergencia: createContactoEmergencia): Call<ContactoEmergencia>
+    fun updateContactoEmergencia(
+        @Path("id") id: Long,
+        @Body contactoEmergencia: createContactoEmergencia
+    ): Call<ContactoEmergencia>
 
     @POST("contactomedico/registrar")
     fun createContactoMedico(@Body body: createContactoMedico): Call<ContactoMedico>
 
     @PUT("contactomedico/editar/{id}")
-    fun updateContactoMedico(@Path("id") id: Long,@Body contactoMedico: createContactoMedico): Call<ContactoMedico>
+    fun updateContactoMedico(
+        @Path("id") id: Long,
+        @Body contactoMedico: createContactoMedico
+    ): Call<ContactoMedico>
 
     @POST("enfermedad/registrar")
     fun createEnfermedad(@Body body: createEnfermedad): Call<Enfermedad>
 
     @PUT("enfermedad/editar/{id}")
-    fun updateEnfermedad(@Path("id") id: Long,@Body enfermedad: createEnfermedad): Call<Enfermedad>
+    fun updateEnfermedad(@Path("id") id: Long, @Body enfermedad: createEnfermedad): Call<Enfermedad>
 
     @POST("medicina/registrar")
     fun createMedicina(@Body body: createMedicina): Call<Medicina>
 
     @PUT("medicina/editar/{id}")
-    fun updateMedicina(@Path("id") id: Long,@Body medicina: createMedicina): Call<Medicina>
+    fun updateMedicina(@Path("id") id: Long, @Body medicina: createMedicina): Call<Medicina>
 
 
 }

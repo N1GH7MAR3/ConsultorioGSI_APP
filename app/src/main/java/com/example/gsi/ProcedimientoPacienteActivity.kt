@@ -12,13 +12,10 @@ class ProcedimientoPacienteActivity : AppCompatActivity() {
         binding = ActivityProcedimientoPacienteBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val nombreEspecialidad = intent.getStringExtra("nombre")
-        val idEspecialidad = intent.getIntExtra("id", 0)
-        if (nombreEspecialidad == null) {
+        val medicoid=intent.getStringExtra("medicoid")
 
-        } else {
-            Constant.api.getProcedimientoxEspecialidad(nombreEspecialidad!!, this, binding)
-        }
+            Constant.api.getAllProcedimientosxMedico(binding,medicoid!!.toLong())
+
         binding.customPrinciapl.btnRegresar.setOnClickListener {
             finish()
         }

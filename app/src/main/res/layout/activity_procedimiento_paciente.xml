@@ -16,7 +16,17 @@
             layout="@layout/custom_tolbar_principal"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="171dp" />
-
+        <TextView
+            android:id="@+id/txtProcedimiento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Procedimientos"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:textSize="25dp"
+            android:textColor="@color/gsiAzul"
+            android:layout_marginBottom="20dp">
+        </TextView>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvProcedimiento"
             android:layout_width="match_parent"

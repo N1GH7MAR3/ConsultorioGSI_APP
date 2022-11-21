@@ -15,8 +15,8 @@ class DashboardPacienteActivity : AppCompatActivity() {
         binding = ActivityDashboardPacienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val usuario = intent.getStringExtra("usuario")
-        Constant.api.searchPaciente(binding, usuario!!)
 
+        Constant.api.searchPaciente(binding, usuario!!)
 
         binding.cardEspecialidades.setOnClickListener {
             val intent = Intent(this@DashboardPacienteActivity, EspecialidadesPacienteActivity::class.java)
@@ -32,7 +32,10 @@ class DashboardPacienteActivity : AppCompatActivity() {
         binding.cardAcercaNosotros.setOnClickListener {
             val intent=Intent(this,AcercaNosotrosActivity::class.java)
             startActivity(intent)
-
+        }
+        binding.cardReservaCitas.setOnClickListener {
+            val intent=Intent(this,ReservaCitaPacienteActivity::class.java)
+            startActivity(intent)
         }
 
 

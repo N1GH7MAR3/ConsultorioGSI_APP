@@ -16,13 +16,6 @@ class ProcedimientoPacienteViewHolder (view:View):RecyclerView.ViewHolder(view){
         binding.tvNombreProcedimiento.text=procedimiento.nombre
         binding.tvNombreEspecialidad.text=procedimiento.especialidad.nombre
         Glide.with(binding.ivEspecialidad.context).load(procedimiento.especialidad.image).into(binding.ivEspecialidad)
-        itemView.setOnClickListener {
-            val intent= Intent(binding.ivEspecialidad.context, MedicoPacienteActivity::class.java)
-            intent.putExtra("nombreespecialidad",procedimiento.especialidad.nombre)
-            intent.putExtra("idespecialidad",procedimiento.especialidad.id)
-            intent.putExtra("idprocedimiento",procedimiento.id)
-            intent.putExtra("nombreprocedimiento",procedimiento.nombre)
-            binding.ivEspecialidad.context.startActivity(intent)
-        }
+
     }
 }
