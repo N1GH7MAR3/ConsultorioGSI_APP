@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:padding="8dp"
             >
+
             <ImageView
                 android:id="@+id/ivEspecialidad"
                 android:layout_width="100dp"
@@ -37,8 +38,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:padding="15dp"
-                android:src="@drawable/ic_account_circle">
-            </ImageView>
+                android:src="@drawable/ic_account_circle"></ImageView>
             <LinearLayout
                 android:paddingTop="5dp"
                 android:layout_width="244dp"
