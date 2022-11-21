@@ -115,7 +115,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_enfermedad"
+                    android:text="@string/lbl_especialidad"
                     android:textColor="@color/gsiAzul"
                     android:textSize="13dp"
                     android:textStyle="bold">
@@ -164,7 +164,7 @@
                         android:layout_width="70dp"
                         android:layout_height="70dp"
                         android:foregroundGravity="center"
-                        android:src="@drawable/img_especialidad"
+                        android:src="@drawable/img_acercanosotros"
                         app:layout_constraintBottom_toBottomOf="@+id/cl2"
                         app:layout_constraintEnd_toEndOf="@+id/cl2"
                         app:layout_constraintStart_toStartOf="@+id/cl2"
@@ -176,7 +176,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/lbl_alergia"
+                    android:text="@string/lbl_acercaNosotros"
                     android:textColor="@color/gsiAzul"
                     android:textSize="13dp"
                     android:textStyle="bold">
@@ -189,66 +189,6 @@
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/carMedicos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_row="1"
-            android:layout_rowWeight="1"
-            android:layout_column="0"
-            android:layout_columnWeight="1"
-            android:layout_gravity="fill"
-            android:backgroundTint="@color/gsiVerde"
-            app:cardCornerRadius="15dp"
-            app:cardElevation="10dp"
-            app:cardUseCompatPadding="true">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-
-                    android:id="@+id/cl3"
-
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:background="@drawable/circle_bg"
-
-                    >
-
-                    <ImageView
-                        android:id="@+id/imageView5"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:foregroundGravity="center"
-                        android:src="@drawable/img_medico"
-                        app:layout_constraintBottom_toBottomOf="@+id/cl3"
-                        app:layout_constraintEnd_toEndOf="@+id/cl3"
-                        app:layout_constraintStart_toStartOf="@+id/cl3"
-                        app:layout_constraintTop_toTopOf="@+id/cl3">
-
-                    </ImageView>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/lbl_contacto"
-                    android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
-                    android:textStyle="bold">
-
-                </TextView>
-
-            </LinearLayout>
-
-
-        </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardCitas"
@@ -256,7 +196,7 @@
             android:layout_height="wrap_content"
             android:layout_row="1"
             android:layout_rowWeight="1"
-            android:layout_column="1"
+            android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
             android:backgroundTint="@color/gsiVerde"
