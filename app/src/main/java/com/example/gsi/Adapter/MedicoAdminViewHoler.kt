@@ -16,9 +16,9 @@ class MedicoAdminViewHoler (view: View):RecyclerView.ViewHolder(view){
         binding.txtEspecialidad.text=medicos.especialidad.nombre
         binding.txtdni.text=medicos.dni
         if (medicos.sexo.nombre=="Femenino"){
-            binding.ivEspecialidad.setImageResource(R.drawable.female)
+            binding.ivEspecialidad.setImageResource(R.drawable.img_medicof)
         }else{
-            binding.ivEspecialidad.setImageResource(R.drawable.ic_account_circle)
+            binding.ivEspecialidad.setImageResource(R.drawable.img_medicom)
         }
     }
 }
