@@ -75,3 +75,10 @@ data class Medico(
 
 
 )
+data class Medico_Procedimiento(
+    @SerializedName("procedimiento")
+    @Expose
+    val procedimiento:List<Procedimiento>
+
+
+)

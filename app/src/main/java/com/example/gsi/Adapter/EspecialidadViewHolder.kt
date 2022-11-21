@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.gsi.Entity.Especialidad
+import com.example.gsi.MedicoPacienteActivity
 import com.example.gsi.ProcedimientoPacienteActivity
 
 import com.example.gsi.databinding.ItemEspecialidadesPacienteBinding
@@ -19,9 +20,8 @@ class EspecialidadViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             .into(binding.ivEspecialidad)
 
         itemView.setOnClickListener {
-            val intent=Intent(binding.ivEspecialidad.context,ProcedimientoPacienteActivity::class.java)
-            intent.putExtra("nombre",especialidades.nombre)
-            intent.putExtra("id",especialidades.id)
+            val intent=Intent(binding.ivEspecialidad.context,MedicoPacienteActivity::class.java)
+            intent.putExtra("nombreespecialidad",especialidades.nombre)
             binding.ivEspecialidad.context.startActivity(intent)
         }
     }

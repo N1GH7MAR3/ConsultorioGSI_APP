@@ -11,6 +11,7 @@
         <entry key="..\:/Android/ConsultorioGSI/app/src/main/res/xml/network_security_config.xml" value="0.24717948717948718" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_acerca_nosotros.xml" value="0.1" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_alergia_paciente.xml" value="0.22543859649122808" />
+        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_cita_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_contacto_emergencia_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_contacto_medico_paciente.xml" value="0.2131578947368421" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.25" />
@@ -31,6 +32,7 @@
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_procedimiento_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_registre.xml" value="0.10555555555555556" />
+        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_reserva_cita_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/custom_tolbar_principal.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_especialidades.xml" value="0.16666666666666666" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_especialidades_admin.xml" value="0.22456140350877193" />

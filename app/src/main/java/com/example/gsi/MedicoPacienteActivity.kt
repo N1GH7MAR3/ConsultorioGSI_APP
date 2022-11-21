@@ -21,11 +21,8 @@ class MedicoPacienteActivity : AppCompatActivity() {
         binding = ActivityMedicoPacienteBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        val idEspecialidad = intent.getLongExtra("idespecialidad", 0)
         val nombreEspecialidad = intent.getStringExtra("nombreespecialidad")
-        val idProcedimiento = intent.getLongExtra("idprocedimiento", 0)
-        val nombreProcedimiento = intent.getStringExtra("nombreprocedimiento")
-        Constant.api.getAllMedicoPaciente(nombreEspecialidad!!,nombreProcedimiento!!,this,binding)
+        Constant.api.getAllMedicoPaciente(nombreEspecialidad!!,binding)
         binding.customPrinciapl.btnRegresar.setOnClickListener {
             finish()
         }

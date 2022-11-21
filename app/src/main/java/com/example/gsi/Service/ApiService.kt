@@ -7,6 +7,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.os.AsyncTask
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
@@ -22,6 +24,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.lang.invoke.ConstantCallSite
+import kotlin.math.log
 
 @OptIn(DelicateCoroutinesApi::class)
 open class ApiService {
@@ -104,9 +107,9 @@ open class ApiService {
                         if (response.isSuccessful) {
                             binding.txtNombre.text = response.body()?.nombre
                             if(response.body()?.sexo?.nombre=="Femenino"){
-                                binding.imagePerfil.setImageResource(com.example.gsi.R.drawable.female)
+                                binding.imagePerfil.setImageResource(com.example.gsi.R.drawable.img_girl)
                             }else{
-                                binding.imagePerfil.setImageResource(com.example.gsi.R.drawable.ic_account_circle)
+                                binding.imagePerfil.setImageResource(com.example.gsi.R.drawable.img_boy)
                             }
                             binding.imagePerfil.setOnClickListener {
                                 val intent = Intent(
@@ -142,12 +145,11 @@ open class ApiService {
                                 binding.cardAcercaNosotros.context.startActivity(intent)
 
                             }
-                            binding.cardCitas.setOnClickListener {
+                            binding.cardReservaCitas.setOnClickListener {
                                 val intent = Intent(
                                     binding.cardAcercaNosotros.context,
-                                    CitaPacienteActivity::class.java
+                                    ReservaCitaPacienteActivity::class.java
                                 )
-                                intent.putExtra("dni", response.body()?.dni.toString())
                                 binding.cardAcercaNosotros.context.startActivity(intent)
                             }
                             binding.cardControlSalud.setOnClickListener {
@@ -156,40 +158,6 @@ open class ApiService {
                                     ControlSaludActivity::class.java
                                 )
                                 intent.putExtra("usuario", response.body()?.usuario?.usuario)
-                                intent.putExtra(
-                                    "contactoemergenciaid",
-                                    response.body()?.contactoEmergencia?.id.toString()
-                                )
-                                intent.putExtra(
-                                    "contactomedicoid",
-                                    response.body()?.contactoMedico?.id.toString()
-                                )
-                                intent.putExtra(
-                                    "enfermedadid",
-                                    response.body()?.enfermedad?.id.toString()
-                                )
-                                intent.putExtra(
-                                    "medicinaid",
-                                    response.body()?.medicina?.id.toString()
-                                )
-                                intent.putExtra(
-                                    "alergiaid",
-                                    response.body()?.alergia?.id.toString()
-                                )
-                                intent.putExtra(
-                                    "contactoemergencia",
-                                    response.body()?.contactoEmergencia?.descripcion
-                                )
-                                intent.putExtra(
-                                    "contactomedico",
-                                    response.body()?.contactoMedico?.descripcion
-                                )
-                                intent.putExtra(
-                                    "enfermedad",
-                                    response.body()?.enfermedad?.descripcion
-                                )
-                                intent.putExtra("medicina", response.body()?.medicina?.descripcion)
-                                intent.putExtra("alergia", response.body()?.alergia?.descripcion)
                                 binding.cardAcercaNosotros.context.startActivity(intent)
 
                             }
@@ -286,6 +254,17 @@ open class ApiService {
                                 intent.putExtra(
                                     "alergiaid",
                                     response.body()?.alergia?.id.toString()
+                                )
+                                binding.cardAlergias.context.startActivity(intent)
+                            }
+                            binding.cardCita.setOnClickListener {
+                                val intent = Intent(
+                                    binding.cardAlergias.context,
+                                    CitaPacienteActivity::class.java
+                                )
+                                intent.putExtra(
+                                    "dni",
+                                    response.body()?.dni.toString()
                                 )
                                 binding.cardAlergias.context.startActivity(intent)
                             }
@@ -441,7 +420,6 @@ open class ApiService {
                         call.cancel()
                     }
                 }
-
                 override fun onFailure(call: Call<List<Especialidad>>, t: Throwable) {
                     Toast.makeText(
                         binding.rvEspecialidades.context,
@@ -451,6 +429,112 @@ open class ApiService {
                 }
             })
     }
+    //RESERVAR CITAS
+    fun getEspecilidadesPaciente(
+        binding: ActivityReservaCitaPacienteBinding
+    ) {
+
+        Constant.retrofit.getAllEspecialidades()
+            .enqueue(object : Callback<List<Especialidad>> {
+                override fun onResponse(
+                    call: Call<List<Especialidad>>,
+                    response: Response<List<Especialidad>>
+                ) {
+                    val listEmpty = mutableListOf<String>()
+                    listEmpty.add(0, "Seleccionar")
+                    binding.spProcedimiento.adapter = ArrayAdapter(
+                        binding.spEspecialidad.context,
+                        R.layout.simple_spinner_dropdown_item,
+                        listEmpty
+                    )
+                    binding.spTurno.adapter = ArrayAdapter(
+                        binding.spEspecialidad.context,
+                        R.layout.simple_spinner_dropdown_item,
+                        listEmpty
+                    )
+                    binding.spMedicos.adapter = ArrayAdapter(
+                        binding.spEspecialidad.context,
+                        R.layout.simple_spinner_dropdown_item,
+                        listEmpty
+                    )
+
+                    val list = mutableListOf<String>()
+                    list.add(0, "Seleccionar")
+                    val listEspecialidades = response.body()
+                    for (i in listEspecialidades!!.indices) list += listEspecialidades[i].nombre
+                    binding.spEspecialidad.adapter = ArrayAdapter(
+                        binding.spEspecialidad.context,
+                        R.layout.simple_spinner_dropdown_item,
+                        list
+                    )
+
+                    binding.spEspecialidad.onItemSelectedListener =object :AdapterView.OnItemSelectedListener{
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            Constant.retrofit.getMedicoxEspecialidad(binding.spEspecialidad.selectedItem.toString()).enqueue(object  :Callback<List<Medico>>{
+                                override fun onResponse(
+                                    call: Call<List<Medico>>,
+                                    response: Response<List<Medico>>
+                                ) {
+                                    val list = mutableListOf<String>()
+                                    val listIdMedicos = mutableListOf<Long>()
+                                    list.add(0, "Seleccionar")
+                                    listIdMedicos.add(0, 0)
+                                    val listMedicos = response.body()
+
+                                    for (i in listMedicos!!.indices) {
+                                        list += listMedicos[i].nombre
+                                        listIdMedicos += listMedicos[i].id
+                                    }
+                                    binding.spMedicos.adapter = ArrayAdapter(
+                                        binding.spEspecialidad.context,
+                                        R.layout.simple_spinner_dropdown_item,
+                                        list
+                                    )
+                                    binding.spMedicos.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+                                        override fun onItemSelected(
+                                            p0: AdapterView<*>?,
+                                            p1: View?,
+                                            p2: Int,
+                                            p3: Long
+                                        ) {
+                                            Log.e("asdasd",(listIdMedicos.elementAt(binding.spMedicos.selectedItemPosition)).toString())
+                                        }
+
+                                        override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                                        }
+
+                                    }
+                                }
+
+                                override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
+                                }
+
+                            })
+
+                        }
+                        override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                        }
+
+                    }
+
+                }
+                override fun onFailure(call: Call<List<Especialidad>>, t: Throwable) {
+                    Toast.makeText(
+                        binding.spEspecialidad.context,
+                        Constant.NoInternet,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            })
+    }
+
 
     fun getAllPacientes(
         binding: ActivityListaPacienteAdminBinding
@@ -734,7 +818,7 @@ open class ApiService {
                 ) {
                     Toast.makeText(
                         binding.rvMedico.context,
-                        "MEDICO Creado",
+                        "Medico Creado",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -747,47 +831,17 @@ open class ApiService {
 
         }
 
-        //Obtener los procedimientos por especialidad
-        fun getProcedimientoxEspecialidad(
-            nombre: String, activity: ProcedimientoPacienteActivity,
-            binding: ActivityProcedimientoPacienteBinding
-        ) {
-            fun iniRecyclerView(list: List<Procedimiento>) {
-                binding.rvProcedimiento.layoutManager =
-                    LinearLayoutManager(activity.applicationContext)
-                binding.rvProcedimiento.adapter = ProdecimientoPacienteAdapter(list)
-            }
-            Constant.retrofit.getProcedimientoxEspecialidad(nombre)
-                .enqueue(object : Callback<List<Procedimiento>> {
-                    override fun onResponse(
-                        call: Call<List<Procedimiento>>,
-                        response: Response<List<Procedimiento>>
-                    ) {
 
-                        val list: List<Procedimiento> = response.body()!!
-                        iniRecyclerView(list)
-                        call.cancel()
-
-                    }
-
-                    override fun onFailure(call: Call<List<Procedimiento>>, t: Throwable) {
-                        Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
-
-                    }
-
-                })
-        }
 
         //Obtener Medicos para la vista del Paciente
         fun getAllMedicoPaciente(
-            nombre: String, nombreprocedimiento: String,
-            activity: MedicoPacienteActivity,
+            nombre: String,
             binding: ActivityMedicoPacienteBinding
         ) {
-            fun iniRecyclerView(list: List<Medico>, nombreprocedimiento: String) {
+            fun iniRecyclerView(list: List<Medico>) {
                 binding.rvMedico.layoutManager =
-                    LinearLayoutManager(activity.applicationContext)
-                binding.rvMedico.adapter = MedicoPacienteAdapter(list, nombreprocedimiento)
+                    LinearLayoutManager(binding.rvMedico.context.applicationContext)
+                binding.rvMedico.adapter = MedicoPacienteAdapter(list)
             }
             binding.txtMedicos.text = "Cargando Medicos..."
             Constant.retrofit.getMedicoxEspecialidad(nombre).enqueue(object :
@@ -796,20 +850,45 @@ open class ApiService {
                     call: Call<List<Medico>>,
                     response: Response<List<Medico>>
                 ) {
-                    activity.runOnUiThread {
+
+                    (binding.rvMedico.context as Activity).runOnUiThread {
                         val list: List<Medico> = response.body()!!
-                        iniRecyclerView(list, nombreprocedimiento)
+                        iniRecyclerView(list)
                         binding.txtMedicos.text = "Medicos"
                         call.cancel()
                     }
                 }
 
                 override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
-                    Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
+                    Toast.makeText(binding.rvMedico.context, Constant.NoInternet, Toast.LENGTH_LONG).show()
                 }
             })
 
         }
+    fun getAllProcedimientosxMedico(binding:ActivityProcedimientoPacienteBinding,medicoid:Long){
+        fun iniRecyclerView(list: List<Procedimiento>) {
+            binding.rvProcedimiento.layoutManager =
+                LinearLayoutManager(binding.rvProcedimiento.context.applicationContext)
+            binding.rvProcedimiento.adapter = ProdecimientoPacienteAdapter(list)
+        }
+        binding.txtProcedimiento.text = "Cargando Procedimientos..."
+    Constant.retrofit.getAllProcedimientosxMedico(medicoid).enqueue(object :Callback<List<Procedimiento>>{
+        override fun onResponse(
+            call: Call<List<Procedimiento>>,
+            response: Response<List<Procedimiento>>
+        ) {
+            binding.txtProcedimiento.text = "Procedimientos"
+            val list: List<Procedimiento> = response.body()!!
+            iniRecyclerView(list)
+            call.cancel()
+        }
+
+        override fun onFailure(call: Call<List<Procedimiento>>, t: Throwable) {
+
+        }
+
+    })
+    }
 
         //Obtener los paises
         fun getAllPais(binding: ActivityRegisterBinding, paisid: String) {
