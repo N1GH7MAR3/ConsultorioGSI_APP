@@ -81,11 +81,8 @@
 
     //MEDICO
     <string name="lbl_turno">Turno:</string>
-    <string name="lbl_horario">Horario:</string>
-
-
-
-
+    <string name="lbl_horarioIngreso">Horario Ingreso:</string>
+    <string name="lbl_horarioSalida">Horario Salida:</string>
 
 
 </resources>
