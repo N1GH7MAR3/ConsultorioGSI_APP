@@ -1,18 +1,13 @@
 package com.example.gsi
 
-import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.gsi.databinding.ActivityMain2Binding
 
 class MainActivity2 : AppCompatActivity() {
@@ -22,27 +17,21 @@ class MainActivity2 : AppCompatActivity() {
         binding=ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+       val btn =findViewById<Button>(R.id.buttonSuccess)
 
-        binding.buttonSuccess.setOnClickListener {
-            val dialogBinding = layoutInflater.inflate(R.layout.layout_warning_dailog,null)
-            val myDialog = Dialog(this)
-            myDialog.setContentView(dialogBinding)
 
-            myDialog.setCancelable(true)
-            myDialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            myDialog.show()
+       btn.setOnClickListener {
+            val builder= AlertDialog.Builder(this@MainActivity2)
+           val view = layoutInflater.inflate(R.layout.layout_warning_dailog,null)
+           builder.setView(view)
+           val dialog = builder.create()
+           dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+           dialog.setCancelable(false)
+           dialog.show()
         }
 
-        binding.buttonWarning.setOnClickListener {
-            //showWarningDialog()
-        }
 
-        binding.buttonError.setOnClickListener {
-            //showErrorDialog()
-        }
     }
 
-    private fun showSuccessDialog() {
 
-    }
 }

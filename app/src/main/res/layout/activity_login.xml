@@ -6,122 +6,131 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login"
-    tools:context=".WelcomeActivity">
+    tools:context=".LoginActivity">
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:gravity="center|center_horizontal"
-        android:text="Bienvenido(a) - Inicia Sesión"
-        android:textColor="@color/gsiVerde"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="0dp" />
+
+
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="361dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/txtNuevoUsuario"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="22dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="210dp"
+        android:id="@+id/ll1"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/btnLogin"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        >
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtInputUsuario"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <TextView
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/label_usuario"
-            app:startIconDrawable="@drawable/ic_email">
+            android:fontFamily="sans-serif-condensed-light"
+            android:gravity="center"
+            android:text="Bienvenido(a) - Inicia Sesión"
+            android:textColor="@color/gsiVerde"
+            android:textSize="22sp"
+            android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextEmailLogin"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:inputType="textEmailAddress"
-                android:textSize="15sp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/txtInputPassword"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/label_password"
-            app:passwordToggleEnabled="true"
-            app:startIconDrawable="@drawable/ic_lock">
+            android:layout_gravity="center"
+            android:layout_margin="20dp"
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPasswordLogin"
+
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInputUsuario"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:textSize="15sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:hint="@string/label_usuario"
+                app:startIconDrawable="@drawable/ic_email">
 
-    </LinearLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextEmailLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:inputType="textEmailAddress"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtInputPassword"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/label_password"
+                app:passwordToggleEnabled="true"
+                app:startIconDrawable="@drawable/ic_lock">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnLogin"
-            android:layout_width="252dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="79dp"
-            android:layout_marginEnd="80dp"
-            android:layout_marginBottom="12dp"
-            android:text="Iniciar Sesion"
-            android:textColor="@color/gsiAzul"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/btnInvitado"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editTextPasswordLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textSize="15sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnInvitado"
-            android:layout_width="252dp"
-            android:layout_height="53dp"
-            android:layout_marginStart="79dp"
-            android:layout_marginTop="88dp"
-            android:layout_marginEnd="80dp"
-            android:text="Ingresar como invitado"
-            android:textColor="@color/gsiAzul"
-            app:cornerRadius="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+
+            android:gravity="center">
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogin"
+                android:layout_width="245dp"
+                android:layout_height="wrap_content"
+                android:text="Iniciar Sesion"
+                android:textColor="@color/gsiAzul"
+                app:cornerRadius="20dp"
+                android:layout_marginBottom="10dp"
+                />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInvitado"
+                android:layout_width="245dp"
+                android:layout_height="wrap_content"
+                android:text="Ingresar como invitado"
+                android:textColor="@color/gsiAzul"
+                app:cornerRadius="20dp"
+                />
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/txtNuevoUsuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:clickable="true"
             android:focusable="true"
             android:fontFamily="sans-serif-light"
-            android:gravity="center|center_horizontal"
+            android:gravity="center"
             android:text="Si no tienes cuenta, REGISTRATE"
             android:textColor="@color/gsiAzul"
             android:textSize="18sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnInvitado"
             tools:ignore="TouchTargetSizeCheck,TouchTargetSizeCheck" />
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+
 
 
 
