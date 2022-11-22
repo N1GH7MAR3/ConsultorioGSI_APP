@@ -66,8 +66,8 @@
     <string name="lbl_nombre">Nombre:</string>
     <string name="lbl_ApellidoP">Apellido Paterno:</string>
     <string name="lbl_ApellidoM">Apellido Materno:</string>
-    <string name="lbl_telefono">Pais:</string>
-    <string name="lbl_direccion">Pais:</string>
+    <string name="lbl_telefono">Telefono:</string>
+    <string name="lbl_direccion">Direccion:</string>
 
 
     //ACERCA NOSOTROS
@@ -77,6 +77,15 @@
     <string name="success">Success</string>
     <string name="warning">Warning</string>
     <string name="error">Error</string>
+
+
+    //MEDICO
+    <string name="lbl_turno">Turno:</string>
+    <string name="lbl_horario">Horario:</string>
+
+
+
+
 
 
 </resources>

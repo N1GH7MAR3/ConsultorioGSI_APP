@@ -28,6 +28,10 @@ class MedicoPacienteViewHolder (view:View):RecyclerView.ViewHolder (view){
             val intent= Intent(binding.ivEspecialidad.context, ProcedimientoPacienteActivity::class.java)
             intent.putExtra("medicoid",medicos.id.toString())
             binding.ivEspecialidad.context.startActivity(intent)
+<<<<<<< HEAD
+=======
+
+>>>>>>> e8c91a008516a93e20d0c86cdb95b45cd2e4cf63
         }
     }
 }
