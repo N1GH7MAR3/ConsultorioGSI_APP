@@ -68,11 +68,11 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
-
+                android:background="@drawable/bg_degradado2"
                 android:orientation="vertical">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,8 +105,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_especialidad"
+                    android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
+                    android:textSize="14dp"
                     android:textStyle="bold">
 
                 </TextView>
@@ -131,9 +132,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -168,7 +169,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_acercaNosotros"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="14dp"
                     android:textStyle="bold">
 
                 </TextView>
@@ -194,9 +196,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -231,7 +233,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_ubicacion"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="12dp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="13dp"
                     android:textStyle="bold">
 
                 </TextView>
@@ -256,9 +259,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -293,7 +296,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_recita"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/roboto_medium"
                     android:textStyle="bold">
 
                 </TextView>
@@ -319,9 +323,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -333,8 +337,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/circle_bg"
-                    android:backgroundTint="@color/gsiCirculo"
-                    >
+                    android:backgroundTint="@color/gsiCirculo">
 
                     <ImageView
                         android:id="@+id/imageView7"
@@ -355,7 +358,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_controlSalud"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/roboto_medium"
                     android:textStyle="bold">
 
                 </TextView>
@@ -379,9 +383,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -415,7 +419,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_cerrarSesion"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
+                    android:textSize="14dp"
+                    android:fontFamily="@font/roboto_medium"
                     android:textStyle="bold">
 
                 </TextView>
