@@ -24,17 +24,16 @@ interface Services {
     fun getAllMedico(): Call<List<Medico>>
 
     @GET("medico_procedimiento/listarpxm/{id}")
-    fun getAllProcedimientosxMedico(@Path("id")id: Long): Call<List<Procedimiento>>
+    fun getAllProcedimientosxMedico(@Path("id") id: Long): Call<List<Procedimiento>>
 
     @GET("medico_procedimiento/listarmxp/{id}")
-    fun getAllMedicosxProcedimiento(@Path("id")id: Long): Call<List<Medico>>
+    fun getAllMedicosxProcedimiento(@Path("id") id: Long): Call<List<Medico>>
 
     @GET("especialidad/listar")
     fun getAllEspecialidades(): Call<List<Especialidad>>
 
     @GET("procedimiento/listar")
     fun getAllProcedimientos(): Call<List<Procedimiento>>
-
 
     @GET("paciente/listar")
     fun getAllPacientes(): Call<List<Paciente>>
@@ -69,8 +68,14 @@ interface Services {
     @POST("paciente/registrar")
     fun createPaciente(@Body body: createPaciente): Call<Paciente>
 
+    @PUT("paciente/editar/{id}")
+    fun updatePaciente(@Path("id") id: Long, @Body body: updatePaciente): Call<Paciente>
+
     @POST("usuario/registrar")
     fun createUsuario(@Body body: createUsuarioPaciente): Call<Usuario>
+
+    @PUT("usuario/editar/{id}")
+    fun updateUsuario(@Path("id") id: Long, @Body body: createUsuarioPaciente): Call<Usuario>
 
     @POST("alergia/registrar")
     fun createAlergia(@Body body: createAlergia): Call<Alergia>

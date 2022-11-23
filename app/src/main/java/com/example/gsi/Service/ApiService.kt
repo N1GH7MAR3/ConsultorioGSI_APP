@@ -143,6 +143,7 @@ open class ApiService {
                                 intent.putExtra("usuario", response.body()?.usuario?.usuario)
                                 intent.putExtra("password", response.body()?.usuario?.contraseña)
                                 binding.cardAcercaNosotros.context.startActivity(intent)
+                                (binding.imagePerfil.context as Activity).finish()
 
                             }
                             binding.cardReservaCitas.setOnClickListener {
@@ -672,6 +673,7 @@ open class ApiService {
                 activity.runOnUiThread {
                     val list: List<Medico> = response.body()!!
                     val lesp: MutableList<Medico> = mutableListOf()
+                    Log.e("asda",list.toString())
                     if(esp == "null"){
                         iniRecyclerView(list)
                         binding.txtMedicos.text = "Medicos"
@@ -687,9 +689,8 @@ open class ApiService {
                     }
                 }
             }
-
             override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
-                Log.e("hola", t.toString())
+
             }
 
         })
@@ -1155,7 +1156,7 @@ open class ApiService {
                                                                                 binding.spEstadoCivil.selectedItemPosition.toLong()
                                                                             )
                                                                         val sexo =
-                                                                            createSexo(binding.spSexo.selectedItemPosition.toLong())
+                                                                            putSexo(binding.spSexo.selectedItemPosition.toLong())
                                                                         val pac =
                                                                             com.example.gsi.Entity.createPaciente(
                                                                                 binding.editTextTexNombre.text.toString(),
@@ -1243,6 +1244,27 @@ open class ApiService {
                 }
                 )
         }
+    fun  updatePaciente(binding: ActivityRegisterBinding,id: Long,paciente:updatePaciente){
+        Constant.retrofit.updatePaciente(id,paciente).enqueue(object :Callback<Paciente>{
+            override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
+
+            }
+            override fun onFailure(call: Call<Paciente>, t: Throwable) {
+            }
+        })
+    }
+    fun updateUsuario(binding: ActivityRegisterBinding,id: Long,usuario: createUsuarioPaciente){
+        Constant.retrofit.updateUsuario(id,usuario).enqueue(object :Callback<Usuario>{
+            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
+
+            }
+
+            override fun onFailure(call: Call<Usuario>, t: Throwable) {
+
+            }
+
+        })
+    }
 
         fun updateAlergia(
             id: Long,

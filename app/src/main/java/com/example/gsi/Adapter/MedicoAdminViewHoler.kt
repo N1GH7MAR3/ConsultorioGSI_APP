@@ -34,10 +34,9 @@ class MedicoAdminViewHoler (view: View):RecyclerView.ViewHolder(view){
             intent.putExtra("turno",medicos.turno.turno)
             intent.putExtra("horarioingreso",medicos.horario.horaingreso)
             intent.putExtra("horariosalida",medicos.horario.horasalida)
-
-
+            intent.putExtra("especialidad",medicos.especialidad.nombre)
             binding.btnDetalle.context.startActivity(intent)
-            (binding.btnDetalle.context as Activity).finish()
+
         }
         binding.btnEditar.setOnClickListener {
             val intent = Intent(binding.btnEditar.context, MedicoAgregarActivity::class.java)
@@ -46,15 +45,15 @@ class MedicoAdminViewHoler (view: View):RecyclerView.ViewHolder(view){
             intent.putExtra("apePaterno",medicos.apellido_paterno)
             intent.putExtra("apeMaterno",medicos.apellido_materno)
             intent.putExtra("dni",medicos.dni)
-            intent.putExtra("pais",medicos.pais?.nombre)
-            intent.putExtra("sexo",medicos.sexo.nombre)
-            intent.putExtra("estadocivil",medicos.estadoCivil.nombre)
-            intent.putExtra("turno",medicos.turno.turno)
+            intent.putExtra("especialidadid",medicos.especialidad.id)
+            /*intent.putExtra("pais", medicos.pais.nombre)
+            intent.putExtra("sexoid",medicos.sexo.nombre)
+            intent.putExtra("estadocivilid",medicos.estadoCivil.nombre)
+            intent.putExtra("turnoid",medicos.turno.turno)
             intent.putExtra("horarioingreso",medicos.horario.horaingreso)
-            intent.putExtra("horariosalida",medicos.horario.horasalida)
-
+            intent.putExtra("horariosalida",medicos.horario.horasalida)*/
             binding.btnEditar.context.startActivity(intent)
-            (binding.btnEditar.context as Activity).finish()
+
 
         }
 

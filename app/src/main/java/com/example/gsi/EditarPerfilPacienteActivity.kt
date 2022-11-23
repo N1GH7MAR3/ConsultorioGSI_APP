@@ -14,9 +14,6 @@ class EditarPerfilPacienteActivity : AppCompatActivity() {
         binding = ActivityEditarPerfilPacienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //binding.editTextPassword.setText(password)
-        //binding.editTextTexConfirPass.setText(password)
-
         binding.customPrinciapl.btnRegresar.setOnClickListener {
             finish()
         }

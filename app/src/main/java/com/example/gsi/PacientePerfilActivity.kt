@@ -32,17 +32,17 @@ class PacientePerfilActivity : AppCompatActivity() {
 
 
         binding.txtNombreMain.text=nombre
-
         binding.txtNombre.text= nombre
         binding.txtCorreoMain.text=correo
         binding.txtApellidiPaterno.text=apePaterno
         binding.txtApellidoMaterno.text=apeMaterno
         binding.txtTelefono.text=telefono
         binding.txtPais.text=paisnombre
-        //binding.txtCorreo.text=correo
-
 
         binding.llRegresar.setOnClickListener {
+            val intent=Intent(this,DashboardPacienteActivity::class.java)
+            intent.putExtra("usuario",dni.toString())
+            startActivity(intent)
             finish()
         }
         binding.btnEditar.setOnClickListener {
@@ -65,7 +65,6 @@ class PacientePerfilActivity : AppCompatActivity() {
             intent.putExtra("usuario",usuario)
             intent.putExtra("password",password)
             startActivity(intent)
-
         }
     }
 }

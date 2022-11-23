@@ -2,6 +2,7 @@ package com.example.gsi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.gsi.R
 import com.example.gsi.databinding.ActivityEspecialidadesAdminBinding
 import com.example.gsi.databinding.ActivityMedicoDetalleBinding
 
@@ -25,22 +26,27 @@ class MedicoDetalleActivity : AppCompatActivity() {
         val horarioingreso = intent.getStringExtra("horarioingreso")
         val horariosalida = intent.getStringExtra("horariosalida")
         val sexo = intent.getStringExtra("sexo")
+        val especialidad=intent.getStringExtra("especialidad")
 
 
 
-        binding.txtNombreCompleto.setText("Dr. "+nombre+" "+apePaterno+" "+ apeMaterno)
-        binding.txtNombre.setText(nombre)
-        binding.txtApellidiPaterno.setText(apePaterno)
-        binding.txtApellidoMaterno.setText(apeMaterno)
-        binding.txtdni.setText(dni)
-        binding.txtPais.setText(pais)
-        binding.txtEstadoCivil.setText(estadocivil)
-        binding.txtTurno.setText(turno)
-        binding.txtHorario.setText(horarioingreso)
-        binding.txtHorarioSalida.setText(horariosalida)
-
-        binding.txtSexo.setText(sexo)
-
+        binding.txtNombreCompleto.text = "Dr. "+nombre+" "+apePaterno+" "+ apeMaterno
+        binding.txtEspecialidad.text=especialidad
+        binding.txtNombre.text = nombre
+        binding.txtApellidiPaterno.text = apePaterno
+        binding.txtApellidoMaterno.text = apeMaterno
+        binding.txtdni.text = dni
+        binding.txtPais.text = pais
+        binding.txtEstadoCivil.text = estadocivil
+        binding.txtTurno.text = turno
+        binding.txtHorario.text = horarioingreso
+        binding.txtHorarioSalida.text = horariosalida
+        binding.txtSexo.text = sexo
+        if (sexo.equals("Femenino")){
+            binding.imgMedico.setImageResource(R.drawable.img_medicof)
+        }else{
+            binding.imgMedico.setImageResource(R.drawable.img_medicom)
+        }
 
 
         binding.btnRegresar.setOnClickListener {

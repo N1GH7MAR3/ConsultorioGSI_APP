@@ -1,16 +1,17 @@
 package com.example.gsi
 
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.get
 import androidx.core.view.isVisible
 import com.example.gsi.Constans.Constant
-import com.example.gsi.Entity.createRolUsuario
-import com.example.gsi.Entity.createUsuarioPaciente
+import com.example.gsi.Entity.*
 import com.example.gsi.databinding.ActivityRegisterBinding
 import java.util.regex.Matcher
 import java.util.regex.Pattern
@@ -22,7 +23,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val id = intent.getStringExtra("id")
+        val idp = intent.getStringExtra("id")
         val nombre = intent.getStringExtra("nombre")
         val apePaterno = intent.getStringExtra("apePaterno")
         val apeMaterno = intent.getStringExtra("apeMaterno")
@@ -35,8 +36,9 @@ class RegisterActivity : AppCompatActivity() {
         var estadocivilid = intent.getStringExtra("estadocivilid")
         var sexoid = intent.getStringExtra("sexoid")
         val usuarioid = intent.getStringExtra("usuarioid")
+        val usuario = intent.getStringExtra("usuario")
         val password = intent.getStringExtra("password")
-        if (!id.isNullOrEmpty()) {
+        if (!idp.isNullOrEmpty()) {
             binding.textView3.text = "Editar Perfil"
             binding.btnRegistrate.text = "Editar Perfil"
             binding.txtLogin.isVisible = false
@@ -258,10 +260,20 @@ class RegisterActivity : AppCompatActivity() {
         binding.btnRegistrate.setOnClickListener {
 
             val usuario = createUsuarioPaciente(
-                binding.editTextDni.text.toString(), binding.editTextDni.text.toString(),
+                binding.editTextDni.text.toString(), binding.editTextPassword.text.toString(),
                 createRolUsuario(1)
             )
-
+            val pais =
+                createPais(binding.spPais.selectedItemPosition.toLong())
+            val estadoCivil =
+                createEstadoCivil(
+                    binding.spEstadoCivil.selectedItemPosition.toLong()
+                )
+            val sexo =
+                putSexo(binding.spSexo.selectedItemPosition.toLong())
+            val paciente =updatePaciente(binding.editTextTexNombre.text.toString(),binding.ediTextApePaterno.text.toString(),
+            binding.ediTextApeMaterno.text.toString(),binding.editTextDni.text.toString().toInt(),binding.editTextDireccion.text.toString(),binding.editTextTelefono.text.toString(),
+            binding.editTexEmail.text.toString(),pais,estadoCivil,sexo)
             if (binding.editTextTexNombre.text.toString().isEmpty()) {
                 binding.editTextTexNombre.requestFocus()
                 binding.txtInputNombre.error = "Ingrese su Nombre"
@@ -299,18 +311,57 @@ class RegisterActivity : AppCompatActivity() {
             } else if (binding.spSexo.selectedItemPosition == 0) {
                 binding.spSexo.requestFocusFromTouch()
             } else {
-                if (!id.isNullOrEmpty()) {
-                    Constant.api.createUsuarioPacienteControlSalud(binding, usuario)
-                } else {
+                if (!idp.isNullOrEmpty()) {
+                    val dialog = AlertDialog.Builder(binding.btnRegistrate.context)
 
+                    if(password.equals(binding.editTextPassword.text.toString())){
+                        dialog.setTitle("Actualizar Datos")
+                        dialog.setMessage("¿Esta seguro de los cambios?")
+                        dialog.setCancelable(false)
+                        dialog.setPositiveButton("Confirmar",
+                            DialogInterface.OnClickListener { dialog, id ->
+                                Constant.api.updatePaciente(binding, idp.toLong() ,paciente)
+                                val intent=Intent(this,DashboardPacienteActivity::class.java)
+                                intent.putExtra("usuario",dni)
+                                startActivity(intent)
+                                finish()
+                            }
+                        )
+                        dialog.setNegativeButton("Cancelar",
+                            DialogInterface.OnClickListener { dialog, id ->
+                            }
+                        )
+                        dialog.show()
+
+                    }else{
+                        dialog.setTitle("Actualizar Contraseña")
+                    dialog.setMessage("Al actualizar su Contraseña debera volver a iniciar sesion")
+                    dialog.setCancelable(false)
+                    dialog.setPositiveButton("Confirmar",
+                        DialogInterface.OnClickListener { dialog, id ->
+                            Constant.api.updateUsuario(binding,usuarioid!!.toLong(),usuario)
+                            val intent=Intent(this,LoginActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    )
+                        dialog.setNegativeButton("Cancelar",
+                            DialogInterface.OnClickListener { dialog, id ->
+                            }
+                        )
+                        dialog.show()
+                    }
+
+
+
+                } else {
+                    Constant.api.createUsuarioPacienteControlSalud(binding, usuario)
                 }
             }
-
-
         }
         //toolbar
         binding.customPrinciapl.btnRegresar.setOnClickListener {
-            if (!id.isNullOrEmpty()) {
+            if (!idp.isNullOrEmpty()) {
                 finish()
             } else {
                 val intent = Intent(this, LoginActivity::class.java)

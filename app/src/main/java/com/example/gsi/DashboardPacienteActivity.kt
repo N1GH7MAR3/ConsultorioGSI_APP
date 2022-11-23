@@ -15,7 +15,6 @@ class DashboardPacienteActivity : AppCompatActivity() {
         binding = ActivityDashboardPacienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val usuario = intent.getStringExtra("usuario")
-
         Constant.api.searchPaciente(binding, usuario!!)
 
         binding.cardEspecialidades.setOnClickListener {
