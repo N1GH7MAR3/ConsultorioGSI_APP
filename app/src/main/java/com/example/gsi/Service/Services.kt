@@ -17,11 +17,17 @@ interface Services {
     @GET("sexo/listar")
     fun getAllSexo(): Call<List<Sexo>>
 
+    @GET("turno/listar")
+    fun getAllTurno(): Call<List<Turno>>
+
     @GET("medico/listar")
     fun getAllMedico(): Call<List<Medico>>
 
     @GET("medico_procedimiento/listarpxm/{id}")
     fun getAllProcedimientosxMedico(@Path("id")id: Long): Call<List<Procedimiento>>
+
+    @GET("medico_procedimiento/listarmxp/{id}")
+    fun getAllMedicosxProcedimiento(@Path("id")id: Long): Call<List<Medico>>
 
     @GET("especialidad/listar")
     fun getAllEspecialidades(): Call<List<Especialidad>>

@@ -467,7 +467,6 @@ open class ApiService {
                         R.layout.simple_spinner_dropdown_item,
                         list
                     )
-
                     binding.spEspecialidad.onItemSelectedListener =object :AdapterView.OnItemSelectedListener{
                         override fun onItemSelected(
                             p0: AdapterView<*>?,
@@ -475,34 +474,113 @@ open class ApiService {
                             p2: Int,
                             p3: Long
                         ) {
-                            Constant.retrofit.getMedicoxEspecialidad(binding.spEspecialidad.selectedItem.toString()).enqueue(object  :Callback<List<Medico>>{
+                            Constant.retrofit.getProcedimientoxEspecialidad(binding.spEspecialidad.selectedItem.toString()).enqueue(object :Callback<List<Procedimiento>>{
                                 override fun onResponse(
-                                    call: Call<List<Medico>>,
-                                    response: Response<List<Medico>>
+                                    call: Call<List<Procedimiento>>,
+                                    response: Response<List<Procedimiento>>
                                 ) {
-                                    val list = mutableListOf<String>()
-                                    val listIdMedicos = mutableListOf<Long>()
-                                    list.add(0, "Seleccionar")
-                                    listIdMedicos.add(0, 0)
-                                    val listMedicos = response.body()
-
-                                    for (i in listMedicos!!.indices) {
-                                        list += listMedicos[i].nombre
-                                        listIdMedicos += listMedicos[i].id
+                                    val listProcedimiento=response.body()
+                                    val listIdProcedimiento= mutableListOf<Long>()
+                                    val listp = mutableListOf<String>()
+                                    listp.add(0, "Seleccionar")
+                                    listIdProcedimiento.add(0,0)
+                                    Log.e("procedimientos",listProcedimiento.toString())
+                                    for (i in listProcedimiento!!.indices) {
+                                        listp += listProcedimiento[i].nombre
+                                        listIdProcedimiento+=listProcedimiento[i].id
                                     }
-                                    binding.spMedicos.adapter = ArrayAdapter(
+                                    binding.spProcedimiento.adapter = ArrayAdapter(
                                         binding.spEspecialidad.context,
                                         R.layout.simple_spinner_dropdown_item,
-                                        list
+                                        listp
                                     )
-                                    binding.spMedicos.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+                                    binding.spProcedimiento.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
                                         override fun onItemSelected(
                                             p0: AdapterView<*>?,
                                             p1: View?,
                                             p2: Int,
                                             p3: Long
                                         ) {
-                                            Log.e("asdasd",(listIdMedicos.elementAt(binding.spMedicos.selectedItemPosition)).toString())
+                                            Constant.retrofit.getAllTurno().enqueue(object :Callback<List<Turno>>{
+                                                override fun onResponse(
+                                                    call: Call<List<Turno>>,
+                                                    response: Response<List<Turno>>
+                                                ) {
+                                                    val listTurno=response.body()
+                                                    val listIdTurno= mutableListOf<Long>()
+                                                    val listt = mutableListOf<String>()
+                                                    listt.add(0, "Seleccionar")
+                                                    listIdTurno.add(0,0)
+                                                    Log.e("Turno",listTurno.toString())
+                                                    for (i in listTurno!!.indices) {
+                                                        listt += listTurno[i].turno
+                                                        listIdTurno+=listTurno[i].id
+                                                    }
+                                                    binding.spTurno.adapter = ArrayAdapter(
+                                                        binding.spEspecialidad.context,
+                                                        R.layout.simple_spinner_dropdown_item,
+                                                        listt
+                                                    )
+                                                    binding.spTurno.onItemSelectedListener=object :AdapterView.OnItemSelectedListener{
+                                                        override fun onItemSelected(
+                                                            p0: AdapterView<*>?,
+                                                            p1: View?,
+                                                            p2: Int,
+                                                            p3: Long
+                                                        ) {
+                                                            Constant.retrofit.getAllMedicosxProcedimiento((listIdProcedimiento.elementAt(binding.spProcedimiento.selectedItemPosition)).toLong()).enqueue(object :Callback<List<Medico>>{
+                                                                override fun onResponse(
+                                                                    call: Call<List<Medico>>,
+                                                                    response: Response<List<Medico>>
+                                                                ) {
+                                                                    val listMedicos = response.body()
+                                                                    val listm = mutableListOf<String>()
+                                                                    val listIdMedicos = mutableListOf<Long>()
+                                                                    listm.add(0, "Seleccionar")
+                                                                    listIdMedicos.add(0, 0)
+                                                                    Log.e("Medicos",listMedicos.toString())
+                                                                    if(listMedicos!=null){
+
+                                                                        for (i in listMedicos.indices) {
+                                                                            if(listMedicos[i].turno.turno==binding.spTurno.selectedItem.toString()){
+                                                                                listm += listMedicos[i].nombre
+                                                                                listIdMedicos += listMedicos[i].id
+                                                                            }
+
+                                                                        }
+                                                                        binding.spMedicos.adapter = ArrayAdapter(
+                                                                            binding.spEspecialidad.context,
+                                                                            R.layout.simple_spinner_dropdown_item,
+                                                                            listm
+                                                                        )
+                                                                    }
+
+                                                                }
+                                                                override fun onFailure(
+                                                                    call: Call<List<Medico>>,
+                                                                    t: Throwable
+                                                                ) {
+
+                                                                }
+
+                                                            })
+                                                        }
+
+                                                        override fun onNothingSelected(p0: AdapterView<*>?) {
+
+                                                        }
+
+                                                    }
+                                                }
+
+                                                override fun onFailure(
+                                                    call: Call<List<Turno>>,
+                                                    t: Throwable
+                                                ) {
+
+                                                }
+
+                                            })
                                         }
 
                                         override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -512,7 +590,11 @@ open class ApiService {
                                     }
                                 }
 
-                                override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
+                                override fun onFailure(
+                                    call: Call<List<Procedimiento>>,
+                                    t: Throwable
+                                ) {
+
                                 }
 
                             })

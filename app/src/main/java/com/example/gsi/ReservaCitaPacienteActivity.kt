@@ -12,5 +12,9 @@ class ReservaCitaPacienteActivity : AppCompatActivity() {
         binding= ActivityReservaCitaPacienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
         Constant.api.getEspecilidadesPaciente(binding)
+
+        binding.customPrinciapl.btnRegresar.setOnClickListener {
+            finish()
+        }
     }
 }
