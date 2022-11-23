@@ -32,11 +32,9 @@ class RegisterActivity : AppCompatActivity() {
         val telefono = intent.getStringExtra("telefono")
         val correo = intent.getStringExtra("correo")
         var paisid = intent.getStringExtra("paisid")
-        val paisnombre = intent.getStringExtra("paisnombre")
         var estadocivilid = intent.getStringExtra("estadocivilid")
         var sexoid = intent.getStringExtra("sexoid")
         val usuarioid = intent.getStringExtra("usuarioid")
-        val usuario = intent.getStringExtra("usuario")
         val password = intent.getStringExtra("password")
         if (!idp.isNullOrEmpty()) {
             binding.textView3.text = "Editar Perfil"

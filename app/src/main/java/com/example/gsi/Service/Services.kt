@@ -58,8 +58,10 @@ interface Services {
 
     @DELETE("especialidad/borrar/{id}")
     fun deleteEspecialidad(@Path("id") id: Long): Call<Especialidad>
+
     @DELETE("medico/borrar/{id}")
-    fun deleteMedico(@Path("id")id: Long):Call<Medico>
+    fun deleteMedico(@Path("id") id: Long): Call<Medico>
+
     @POST("especialidad/registrar")
     fun createEspecialidad(@Body body: createEspecialidad): Call<createEspecialidad>
 

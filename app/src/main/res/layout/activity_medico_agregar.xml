@@ -133,23 +133,28 @@
                     android:fontFamily="@font/roboto_medium"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayoutEspecialidad"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Especialidad"
-                app:startIconDrawable="@drawable/ic_account_box">
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                >
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/lbl_especialidad"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <Spinner
+                    android:id="@+id/spEspecialidad"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:layout_editor_absoluteY="15dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtInputEspecialidad"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:inputType="number"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/roboto_medium"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txtInputLayoutHorario"
@@ -169,77 +174,96 @@
                     android:fontFamily="@font/roboto_medium"/>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayoutPais"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Pais"
-                app:startIconDrawable="@drawable/ic_account_box">
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                >
+                <TextView
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtInputPais"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/lbl_pais"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <Spinner
+                    android:id="@+id/spPais"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:layout_editor_absoluteY="15dp" />
 
-                    android:inputType="number"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/roboto_medium"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayoutSexo"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Sexo"
-                app:startIconDrawable="@drawable/ic_account_box">
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                >
+                <TextView
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtInputSexo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/lbl_sexo"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <Spinner
+                    android:id="@+id/spSexo"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:layout_editor_absoluteY="15dp" />
 
-                    android:inputType="number"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/roboto_medium"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayoutTurno"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Turno"
-                app:startIconDrawable="@drawable/ic_account_box">
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                >
+                <TextView
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtInputTurno"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/lbl_turno"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <Spinner
+                    android:id="@+id/spTurno"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:layout_editor_absoluteY="15dp" />
 
-                    android:inputType="number"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/roboto_medium"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/txtInputLayoutEstado"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Estado Civil"
-                app:startIconDrawable="@drawable/ic_account_box">
+                android:layout_height="match_parent"
+                android:padding="15dp"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="28dp"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/lbl_estadocivil"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <Spinner
+                    android:id="@+id/spEstadoCivil"
+                    android:layout_width="200dp"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    tools:layout_editor_absoluteY="15dp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/txtInputEstado"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-
-                    android:inputType="number"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/roboto_medium"/>
-            </com.google.android.material.textfield.TextInputLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 

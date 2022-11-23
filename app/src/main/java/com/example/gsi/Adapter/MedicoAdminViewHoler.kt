@@ -45,13 +45,13 @@ class MedicoAdminViewHoler (view: View):RecyclerView.ViewHolder(view){
             intent.putExtra("apePaterno",medicos.apellido_paterno)
             intent.putExtra("apeMaterno",medicos.apellido_materno)
             intent.putExtra("dni",medicos.dni)
-            intent.putExtra("especialidadid",medicos.especialidad.id)
-            /*intent.putExtra("pais", medicos.pais.nombre)
-            intent.putExtra("sexoid",medicos.sexo.nombre)
-            intent.putExtra("estadocivilid",medicos.estadoCivil.nombre)
-            intent.putExtra("turnoid",medicos.turno.turno)
+            intent.putExtra("especialidadid",medicos.especialidad.id.toString())
+            intent.putExtra("paisid", medicos.pais.id.toString())
+            intent.putExtra("sexoid",medicos.sexo.id.toString())
+            intent.putExtra("estadocivilid",medicos.estadoCivil.id.toString())
+            intent.putExtra("turnoid",medicos.turno.id.toString())
             intent.putExtra("horarioingreso",medicos.horario.horaingreso)
-            intent.putExtra("horariosalida",medicos.horario.horasalida)*/
+            intent.putExtra("horariosalida",medicos.horario.horasalida)
             binding.btnEditar.context.startActivity(intent)
 
 

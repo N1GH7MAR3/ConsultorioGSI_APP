@@ -3,6 +3,7 @@ package com.example.gsi
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.isVisible
+import com.example.gsi.Constans.Constant
 import com.example.gsi.databinding.ActivityMedicoAgregarBinding
 
 class MedicoAgregarActivity : AppCompatActivity() {
@@ -17,7 +18,17 @@ class MedicoAgregarActivity : AppCompatActivity() {
         val apePaterno = intent.getStringExtra("apePaterno")
         val apeMaterno = intent.getStringExtra("apeMaterno")
         val dni = intent.getStringExtra("dni")
-       val especialidadid=intent.getStringExtra("especialidadid")
+        val especialidadid=intent.getStringExtra("especialidadid")
+        val horarioid=intent.getStringExtra("horarioid")
+        val paisid=intent.getStringExtra("paisid")
+        val paisnombre=intent.getStringExtra("paisnombre")
+        val sexoid=intent.getStringExtra("sexoid")
+        val sexonombre=intent.getStringExtra("sexonombre")
+        val turnoid=intent.getStringExtra("turnoid")
+        val estadocivilid=intent.getStringExtra("estadocivilid")
+        val estadocivilnombre=intent.getStringExtra("estadocivilnombre")
+
+
 
         if (!id.isNullOrEmpty()) {
             binding.textView3.text = "Editar Medico"
@@ -32,7 +43,11 @@ class MedicoAgregarActivity : AppCompatActivity() {
             binding.btnGuardar.text = "Agregar Medico"
 
         }
-
+        Constant.api.getAllEspecialidades(binding,especialidadid!!)
+        Constant.api.getAllPais(binding, paisid!!)
+        Constant.api.getAllEstadoCivil(binding, estadocivilid!!)
+        Constant.api.getAllTurno(binding,turnoid!!)
+        Constant.api.getAllSexo(binding, sexoid!!)
         binding.customPrinciapl.btnRegresar.setOnClickListener {
             finish()
         }
