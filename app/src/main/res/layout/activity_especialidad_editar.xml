@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bg_degradado"
     tools:context=".EspecialidadEditarActivity">
     <include
         android:id="@+id/customPrinciapl"
@@ -16,9 +17,9 @@
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed-light"
         android:gravity="center|center_horizontal"
-        android:text="Especialidad"
+        android:text="ESPECIALIDAD"
+        android:fontFamily="@font/roboto_medium"
         android:textColor="@color/gsiAzul"
         android:textSize="45sp"
         android:textStyle="bold"
@@ -49,7 +50,8 @@
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="id"
+            android:hint="ID"
+            android:fontFamily="@font/roboto_medium"
             android:enabled="false"
             app:startIconDrawable="@drawable/ic_account_box">
 
@@ -58,6 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:enabled="false"
+                android:fontFamily="@font/roboto_medium"
                 android:inputType="textEmailAddress"
                 android:textSize="13sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -75,6 +78,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
+                android:fontFamily="@font/roboto_medium"
                 android:textSize="13sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -90,7 +94,7 @@
                 android:id="@+id/txtInputImage"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:fontFamily="@font/roboto_medium"
                 android:inputType="textEmailAddress"
                 android:textSize="13sp" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -110,7 +114,8 @@
             android:id="@+id/btnVisualizar"
             android:layout_width="wrap_content"
             android:layout_marginEnd="10dp"
-
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"
             android:layout_height="wrap_content"
             android:text="Vista Previa" />
 
@@ -119,14 +124,18 @@
             android:layout_marginEnd="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Guardar" />
+            android:text="Guardar"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"/>
 
         <Button
             android:id="@+id/btnLimpiar"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Limpiar"/>
+            android:text="Limpiar"
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"/>
     </LinearLayout>
 
 

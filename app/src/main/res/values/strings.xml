@@ -29,28 +29,28 @@
 
 
     //DASHBOARDADMINISTRADOR
-    <string name="lbl_especialidad">Especialidades</string>
-    <string name="lbl_procedimineto">Procedimientos</string>
-    <string name="lbl_medico">Medicos</string>
-    <string name="lbl_recita">Reservar Cita</string>
-    <string name="lbl_cerrarSesion">Cerrar sesion</string>
-    <string name="lbl_volver">Volver</string>
-    <string name="lbl_ajustes">Ajustes</string>
-    <string name="lbl_acercaNosotros">Acerca de Nosotros</string>
-    <string name="lbl_ubicacion">¿Donde nos ubicamos?</string>
+    <string name="lbl_especialidad">ESPECIALIDADES</string>
+    <string name="lbl_procedimineto">PROCEDIMIENTOS</string>
+    <string name="lbl_medico">MÉDICOS</string>
+    <string name="lbl_recita">RESERVAR CITA</string>
+    <string name="lbl_cerrarSesion">CERRAR SESIÓN</string>
+    <string name="lbl_volver">VOLVER</string>
+    <string name="lbl_ajustes">AJUSTES</string>
+    <string name="lbl_acercaNosotros">ACERCA DE \nNOSOTROS</string>
+    <string name="lbl_acercaNosotros2">ACERCA DE NOSOTROS</string>
+    <string name="lbl_ubicacion">¿DÓNDE NOS UBICAMOS?</string>
     <string name="lbl_perfil">Perfil</string>
-    <string name="lbl_controlSalud">Control Salud</string>
-    <string name="lbl_paciente">Pacientes</string>
+    <string name="lbl_controlSalud">CONTROL SALUD</string>
+    <string name="lbl_paciente">PACIENTES</string>
 
 
     //CONTROL SALUD
-    <string name="lbl_enfermedad">Enfermedades</string>
-    <string name="lbl_alergia">Alergias</string>
-    <string name="lbl_contacto">Contacto</string>
-    <string name="lbl_cMedico">Medico</string>
-    <string name="lbl_cEmergencia">Emergencia</string>
-    <string name="lbl_medicina">Medicina</string>
-    <string name="lbl_cita">Citas</string>
+    <string name="lbl_enfermedad">ENFERMEDADES</string>
+    <string name="lbl_alergia">ALERGIAS</string>
+    <string name="lbl_contactomedico">CONTACTO MÉDICO</string>
+    <string name="lbl_cEmergencia">CONTACTO EMERGENCIA</string>
+    <string name="lbl_medicina">MEDICINA</string>
+    <string name="lbl_cita">CITAS</string>
 
     //REGISTER
     <string name="lbl_pais">Pais:</string>

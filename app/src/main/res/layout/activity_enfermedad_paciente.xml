@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@drawable/bg_degradado"
     tools:context=".EnfermedadPacienteActivity">
 
 
@@ -45,12 +45,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-
+            android:fontFamily="@font/roboto_black"
             android:layout_marginTop="6dp"
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="6dp"
             android:gravity="center"
-            android:text="Enfermedades"
+            android:text="ENFERMEDADES"
             android:textColor="@color/gsiAzul"
             android:textSize="36sp"
             android:textStyle="bold"
@@ -95,18 +95,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Agregar"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:layout_marginEnd="15dp"/>
             <Button
                 android:id="@+id/btnConfirmar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Editar"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:layout_marginEnd="15dp"/>
             <Button
                 android:id="@+id/btnEliminar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Eliminar"/>
+                android:text="Eliminar"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <EditText
@@ -115,6 +121,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
+            android:fontFamily="@font/roboto_light"
             android:inputType="textMultiLine" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

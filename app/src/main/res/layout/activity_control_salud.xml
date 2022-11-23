@@ -39,7 +39,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="Control Salud"
+                android:text="CONTROL SALUD"
+                android:fontFamily="@font/roboto_black"
                 android:textColor="@color/gsiAzul"
                 android:textSize="45sp"
                 android:textStyle="bold"></TextView>
@@ -53,9 +54,7 @@
             android:layout_below="@id/ll1"
 
             android:layout_marginTop="12dp"
-
-
-            android:background="@drawable/card_bg"
+            android:background="@drawable/bg_degradado"
             android:columnCount="3"
             android:rowCount="3"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -77,9 +76,9 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_degradado2"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -90,10 +89,10 @@
                         android:id="@+id/cl1"
 
 
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
                         android:background="@drawable/circle_bg"
-
+                        android:backgroundTint="@color/gsiCirculo"
                         >
 
                         <ImageView
@@ -113,11 +112,13 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:text="@string/lbl_enfermedad"
                         android:textColor="@color/gsiAzul"
-                        android:textSize="13dp"
+                        android:fontFamily="@font/roboto_black"
+                        android:textSize="16dp"
                         android:textStyle="bold">
 
                     </TextView>
@@ -142,21 +143,22 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_degradado2"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
 
                         android:id="@+id/cl2"
 
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
                         android:background="@drawable/circle_bg"
-
+                        android:backgroundTint="@color/gsiCirculo"
                         >
 
                         <ImageView
@@ -174,11 +176,13 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:text="@string/lbl_alergia"
                         android:textColor="@color/gsiAzul"
-                        android:textSize="13dp"
+                        android:fontFamily="@font/roboto_black"
+                        android:textSize="16dp"
                         android:textStyle="bold">
 
                     </TextView>
@@ -204,9 +208,9 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_degradado2"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -216,10 +220,10 @@
 
                         android:id="@+id/cl3"
 
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
                         android:background="@drawable/circle_bg"
-
+                        android:backgroundTint="@color/gsiCirculo"
                         >
 
                         <ImageView
@@ -237,22 +241,17 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_contacto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="@string/lbl_contactomedico"
                         android:textColor="@color/gsiAzul"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
+                        android:fontFamily="@font/roboto_black"
+                        android:textStyle="bold"
+                        android:textSize="16dp"
+                        />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_cMedico"
-                        android:textColor="@color/gsiAzul"
-                        android:textSize="13dp"
-                        android:textStyle="bold">
 
-                    </TextView>
 
                 </LinearLayout>
 
@@ -274,21 +273,22 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_degradado2"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:paddingTop="5dp">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
 
                         android:id="@+id/cl4"
 
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
                         android:background="@drawable/circle_bg"
-
+                        android:backgroundTint="@color/gsiCirculo"
                         >
 
                         <ImageView
@@ -304,20 +304,16 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/lbl_contacto"
-                        android:textColor="@color/gsiAzul"
-                        android:textSize="13dp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/roboto_black"
+                        android:gravity="center"
                         android:text="@string/lbl_cEmergencia"
                         android:textColor="@color/gsiAzul"
-                        android:textSize="13dp"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
+
+
 
                 </LinearLayout>
 
@@ -338,9 +334,9 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_degradado2"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -350,10 +346,10 @@
 
                         android:id="@+id/cl5"
 
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
                         android:background="@drawable/circle_bg"
-
+                        android:backgroundTint="@color/gsiCirculo"
                         >
 
                         <ImageView
@@ -371,11 +367,13 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:text="@string/lbl_cita"
                         android:textColor="@color/gsiAzul"
-                        android:textSize="13dp"
+                        android:fontFamily="@font/roboto_black"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
 
 
@@ -399,9 +397,9 @@
                 app:cardUseCompatPadding="true">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_degradado2"
                     android:layout_gravity="center_horizontal|center_vertical"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -412,10 +410,10 @@
                         android:id="@+id/cl6"
 
 
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
+                        android:layout_width="110dp"
+                        android:layout_height="110dp"
                         android:background="@drawable/circle_bg"
-
+                        android:backgroundTint="@color/gsiCirculo"
                         >
 
                         <ImageView
@@ -435,11 +433,13 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
                         android:text="@string/lbl_medicina"
                         android:textColor="@color/gsiAzul"
-                        android:textSize="13dp"
+                        android:fontFamily="@font/roboto_black"
+                        android:textSize="16dp"
                         android:textStyle="bold">
 
                     </TextView>

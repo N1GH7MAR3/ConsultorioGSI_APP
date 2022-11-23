@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/bg_degradado"
     tools:context=".RegisterActivity">
 
 
@@ -25,9 +25,9 @@
             android:id="@+id/txtReservaCita"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed-light"
             android:gravity="center|center_horizontal"
-            android:text="Reservar Cita"
+            android:text="RESERVAR CITA"
+            android:fontFamily="@font/roboto_medium"
             android:textColor="@color/gsiAzul"
             android:textSize="45sp"
             android:textStyle="bold"

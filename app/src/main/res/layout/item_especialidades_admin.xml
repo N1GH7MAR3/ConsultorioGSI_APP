@@ -53,9 +53,9 @@
             android:layout_toEndOf="@id/ivEspecialidad"
             android:layout_toRightOf="@id/ivEspecialidad"
 
+            android:fontFamily="@font/roboto_medium"
             android:paddingTop="75dp"
-
-            android:text="Especialidad"
+            android:text="ESPECIALIDAD"
             android:textSize="17dp"
             android:textStyle="bold" />
 
@@ -80,8 +80,9 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="15dp"
-
-            android:text="Editar" />
+            android:fontFamily="@font/roboto_medium"
+            android:text="Editar"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnEliminar"
@@ -89,7 +90,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginLeft="115dp"
-
+            android:fontFamily="@font/roboto_medium"
+            android:textStyle="bold"
             android:text="Eliminar" />
 
 

@@ -92,7 +92,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="10dp"
-
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:text="Editar" />
 
             <Button
@@ -101,7 +102,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="115dp"
-
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:text="Detalle" />
 
             <Button
@@ -110,7 +112,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="225dp"
-
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:text="Eliminar" />
 
 

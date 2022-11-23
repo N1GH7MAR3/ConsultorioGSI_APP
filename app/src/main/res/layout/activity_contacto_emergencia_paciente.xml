@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg_degradado"
     tools:context=".ContactoEmergenciaPacienteActivity">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -36,7 +37,8 @@
             android:layout_marginEnd="5dp"
             android:layout_marginBottom="6dp"
             android:gravity="center"
-            android:text="Contacto E"
+            android:text="CONTACTOS E."
+            android:fontFamily="@font/roboto_black"
             android:textColor="@color/gsiAzul"
             android:textSize="36sp"
             android:textStyle="bold"
@@ -78,17 +80,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Agregar"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:layout_marginEnd="15dp"/>
             <Button
                 android:id="@+id/btnConfirmar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Editar"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:layout_marginEnd="15dp"/>
             <Button
                 android:id="@+id/btnEliminar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:text="Eliminar"/>
         </LinearLayout>
 
@@ -98,6 +106,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
+            android:fontFamily="@font/roboto_light"
             android:inputType="textMultiLine" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

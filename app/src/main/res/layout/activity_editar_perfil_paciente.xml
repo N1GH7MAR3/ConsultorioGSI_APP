@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@drawable/bg_degradado"
     tools:context=".EditarPerfilPacienteActivity">
 
 
@@ -25,9 +25,9 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-condensed-light"
             android:gravity="center|center_horizontal"
-            android:text="Editar Perfil"
+            android:text="EDITAR PERFIL"
+            android:fontFamily="@font/roboto_medium"
             android:textColor="@color/gsiAzul"
             android:textSize="45sp"
             android:textStyle="bold"
@@ -53,6 +53,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Nombre"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 app:startIconDrawable="@drawable/ic_account_circle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +62,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-
+                    android:fontFamily="@font/roboto_medium"
                     android:textSize="13sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,6 +73,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Apellido Paterno"
+                android:fontFamily="@font/roboto_light"
+                android:textStyle="bold"
                 app:startIconDrawable="@drawable/ic_account_circle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -78,6 +82,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
+                    android:fontFamily="@font/roboto_light"
+                    android:textStyle="bold"
                     android:textSize="13sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -87,6 +93,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Apellido Materno"
+                android:fontFamily="@font/roboto_light"
+                android:textStyle="bold"
                 app:startIconDrawable="@drawable/ic_account_circle">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -94,6 +102,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
+                    android:fontFamily="@font/roboto_light"
+                    android:textStyle="bold"
                     android:textSize="13sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -109,7 +119,8 @@
                     android:id="@+id/editTextDni"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:fontFamily="@font/roboto_light"
+                    android:textStyle="bold"
                     android:inputType="number"
                     android:textSize="13sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -120,6 +131,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Direccion"
+                android:fontFamily="@font/roboto_light"
+                android:textStyle="bold"
                 app:startIconDrawable="@drawable/ic_home">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -137,13 +150,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Telefono"
+                android:fontFamily="@font/roboto_light"
+                android:textStyle="bold"
                 app:startIconDrawable="@drawable/ic_phone_android">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editTextTelefono"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
+                    android:fontFamily="@font/roboto_light"
+                    android:textStyle="bold"
                     android:inputType="textEmailAddress"
                     android:textSize="13sp" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -154,6 +170,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Correo"
+                android:fontFamily="@font/roboto_light"
+                android:textStyle="bold"
                 app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -185,14 +203,16 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/lbl_pais"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
                 android:id="@+id/spPais"
                 android:layout_width="wrap_content"
-
-
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:layout_editor_absoluteY="15dp" />
@@ -214,13 +234,16 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/lbl_estadocivil"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <Spinner
                 android:id="@+id/spEstadoCivil"
                 android:layout_width="wrap_content"
-
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
 
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -242,6 +265,8 @@
                 android:layout_marginStart="28dp"
                 android:layout_marginTop="15dp"
                 android:text="@string/lbl_sexo"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -249,7 +274,8 @@
                 android:id="@+id/spSexo"
                 android:layout_width="wrap_content"
                 android:prompt="@string/lbl_sexo"
-
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:layout_height="match_parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 tools:layout_editor_absoluteY="15dp" />
@@ -268,8 +294,9 @@
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
-
+                android:fontFamily="@font/roboto_medium"
                 android:text="@string/btn_guardarCambios"
+                android:textStyle="bold"
                 app:cornerRadius="20dp"
                 android:textColor="@color/gsiAzul"
                 />
@@ -278,6 +305,8 @@
                 android:layout_width="150dp"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"
                 android:text="@string/btn_cancelar"
                 app:cornerRadius="20dp"
                 android:textColor="@color/gsiAzul"

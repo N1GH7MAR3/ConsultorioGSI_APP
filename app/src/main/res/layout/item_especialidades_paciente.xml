@@ -48,8 +48,8 @@
             android:layout_toRightOf="@id/ivEspecialidad"
 
             android:paddingTop="75dp"
-
-            android:text="Especialidad"
+            android:fontFamily="@font/roboto_medium"
+            android:text="ESPECIALIDAD"
             android:textSize="17dp"
             android:textStyle="bold" />
 

@@ -27,6 +27,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_black"
                 android:text="Bienvenido"
                 android:textColor="@color/white"
                 android:textSize="36sp" />
@@ -37,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView2"
 
+                android:fontFamily="@font/roboto_black"
                 android:text="Administrador"
                 android:textColor="@color/white"
                 android:textSize="20dp" />
@@ -57,9 +59,7 @@
         android:layout_height="match_parent"
         android:layout_below="@id/linearlCabecera"
         android:layout_marginTop="30dp"
-
-        android:background="@drawable/card_bg"
-
+        android:background="@drawable/bg_degradado"
 
         android:columnCount="3"
         android:rowCount="3">
@@ -79,9 +79,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -93,7 +93,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/circle_bg"
-
+                    android:backgroundTint="@color/gsiCirculo"
                     >
 
                     <ImageView
@@ -113,11 +113,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/lbl_especialidad"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
+                    android:fontFamily="@font/roboto_black"
+                    android:textSize="16dp"
                     android:textStyle="bold">
 
                 </TextView>
@@ -142,9 +144,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -156,7 +158,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/circle_bg"
-
+                    android:backgroundTint="@color/gsiCirculo"
                     >
 
                     <ImageView
@@ -174,11 +176,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/lbl_procedimineto"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
+                    android:fontFamily="@font/roboto_black"
+                    android:textSize="16dp"
                     android:textStyle="bold">
 
                 </TextView>
@@ -204,9 +208,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -218,7 +222,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/circle_bg"
-
+                    android:backgroundTint="@color/gsiCirculo"
                     >
 
                     <ImageView
@@ -236,11 +240,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/lbl_medico"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="12dp"
+                    android:fontFamily="@font/roboto_black"
+                    android:textSize="16dp"
                     android:textStyle="bold">
 
                 </TextView>
@@ -265,9 +271,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -279,7 +285,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/circle_bg"
-
+                    android:backgroundTint="@color/gsiCirculo"
                     >
 
                     <ImageView
@@ -297,11 +303,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/lbl_cita"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
+                    android:fontFamily="@font/roboto_black"
+                    android:textSize="16dp"
                     android:textStyle="bold">
 
                 </TextView>
@@ -326,8 +334,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -339,7 +348,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/circle_bg"
-
+                    android:backgroundTint="@color/gsiCirculo"
                     >
                     <ImageView
                         android:id="@+id/imageView7"
@@ -356,11 +365,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/lbl_paciente"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
+                    android:fontFamily="@font/roboto_black"
+                    android:textSize="16dp"
                     android:textStyle="bold">
                 </TextView>
             </LinearLayout>
@@ -381,9 +392,9 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_degradado2"
                 android:layout_gravity="center_horizontal|center_vertical"
                 android:gravity="center"
                 android:orientation="vertical">
@@ -395,7 +406,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:background="@drawable/circle_bg"
-
+                    android:backgroundTint="@color/gsiCirculo"
                     >
 
                     <ImageView
@@ -413,11 +424,13 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/lbl_cerrarSesion"
                     android:textColor="@color/gsiAzul"
-                    android:textSize="13dp"
+                    android:fontFamily="@font/roboto_black"
+                    android:textSize="16dp"
                     android:textStyle="bold">
 
                 </TextView>

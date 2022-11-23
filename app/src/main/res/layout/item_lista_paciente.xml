@@ -104,7 +104,9 @@
                 android:id="@+id/btnDetallePaciente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Detalle" />
+                android:text="Detalle"
+                android:fontFamily="@font/roboto_medium"
+                android:textStyle="bold"/>
 
 
         </RelativeLayout>

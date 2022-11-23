@@ -42,7 +42,8 @@
             android:layout_toEndOf="@id/ivEspecialidad"
             android:layout_toRightOf="@id/ivEspecialidad"
             android:paddingTop="75dp"
-            android:text="Especialidad"
+            android:fontFamily="@font/roboto_medium"
+            android:text="ESPECIALIDAD"
             android:textSize="17dp"
             android:textStyle="bold" />
         <TextView
@@ -51,7 +52,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/tvNombreEspecialidad"
             android:layout_toRightOf="@id/ivEspecialidad"
-            android:text="Prcedimiento"
+            android:text="PROCEDIMIENTO"
+            android:fontFamily="@font/roboto_medium"
             android:textSize="17dp"
             android:textStyle="bold" />
 
