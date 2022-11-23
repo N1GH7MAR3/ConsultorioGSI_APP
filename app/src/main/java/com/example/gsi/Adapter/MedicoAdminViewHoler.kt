@@ -1,17 +1,13 @@
 package com.example.gsi.Adapter
 
-import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.Drawable
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.gsi.Entity.Especialidad
+import com.example.gsi.Constans.Constant
 import com.example.gsi.Entity.Medico
-import com.example.gsi.EspecialidadEditarActivity
 import com.example.gsi.MedicoAgregarActivity
 import com.example.gsi.MedicoDetalleActivity
 import com.example.gsi.R
-import com.example.gsi.databinding.ItemEspecialidadesAdminBinding
 import com.example.gsi.databinding.ItemMedicoAdminBinding
 
 class MedicoAdminViewHoler (view: View):RecyclerView.ViewHolder(view){
@@ -20,7 +16,11 @@ class MedicoAdminViewHoler (view: View):RecyclerView.ViewHolder(view){
         binding.txtNombreCompleto.text=medicos.nombre + " "+medicos.apellido_paterno+" "+ medicos.apellido_materno
         binding.txtEspecialidad.text=medicos.especialidad.nombre
         binding.txtdni.text=medicos.dni
-
+        if (medicos.sexo.nombre=="Femenino"){
+            binding.ivEspecialidad.setImageResource(R.drawable.img_medicof)
+        }else{
+            binding.ivEspecialidad.setImageResource(R.drawable.img_medicom)
+        }
 
         binding.btnDetalle.setOnClickListener {
             val intent = Intent(binding.btnDetalle.context, MedicoDetalleActivity::class.java)
@@ -56,12 +56,10 @@ class MedicoAdminViewHoler (view: View):RecyclerView.ViewHolder(view){
 
 
         }
+binding.btnEliminars.setOnClickListener {
+    Constant.api.deleteMedico(binding,medicos.id)
+}
 
 
-        if (medicos.sexo.nombre=="Femenino"){
-            binding.ivEspecialidad.setImageResource(R.drawable.img_medicof)
-        }else{
-            binding.ivEspecialidad.setImageResource(R.drawable.img_medicom)
-        }
     }
 }

@@ -860,7 +860,31 @@ open class ApiService {
 
             })
         }
+fun deleteMedico(binding: ItemMedicoAdminBinding, id: Long){
+    Constant.retrofit.deleteMedico(id).enqueue(object :Callback<Medico>{
+        override fun onResponse(call: Call<Medico>, response: Response<Medico>) {
+            Toast.makeText(
+                binding.btnEditar.context,
+                "Se ha eliminado el Medico ",
+                Toast.LENGTH_SHORT
+            )
+                .show()
+            val intent =
+                Intent(
+                    binding.btnEditar.context.applicationContext,
+                    MedicosAdminActivity::class.java
+                )
+            Thread.sleep(3000)
+            (binding.btnEditar.context as Activity)
+            binding.btnEditar.context.startActivity(intent)
+        }
 
+        override fun onFailure(call: Call<Medico>, t: Throwable) {
+
+        }
+
+    })
+}
 
         //Obtener Citas del Paciente
         fun getCitasPaciente(
