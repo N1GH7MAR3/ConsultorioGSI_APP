@@ -59,8 +59,8 @@
                     android:layout_marginBottom="6dp"
                     android:fontFamily="@font/roboto_bold"
                     android:text="@string/lbl_acercaNosotros2"
-                    android:textColor="@color/gsiAzul"
-                    android:textSize="30sp"
+                    android:textColor="@color/white"
+                    android:textSize="28sp"
                     android:textStyle="bold"
 
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -245,7 +245,8 @@ Magister (E) Salud Ocupacional"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:padding="25dp"
+                android:layout_marginTop="50dp"
+                android:padding="10dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -255,9 +256,8 @@ Magister (E) Salud Ocupacional"
 
                     <ImageButton
                         android:id="@+id/imageBtnFacebook"
-                        android:layout_width="65dp"
-
-                        android:layout_height="65dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:background="@android:color/transparent"
                         android:scaleType="centerCrop"
                         android:src="@drawable/img_fb" />
@@ -270,29 +270,26 @@ Magister (E) Salud Ocupacional"
                     android:padding="10dp">
 
                     <ImageButton
-                        android:id="@+id/imageBtnWhatsapp"
-                        android:layout_width="65dp"
-
-                        android:layout_height="65dp"
+                        android:id="@+id/imageBtnPagina"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:background="@android:color/transparent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/img_whatsapp" />
+                        android:src="@drawable/img_web" />
 
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp">
 
                     <ImageButton
-                        android:id="@+id/imageBtnPagina"
-                        android:layout_width="65dp"
-
-                        android:layout_height="65dp"
+                        android:id="@+id/imageBtnWhatsapp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:background="@android:color/transparent"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/img_web" />
+                        android:src="@drawable/img_whatsapp" />
 
                 </LinearLayout>
 
@@ -303,7 +300,8 @@ Magister (E) Salud Ocupacional"
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/gsiPlomo"
+                android:alpha="0.9"
+                android:background="@color/gsiPlomo2"
                 android:orientation="horizontal"
                 android:paddingTop="18dp">
 
@@ -318,31 +316,32 @@ Magister (E) Salud Ocupacional"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_margin="7dp"
-                        android:src="@drawable/ic_location_on" />
+                        android:src="@drawable/ic_location_on"
+                        android:tint="@color/black"/>
 
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_margin="7dp"
-                        android:tint="@color/white"
-                        android:src="@drawable/ic_phone" />
+                        android:src="@drawable/ic_phone"
+                        android:tint="@color/black" />
 
                     <ImageView
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_margin="7dp"
-                        android:tint="@color/white"
-                        android:src="@drawable/ic_email" />
+                        android:src="@drawable/ic_email"
+                        android:tint="@color/black" />
 
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-
                     android:layout_height="match_parent"
                     android:layout_marginBottom="18dp"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
 
                     <TextView
@@ -353,7 +352,7 @@ Magister (E) Salud Ocupacional"
                         android:text="Av. Venezuela 1650 - Breña
 
 "
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="13dp"
                         android:textStyle="bold" />
 
@@ -361,11 +360,11 @@ Magister (E) Salud Ocupacional"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="7dp"
+                        android:fontFamily="@font/roboto_light"
                         android:text="Tel: 330-3241 RPC: 943-813645
 
 "
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/roboto_light"
+                        android:textColor="@color/black"
                         android:textSize="13dp"
                         android:textStyle="bold" />
 
@@ -373,11 +372,11 @@ Magister (E) Salud Ocupacional"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_margin="7dp"
+                        android:fontFamily="@font/roboto_light"
                         android:text="email: informes@gruposaludintegral.net
 
 "
-                        android:textColor="@color/white"
-                        android:fontFamily="@font/roboto_light"
+                        android:textColor="@color/black"
                         android:textSize="13dp"
                         android:textStyle="bold" />
 

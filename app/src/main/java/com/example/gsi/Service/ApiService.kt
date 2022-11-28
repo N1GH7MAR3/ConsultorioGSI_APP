@@ -675,7 +675,7 @@ open class ApiService {
                     (binding.rvPaciente.context as Activity).runOnUiThread {
                         val list: List<Paciente> = response.body()!!
                         iniRecyclerView(list)
-                        binding.txtPaciente.text = "Pacientes"
+                        binding.txtPaciente.text = "PACIENTES"
 
                     }
                 }

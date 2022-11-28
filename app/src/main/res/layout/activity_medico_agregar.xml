@@ -142,9 +142,8 @@
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
                     android:layout_marginTop="15dp"
-                    android:text="@string/lbl_especialidad"
+                    android:text="@string/lbl_especialidad2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
                 <Spinner
@@ -183,7 +182,6 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
                     android:layout_marginTop="15dp"
                     android:text="@string/lbl_pais"
                     app:layout_constraintStart_toStartOf="parent"
@@ -206,7 +204,6 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
                     android:layout_marginTop="15dp"
                     android:text="@string/lbl_sexo"
                     app:layout_constraintStart_toStartOf="parent"
@@ -229,7 +226,6 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
                     android:layout_marginTop="15dp"
                     android:text="@string/lbl_turno"
                     app:layout_constraintStart_toStartOf="parent"
@@ -251,7 +247,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
                     android:layout_marginTop="15dp"
                     android:text="@string/lbl_estadocivil"
                     app:layout_constraintStart_toStartOf="parent"

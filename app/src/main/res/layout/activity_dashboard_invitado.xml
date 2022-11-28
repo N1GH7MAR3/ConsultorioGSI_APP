@@ -29,9 +29,9 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_black"
                 android:text="Bienvenido"
                 android:textColor="@color/white"
-                android:fontFamily="@font/roboto_black"
                 android:textSize="36sp" />
 
             <TextView
@@ -40,9 +40,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/textView2"
 
+                android:fontFamily="@font/roboto_black"
                 android:text="Invitado"
                 android:textColor="@color/white"
-                android:fontFamily="@font/roboto_black"
                 android:textSize="20dp" />
 
             <ImageView

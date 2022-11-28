@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
 
     android:layout_margin="12dp"
@@ -14,45 +14,37 @@
 
     <RelativeLayout
         android:id="@+id/cl1"
-
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="8dp"
         >
-
-        <ImageView
-
-
-            android:id="@+id/ivEspecialidad"
-            android:layout_width="205dp"
-            android:layout_height="150dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:padding="15dp"
-            android:src="@drawable/img_especialidad">
-
-        </ImageView>
-
-        <TextView
-            android:id="@+id/tvNombreEspecialidad"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_toEndOf="@id/ivEspecialidad"
-            android:layout_toRightOf="@id/ivEspecialidad"
+            android:orientation="vertical"
+            >
 
-            android:paddingTop="75dp"
-            android:fontFamily="@font/roboto_medium"
-            android:text="ESPECIALIDAD"
-            android:textSize="17dp"
-            android:textStyle="bold" />
+            <ImageView
 
+                android:id="@+id/ivEspecialidad"
+                android:layout_width="wrap_content"
+                android:layout_height="150dp"
+                android:padding="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/img_especialidad">
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tvNombreEspecialidad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/roboto_medium"
+                android:text="ESPECIALIDAD"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+        </LinearLayout>
     </RelativeLayout>
 
 
