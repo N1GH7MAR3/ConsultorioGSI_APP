@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.example.gsi.Constans.Constant
 import com.example.gsi.Entity.Alergia
 import com.example.gsi.Entity.createAlergia
+import com.example.gsi.Entity.createMedicina
 import com.example.gsi.databinding.ActivityAlergiaPacienteBinding
 
 class AlergiaPacienteActivity : AppCompatActivity() {
@@ -59,11 +62,15 @@ class AlergiaPacienteActivity : AppCompatActivity() {
 
         }
         binding.btnEliminar.setOnClickListener {
-            val dialog = AlertDialog.Builder(this)
-            dialog.setTitle("Eliminar Alergias")
-            dialog.setMessage("Al aceptar eliminar, se borrara todas sus alergias!")
+            val dialog:AlertDialog.Builder = AlertDialog.Builder(this)
+            val view: View =layoutInflater.inflate(R.layout.layout_error_dailog,null)
+            dialog.setView(view)
+            val tittle=view.findViewById<TextView>(R.id.textTitle)
+            tittle.text="Eliminar Alergias"
+            val message=view.findViewById<TextView>(R.id.textMessage)
+            message.text="Al aceptar eliminar, se borrara todas sus Alergias!"
             dialog.setCancelable(false)
-            dialog.setPositiveButton("Confirmar",
+            dialog.setPositiveButton("Aceptar",
                 DialogInterface.OnClickListener { dialog, id ->
                     binding.txtAlergia.setText("")
                     Constant.api.updateAlergia(

@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.View
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import com.example.gsi.Constans.Constant
@@ -61,8 +63,12 @@ class ContactoEmergenciaPacienteActivity : AppCompatActivity() {
         }
         binding.btnEliminar.setOnClickListener {
             val dialog = AlertDialog.Builder(this)
-            dialog.setTitle("Eliminar Contactos De Emergencia")
-            dialog.setMessage("Al aceptar eliminar, se borrara todos sus Contactos de Emergencia!")
+            val view: View =layoutInflater.inflate(R.layout.layout_error_dailog,null)
+            dialog.setView(view)
+            val tittle=view.findViewById<TextView>(R.id.textTitle)
+            tittle.text="Eliminar Contactos De Emergencia"
+            val message=view.findViewById<TextView>(R.id.textMessage)
+            message.text="Al aceptar eliminar, se borrara todos sus Contactos de Emergencia!"
             dialog.setCancelable(false)
             dialog.setPositiveButton("Confirmar",
                 DialogInterface.OnClickListener { dialog, id ->

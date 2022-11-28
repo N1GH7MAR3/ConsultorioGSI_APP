@@ -55,9 +55,7 @@
         <activity
             android:name=".ContactoEmergenciaPacienteActivity"
             android:exported="false" />
-        <activity
-            android:name=".EditarPerfilPacienteActivity"
-            android:exported="false" />
+
         <activity
             android:name=".PacientePerfilActivity"
             android:exported="false" />
