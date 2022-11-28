@@ -28,11 +28,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginBottom="4dp"
-                android:background="@color/gsiAzul"
+                android:background="@color/gsiPlomo"
                 android:padding="5dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:layout_editor_absoluteX="0dp">
+                tools:layout_editor_absoluteX="1dp">
 
                 <Button
                     android:id="@+id/btnRegresar"
@@ -106,8 +106,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="28dp"
-                    android:text="Contacto Emergencia"
-                    android:textColor="@color/gsiAzul"
+                    android:text="Contactos Medicos"
+                    android:textColor="@color/gsiPlomo"
                     android:textSize="29dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -117,14 +117,14 @@
                     android:layout_width="275dp"
                     android:layout_height="230dp"
                     android:layout_marginStart="16dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="52dp"
                     android:background="@drawable/bg_blanco_spinner"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView16">
 
 
                     <EditText
-                        android:id="@+id/txtContactoEmergencia"
+                        android:id="@+id/txtContactoMedico"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="20dp"
@@ -140,41 +140,37 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btnAgregar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="100dp"
                     android:layout_marginTop="20dp"
-                    android:backgroundTint="@color/gsiAzul"
+                    android:backgroundTint="@color/gsiPlomo"
                     android:text="Agregar"
                     android:textColor="@color/gsiVerde"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/constraintLayout3" />
 
                 <ImageButton
-                    android:id="@+id/imageButton2"
+                    android:id="@+id/btnConfirmar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="19dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginEnd="18dp"
                     android:background="@android:color/transparent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageButton3"
+                    app:layout_constraintTop_toBottomOf="@+id/btnEliminar"
                     app:srcCompat="@drawable/ic_edit"
                     tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
                 <ImageButton
-                    android:id="@+id/imageButton3"
+                    android:id="@+id/btnEliminar"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginTop="51dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="56dp"
+                    android:layout_marginTop="96dp"
+                    android:layout_marginEnd="16dp"
                     android:background="@android:color/transparent"
-                    app:layout_constraintBottom_toTopOf="@+id/imageButton2"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/constraintLayout3"
                     app:layout_constraintTop_toBottomOf="@+id/imageView10"
                     app:srcCompat="@drawable/ic_delete"
                     tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
