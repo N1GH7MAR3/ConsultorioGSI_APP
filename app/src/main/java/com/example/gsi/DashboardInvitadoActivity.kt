@@ -17,12 +17,20 @@ class DashboardInvitadoActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        binding.cardUbi.setOnClickListener {
+            val intent= Intent(this,UbicacionActivity::class.java)
+            startActivity(intent)
 
+        }
 
         binding.linearEspeacilidades.setOnClickListener {
             val intent= Intent(this,EspecialidadesPacienteActivity::class.java)
             startActivity(intent)
-            finish()
+
+        }
+        binding.linearAcercaDe.setOnClickListener {
+            val intent=Intent(this,AcercaNosotrosActivity::class.java)
+            startActivity(intent)
         }
     }
 }

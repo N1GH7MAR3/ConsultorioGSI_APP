@@ -1,11 +1,9 @@
 package com.example.gsi
 
 import android.content.ActivityNotFoundException
-import android.content.ComponentName
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.telephony.PhoneNumberUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gsi.databinding.ActivityAcercaNosotrosBinding
@@ -17,7 +15,6 @@ class AcercaNosotrosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityAcercaNosotrosBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val telefono= "989706376"
         val facebookId   ="https://www.facebook.com/gruposaludintegral";
         val facebookUrl  ="https://www.facebook.com/gruposaludintegral";
 
@@ -28,7 +25,7 @@ class AcercaNosotrosActivity : AppCompatActivity() {
         //AbrirWhatsApp()
         binding.imageBtnWhatsapp.setOnClickListener {
 
-            AbrirWhatsApp(telefono)
+            AbrirWhatsApp()
         }
         binding.imageBtnFacebook.setOnClickListener {
 
@@ -45,14 +42,15 @@ class AcercaNosotrosActivity : AppCompatActivity() {
 
     }
 
-    private fun AbrirWhatsApp(telefono: String) {
-        val _intencion = Intent("android.intent.action.MAIN")
-        _intencion.component = ComponentName("com.whatsapp", "com.whatsapp.Conversation")
-        _intencion.putExtra(
-            "jid",
-            PhoneNumberUtils.stripSeparators("51$telefono") + "@s.whatsapp.net"
-        )
-        startActivity(_intencion)
+    private fun AbrirWhatsApp() {
+        val _intencion = Intent(Intent.ACTION_VIEW)
+        val uri = "whatsapp://send?phone=" + "+51989706376" + "&text="+ "Hola , tengo una duda"
+        _intencion.data=Uri.parse(uri)
+        try {
+            startActivity(_intencion)
+        } catch (ex:ActivityNotFoundException) {
+            Toast.makeText(this,ex.toString(),Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun cargarPaginas(urlId: String, urlUrl: String) {

@@ -1,11 +1,17 @@
 package com.example.gsi
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.isVisible
 import com.example.gsi.Constans.Constant
@@ -62,21 +68,24 @@ class MedicinaPacienteActivity : AppCompatActivity() {
 
         }
         binding.btnEliminar.setOnClickListener {
-            val dialog = AlertDialog.Builder(this)
-            dialog.setTitle("Eliminar Medicina")
-            dialog.setMessage("Al aceptar eliminar, se borrara todas sus Medicinas!")
+            val dialog:AlertDialog.Builder = AlertDialog.Builder(this)
+            val view: View =layoutInflater.inflate(R.layout.layout_error_dailog,null)
+            dialog.setView(view)
+            val tittle=view.findViewById<TextView>(R.id.textTitle)
+            tittle.text="Eliminar Medicina"
+            val message=view.findViewById<TextView>(R.id.textMessage)
+            message.text="Al aceptar eliminar, se borrara todas sus Medicinas!"
             dialog.setCancelable(false)
-            dialog.setPositiveButton("Confirmar",
-                DialogInterface.OnClickListener { dialog, id ->
-                    binding.txtMedicina.setText("")
-                    Constant.api.updateMedicina(
-                        medicinaid.toString().toLong(),
-                        createMedicina(binding.txtMedicina.text.toString()), binding, usuario
-                    )
-                })
-            dialog.setNegativeButton("Cancelar",
-                DialogInterface.OnClickListener { dialog, id -> dialog.cancel() })
+
+            dialog.setPositiveButton("Aceptar",DialogInterface.OnClickListener { dialogInterface, i -> binding.txtMedicina.setText("")
+                Constant.api.updateMedicina(
+                    medicinaid.toString().toLong(),
+                    createMedicina(binding.txtMedicina.text.toString()), binding, usuario
+                )  })
+            dialog.setNegativeButton("Cancelar",DialogInterface.OnClickListener { dialogInterface, i -> dialogInterface.dismiss() })
             dialog.show()
+
+
         }
         binding.btnRegresar.setOnClickListener {
             val intent = Intent(this, ControlSaludActivity::class.java)

@@ -15,15 +15,15 @@ class PacienteViewHolder (view:View):RecyclerView.ViewHolder(view){
     private val binding=ItemListaPacienteBinding.bind(view)
 
     fun render(pacientes: Paciente){
-        binding.txtNombre.text=pacientes.nombre + " "+pacientes.apellido_paterno +" "+ pacientes.apellido_materno
+        binding.txtNombre.text= "${pacientes.nombre} ${pacientes.apellido_paterno} ${pacientes.apellido_materno}"
         binding.txtdni.text=pacientes.dni.toString()
         binding.txtDireccion.text=pacientes.direccion
         binding.txtSexo.text=pacientes.sexo.nombre
         binding.txtTelefono.text=pacientes.telefono
         if (pacientes.sexo.nombre=="Femenino"){
-            binding.imgViewPaciente.setImageResource(R.drawable.img_girl)
+            binding.imgViewPaciente.setImageResource(R.drawable.img_girl2)
         }else{
-            binding.imgViewPaciente.setImageResource(R.drawable.img_boy)
+            binding.imgViewPaciente.setImageResource(R.drawable.img_boy2)
         }
         binding.btnDetallePaciente.setOnClickListener {
             val intent = Intent(binding.btnDetallePaciente.context, PacienteDetalleActivity::class.java)

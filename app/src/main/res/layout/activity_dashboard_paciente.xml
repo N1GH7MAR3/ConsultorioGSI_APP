@@ -35,7 +35,7 @@
                 android:layout_below="@id/textView2"
 
                 android:fontFamily="@font/roboto_black"
-                android:text="Paciente"
+
                 android:textColor="@color/white"
                 android:textSize="20dp" />
 
@@ -44,7 +44,7 @@
                 android:layout_width="85dp"
                 android:layout_height="85dp"
                 android:layout_alignParentRight="true"
-                android:src="@drawable/img_boy" />
+                />
         </RelativeLayout>
 
 
