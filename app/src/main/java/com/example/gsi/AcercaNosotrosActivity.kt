@@ -6,6 +6,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.telephony.PhoneNumberUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.gsi.databinding.ActivityAcercaNosotrosBinding
 
@@ -23,6 +24,7 @@ class AcercaNosotrosActivity : AppCompatActivity() {
         val paginaurl  ="https://majosua.wixsite.com/gruposaludintegral?fbclid=IwAR3IRs-HwTnyunByFBfMeZAcddz-DhmIJLzxeCmEmu0PPe1U0ORzsoXe4zY";
         val paginaid  ="https://majosua.wixsite.com/gruposaludintegral?fbclid=IwAR3IRs-HwTnyunByFBfMeZAcddz-DhmIJLzxeCmEmu0PPe1U0ORzsoXe4zY";
 
+        val usuario = intent.getStringExtra("usuario")
         //AbrirWhatsApp()
         binding.imageBtnWhatsapp.setOnClickListener {
 
@@ -39,7 +41,7 @@ class AcercaNosotrosActivity : AppCompatActivity() {
             finish()
         }
 
-
+       // Toast.makeText(this@AcercaNosotrosActivity, "hola"+ usuario, Toast.LENGTH_SHORT).show()
 
     }
 

@@ -17,5 +17,12 @@ class DashboardInvitadoActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+
+        binding.linearEspeacilidades.setOnClickListener {
+            val intent= Intent(this,EspecialidadesPacienteActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }
