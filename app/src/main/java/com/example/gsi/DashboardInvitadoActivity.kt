@@ -17,7 +17,11 @@ class DashboardInvitadoActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        binding.cardUbi.setOnClickListener {
+            val intent= Intent(this,UbicacionActivity::class.java)
+            startActivity(intent)
 
+        }
 
         binding.linearEspeacilidades.setOnClickListener {
             val intent= Intent(this,EspecialidadesPacienteActivity::class.java)
