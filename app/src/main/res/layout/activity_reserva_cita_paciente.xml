@@ -650,8 +650,9 @@
                 android:layout_width="250dp"
                 android:layout_height="match_parent"
                 android:layout_marginTop="32dp"
-
+                android:backgroundTint="@color/gsiAzul"
                 android:text="Disponibilidad"
+                android:textColor="@color/gsiVerde"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -664,7 +665,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="40dp"
-
+                android:backgroundTint="@color/gsiAzul"
+                android:textColor="@color/gsiVerde"
                 android:text="Reservar Cita"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
