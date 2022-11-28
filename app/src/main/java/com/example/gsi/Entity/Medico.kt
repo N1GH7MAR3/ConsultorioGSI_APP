@@ -2,7 +2,10 @@ package com.example.gsi.Entity
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
-
+data class putMedico(
+    @SerializedName("id")
+    @Expose
+    val id: Long)
 
 data class createMedico(
     @SerializedName("nombre")
@@ -19,22 +22,19 @@ data class createMedico(
     val dni: String,
     @SerializedName("pais")
     @Expose
-    val pais: Pais,
+    val pais: putPais,
     @SerializedName("estadoCivil")
     @Expose
-    val estadoCivil: EstadoCivil,
+    val estadoCivil: putEstadoCivil,
     @SerializedName("sexo")
     @Expose
-    val sexo: Sexo,
+    val sexo: putSexo,
     @SerializedName("turno")
     @Expose
-    val turno: Turno,
-    @SerializedName("horario")
-    @Expose
-    val horario: Horario,
+    val turno: putTurno,
     @SerializedName("especialidad")
     @Expose
-    val especialidad: Especialidad
+    val especialidad: putEspecialidad
 )
 
 data class Medico(

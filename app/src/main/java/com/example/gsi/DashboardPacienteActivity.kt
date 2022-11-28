@@ -14,8 +14,14 @@ class DashboardPacienteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDashboardPacienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.cardReservaCitas.isEnabled=false
         val usuario = intent.getStringExtra("usuario")
-        Constant.api.searchPaciente(binding, usuario!!)
+
+        val nombreu=intent.getStringExtra("nombreu").toString()
+
+            Constant.api.searchPaciente(binding, usuario!!,nombreu)
+
+
 
         binding.cardEspecialidades.setOnClickListener {
             val intent = Intent(this@DashboardPacienteActivity, EspecialidadesPacienteActivity::class.java)

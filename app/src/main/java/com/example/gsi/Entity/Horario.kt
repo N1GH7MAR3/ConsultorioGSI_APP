@@ -10,11 +10,9 @@ data class Horario(
     @SerializedName("id")
     @Expose
     val id: Long,
-
     @SerializedName("horaingreso")
     @Expose
     val horaingreso: String,
-
     @SerializedName("horasalida")
     @Expose
     val horasalida: String

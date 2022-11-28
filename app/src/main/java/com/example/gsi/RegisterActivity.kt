@@ -262,9 +262,9 @@ class RegisterActivity : AppCompatActivity() {
                 createRolUsuario(1)
             )
             val pais =
-                createPais(binding.spPais.selectedItemPosition.toLong())
+                putPais(binding.spPais.selectedItemPosition.toLong())
             val estadoCivil =
-                createEstadoCivil(
+                putEstadoCivil(
                     binding.spEstadoCivil.selectedItemPosition.toLong()
                 )
             val sexo =
@@ -321,6 +321,7 @@ class RegisterActivity : AppCompatActivity() {
                                 Constant.api.updatePaciente(binding, idp.toLong() ,paciente)
                                 val intent=Intent(this,DashboardPacienteActivity::class.java)
                                 intent.putExtra("usuario",dni)
+                                intent.putExtra("nombreu",binding.editTextTexNombre.text.toString())
                                 startActivity(intent)
                                 finish()
                             }

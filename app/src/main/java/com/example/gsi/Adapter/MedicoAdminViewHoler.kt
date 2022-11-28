@@ -54,7 +54,6 @@ class MedicoAdminViewHoler (view: View):RecyclerView.ViewHolder(view){
             intent.putExtra("horariosalida",medicos.horario.horasalida)
             binding.btnEditar.context.startActivity(intent)
 
-
         }
 binding.btnEliminars.setOnClickListener {
     Constant.api.deleteMedico(binding,medicos.id)

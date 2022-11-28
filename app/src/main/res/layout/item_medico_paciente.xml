@@ -25,21 +25,16 @@
             android:padding="8dp">
 
             <ImageView
-
                 android:id="@+id/ivEspecialidad"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="25dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
                 android:padding="15dp"
-                android:src="@drawable/ic_account_circle"></ImageView>
+                android:src="@drawable/ic_account_circle" />
 
             <LinearLayout
                 android:layout_width="244dp"
@@ -72,12 +67,34 @@
                     android:padding="5dp"
                     android:text="especialidad"
                     android:textSize="20dp" />
-
             </LinearLayout>
 
 
         </RelativeLayout>
 
+        <RelativeLayout
+            android:id="@+id/cl12"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+
+
+            >
+
+
+            <Button
+                android:id="@+id/btnDetalle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="115dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Detalle"
+                android:textStyle="bold" />
+
+
+        </RelativeLayout>
 
     </LinearLayout>
 

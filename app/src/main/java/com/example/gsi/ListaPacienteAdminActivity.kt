@@ -14,12 +14,6 @@ class ListaPacienteAdminActivity : AppCompatActivity() {
         setContentView(binding.root)
         Constant.api.getAllPacientes(binding)
 
-
-
-
-
-
-
         binding.customPrinciapl.btnRegresar.setOnClickListener {
             finish()
         }

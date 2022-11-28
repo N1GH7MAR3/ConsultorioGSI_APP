@@ -116,5 +116,9 @@ interface Services {
     @PUT("medicina/editar/{id}")
     fun updateMedicina(@Path("id") id: Long, @Body medicina: createMedicina): Call<Medicina>
 
-
+    @POST("cita/registrar")
+    fun createCita(@Body body:createCita):Call<Cita>
+    @GET("cita/buscarcita/{fechacita}/{idespecialidad}/{idmedico}/{idprocedimiento}")
+    fun searchCitas(@Path("fechacita")fechacita:String,@Path("idespecialidad")idespecialidad:Long,
+                    @Path("idmedico")idmedico:Long,@Path("idprocedimiento")idprocedimiento:Long):Call <Cita>
 }

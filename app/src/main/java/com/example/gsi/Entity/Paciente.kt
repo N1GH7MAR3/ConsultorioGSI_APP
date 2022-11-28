@@ -2,6 +2,10 @@ package com.example.gsi.Entity
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+data class putPaciente(
+    @SerializedName("id")
+    @Expose
+    val id:Long)
 data class updatePaciente(
     @SerializedName("nombre")
     @Expose
@@ -26,13 +30,14 @@ data class updatePaciente(
     val correo:String,
     @SerializedName("pais")
     @Expose
-    val pais:createPais,
+    val pais:putPais,
     @SerializedName("estadoCivil")
     @Expose
-    val estadoCivil:createEstadoCivil,
+    val estadoCivil:putEstadoCivil,
     @SerializedName("sexo")
     @Expose
     val sexo:putSexo)
+
 data class createPaciente(
     @SerializedName("nombre")
     @Expose
@@ -57,10 +62,10 @@ data class createPaciente(
     val correo:String,
     @SerializedName("pais")
     @Expose
-    val pais:createPais,
+    val pais:putPais,
     @SerializedName("estadoCivil")
     @Expose
-    val estadoCivil:createEstadoCivil,
+    val estadoCivil:putEstadoCivil,
     @SerializedName("sexo")
     @Expose
     val sexo:putSexo,

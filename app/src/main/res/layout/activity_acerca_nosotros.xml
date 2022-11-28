@@ -272,7 +272,6 @@ Magister (E) Salud Ocupacional"
                     <ImageButton
                         android:id="@+id/imageBtnWhatsapp"
                         android:layout_width="65dp"
-
                         android:layout_height="65dp"
                         android:background="@android:color/transparent"
                         android:scaleType="centerCrop"

@@ -6,6 +6,7 @@ import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.example.gsi.Entity.Medico
 import com.example.gsi.Entity.Procedimiento
+import com.example.gsi.MedicoDetalleActivity
 import com.example.gsi.MedicoPacienteActivity
 import com.example.gsi.ProcedimientoPacienteActivity
 import com.example.gsi.R
@@ -22,13 +23,26 @@ class MedicoPacienteViewHolder (view:View):RecyclerView.ViewHolder (view){
             binding.ivEspecialidad.setImageResource(R.drawable.img_medicof)
         }else{
             binding.ivEspecialidad.setImageResource(R.drawable.img_medicom)
-
         }
         itemView.setOnClickListener {
             val intent= Intent(binding.ivEspecialidad.context, ProcedimientoPacienteActivity::class.java)
             intent.putExtra("medicoid",medicos.id.toString())
             binding.ivEspecialidad.context.startActivity(intent)
-
+        }
+        binding.btnDetalle.setOnClickListener {
+            val intent = Intent(binding.btnDetalle.context, MedicoDetalleActivity::class.java)
+            intent.putExtra("nombre",medicos.nombre)
+            intent.putExtra("apePaterno",medicos.apellido_paterno)
+            intent.putExtra("apeMaterno",medicos.apellido_materno)
+            intent.putExtra("dni",medicos.dni)
+            intent.putExtra("pais",medicos.pais?.nombre)
+            intent.putExtra("sexo",medicos.sexo.nombre)
+            intent.putExtra("estadocivil",medicos.estadoCivil.nombre)
+            intent.putExtra("turno",medicos.turno.turno)
+            intent.putExtra("horarioingreso",medicos.horario.horaingreso)
+            intent.putExtra("horariosalida",medicos.horario.horasalida)
+            intent.putExtra("especialidad",medicos.especialidad.nombre)
+            binding.btnDetalle.context.startActivity(intent)
         }
     }
 }

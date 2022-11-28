@@ -19,7 +19,7 @@
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_control_salud.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.25" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_invitado.xml" value="0.22543859649122808" />
-        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_paciente.xml" value="0.25" />
+        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_paciente.xml" value="0.22251082251082252" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_editar_perfil_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_enfermedad_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_especialidad_editar.xml" value="0.25" />
@@ -31,7 +31,7 @@
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_main.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_main2.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_medicina_paciente.xml" value="0.22543859649122808" />
-        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_agregar.xml" value="0.22543859649122808" />
+        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_agregar.xml" value="0.1" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_detalle.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_editar.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_paciente.xml" value="0.22543859649122808" />
@@ -53,6 +53,7 @@
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_medico_admin.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_medico_paciente.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/item_procedimiento_paciente.xml" value="0.22543859649122808" />
+        <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/layout_error_dailog.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/layout_success_dailog.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/layout_warning_dailog.xml" value="0.22543859649122808" />
         <entry key="..\:/WP_AndroidStucioII/ConsultorioGSI_app/app/src/main/res/drawable/bg_degradado.xml" value="0.2655" />

@@ -1,15 +1,11 @@
 package com.example.gsi
 
 import android.app.DatePickerDialog
-import android.app.TimePickerDialog
-import android.content.res.Resources
 import android.os.Bundle
-import android.view.View
-import android.view.View.GONE
-import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.load.engine.Resource
 import com.example.gsi.Constans.Constant
+import com.example.gsi.Entity.createCita
 import com.example.gsi.databinding.ActivityReservaCitaPacienteBinding
 import java.util.*
 
@@ -22,10 +18,11 @@ class ReservaCitaPacienteActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding = ActivityReservaCitaPacienteBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        Constant.api.getEspecilidadesPaciente(binding)
+        val idpaciente=intent.getStringExtra("id")
+        val id=idpaciente!!.toLong()
+        Constant.api.getEspecilidadesPaciente(binding, id.toLong())
 
-        binding.btnReservarCita.setOnClickListener {
-        }
+
         binding.customPrinciapl.btnRegresar.setOnClickListener {
             finish()
         }
@@ -35,9 +32,18 @@ class ReservaCitaPacienteActivity : AppCompatActivity(){
             val month = c.get(Calendar.MONTH)
             val day = c.get(Calendar.DAY_OF_MONTH)
 
+
             val datePickerDialog = DatePickerDialog(
                 this,
-                { _, year, monthOfYear, dayOfMonth -> binding.inDate.setText(dayOfMonth.toString() + "-" + (monthOfYear + 1) + "-" + year) },
+                { _, year, monthOfYear, dayOfMonth ->
+
+                    binding.btnDisponibilidad.isEnabled=true
+                    binding.inDate.setText(year.toString()+ "-" + (monthOfYear + 1) + "-" + dayOfMonth.toString())
+                    if(binding.inDate.text.toString()!=binding.inDate.text.toString()){
+                        Constant.api.getEspecilidadesPaciente(binding, id.toLong())
+                        binding.btnDisponibilidad.isEnabled=false
+                    }
+                    },
                 year,
                 month,
                 day

@@ -30,15 +30,12 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
                 android:padding="15dp"
-                android:src="@drawable/ic_account_circle"></ImageView>
+                android:src="@drawable/ic_account_circle" />
             <LinearLayout
                 android:paddingTop="5dp"
                 android:layout_width="244dp"
@@ -103,8 +100,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="115dp"
                 android:fontFamily="@font/roboto_medium"
-                android:textStyle="bold"
-                android:text="Detalle" />
+                android:text="Detalle"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnEliminars"

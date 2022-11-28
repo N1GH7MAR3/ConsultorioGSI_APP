@@ -8,6 +8,7 @@ import com.example.gsi.Entity.Medico
 import com.example.gsi.Entity.Paciente
 import com.example.gsi.MedicoDetalleActivity
 import com.example.gsi.PacienteDetalleActivity
+import com.example.gsi.R
 import com.example.gsi.databinding.ItemListaPacienteBinding
 
 class PacienteViewHolder (view:View):RecyclerView.ViewHolder(view){
@@ -19,7 +20,11 @@ class PacienteViewHolder (view:View):RecyclerView.ViewHolder(view){
         binding.txtDireccion.text=pacientes.direccion
         binding.txtSexo.text=pacientes.sexo.nombre
         binding.txtTelefono.text=pacientes.telefono
-
+        if (pacientes.sexo.nombre=="Femenino"){
+            binding.imgViewPaciente.setImageResource(R.drawable.img_girl)
+        }else{
+            binding.imgViewPaciente.setImageResource(R.drawable.img_boy)
+        }
         binding.btnDetallePaciente.setOnClickListener {
             val intent = Intent(binding.btnDetallePaciente.context, PacienteDetalleActivity::class.java)
             intent.putExtra("nombre",pacientes.nombre)

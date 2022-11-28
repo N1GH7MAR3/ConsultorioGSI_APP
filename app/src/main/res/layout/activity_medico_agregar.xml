@@ -168,10 +168,10 @@
                     android:id="@+id/txtInputHorario"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
                     android:inputType="number"
                     android:textSize="13sp"
-                    android:fontFamily="@font/roboto_medium"/>
+                    android:fontFamily="@font/roboto_medium"
+                    android:enabled="false"/>
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout

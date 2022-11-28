@@ -16,7 +16,7 @@ class AcercaNosotrosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding= ActivityAcercaNosotrosBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val telefono= "929347781"
+        val telefono= "989706376"
         val facebookId   ="https://www.facebook.com/gruposaludintegral";
         val facebookUrl  ="https://www.facebook.com/gruposaludintegral";
 
@@ -26,7 +26,7 @@ class AcercaNosotrosActivity : AppCompatActivity() {
         //AbrirWhatsApp()
         binding.imageBtnWhatsapp.setOnClickListener {
 
-            //AbrirWhatsApp(telefono)
+            AbrirWhatsApp(telefono)
         }
         binding.imageBtnFacebook.setOnClickListener {
 

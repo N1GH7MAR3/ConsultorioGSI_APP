@@ -48,7 +48,7 @@ class PacientePerfilActivity : AppCompatActivity() {
         binding.btnEditar.setOnClickListener {
             val intent= Intent(this,RegisterActivity::class.java)
             intent.putExtra("id",id)
-            intent.putExtra("nombre",nombre)
+            intent.putExtra("nombre",binding.txtNombre.text)
             intent.putExtra("apePaterno",apePaterno)
             intent.putExtra("apeMaterno",apeMaterno)
             intent.putExtra("dni", dni)

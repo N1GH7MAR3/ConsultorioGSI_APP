@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import com.bumptech.glide.Glide
 import com.example.gsi.Adapter.EspecialidadAdminAdapter
 import com.example.gsi.Constans.Constant
@@ -25,11 +26,23 @@ class EspecialidadEditarActivity : AppCompatActivity() {
         val id = intent.getStringExtra("id")
         val nombre = intent.getStringExtra("nombre")
         val image = intent.getStringExtra("image")
-        binding.txtInputId.setText(id)
-        binding.txtInputNombre.setText(nombre)
-        binding.txtInputImage.setText(image)
-        Glide.with(this@EspecialidadEditarActivity).load(image).into(binding.imgEspecialidad)
 
+
+        if (!id.isNullOrEmpty()) {
+            binding.textView3.text = "Editar Especialidad"
+            binding.btnGuardar.text = "Editar"
+            binding.txtInputId.setText(id)
+            binding.txtInputNombre.setText(nombre)
+            binding.txtInputImage.setText(image)
+            Glide.with(this@EspecialidadEditarActivity).load(image).into(binding.imgEspecialidad)
+
+
+        }else{
+            binding.textView3.text = "Agregar Especialidad"
+            binding.btnGuardar.text = "Agregar"
+            binding.txtLayautId.isVisible=false
+            binding.txtInputId.isVisible=false
+        }
         binding.btnVisualizar.setOnClickListener {
             Glide.with(this@EspecialidadEditarActivity).load(binding.txtInputImage.text.toString())
                 .into(binding.imgEspecialidad)
@@ -56,6 +69,8 @@ class EspecialidadEditarActivity : AppCompatActivity() {
             binding.txtInputImage.setText("")
         }
         binding.customPrinciapl.btnRegresar.setOnClickListener {
+            val intent=Intent(this,EspecialidadesAdminActivity::class.java)
+            startActivity(intent)
             finish()
         }
     }

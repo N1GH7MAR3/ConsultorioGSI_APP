@@ -7,7 +7,24 @@ import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.util.*
+data class createCita(
 
+    @SerializedName("fechacita")
+    @Expose
+    val fechacita:String,
+    @SerializedName("medico")
+    @Expose
+    val medico:putMedico,
+    @SerializedName("paciente")
+    @Expose
+    val paciente:putPaciente,
+    @SerializedName("especialidad")
+    @Expose
+    val especialidad:putEspecialidad,
+    @SerializedName("procedimiento")
+    @Expose
+    val procedimiento:putProcedimiento
+)
 data class Cita(
     @SerializedName("id")
     @Expose

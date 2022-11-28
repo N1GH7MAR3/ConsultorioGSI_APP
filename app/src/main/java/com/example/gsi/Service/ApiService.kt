@@ -1,9 +1,9 @@
 package com.example.gsi.Service
-
-import android.R
 import android.app.Activity
-import android.content.DialogInterface
+
 import android.content.Intent
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -18,15 +18,15 @@ import com.example.gsi.Constans.Constant
 import com.example.gsi.Entity.*
 import com.example.gsi.databinding.*
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.*
 
-@OptIn(DelicateCoroutinesApi::class)
+
+
 open class ApiService {
 
     //Verificar Existencia del Usuario
@@ -98,26 +98,33 @@ open class ApiService {
 
 
     //Buscar Paciente para obtener nombre y dni
-    fun searchPaciente(binding: ActivityDashboardPacienteBinding, usuario: String) {
+    fun searchPaciente(binding: ActivityDashboardPacienteBinding, usuario: String,nombreu:String) {
         val pac = SearchUsuario(usuario)
         CoroutineScope(Dispatchers.Main).launch {
             Constant.retrofit.searchPaciente(pac).enqueue(
                 object : Callback<Paciente> {
                     override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
                         if (response.isSuccessful) {
-                            binding.txtNombre.text = response.body()?.nombre
+                            binding.cardReservaCitas.isEnabled=true
+                            if(nombreu == "null"){
+                                binding.txtNombre.text = response.body()?.nombre
+                            }else{
+                                binding.txtNombre.text = nombreu
+                            }
+
                             if (response.body()?.sexo?.nombre == "Femenino") {
-                                binding.imagePerfil.setImageResource(com.example.gsi.R.drawable.img_girl)
+                                binding.imagePerfil.setImageResource(R.drawable.img_girl)
                             } else {
-                                binding.imagePerfil.setImageResource(com.example.gsi.R.drawable.img_boy)
+                                binding.imagePerfil.setImageResource(R.drawable.img_boy)
                             }
                             binding.imagePerfil.setOnClickListener {
                                 val intent = Intent(
                                     binding.cardAcercaNosotros.context,
                                     PacientePerfilActivity::class.java
                                 )
+
                                 intent.putExtra("id", response.body()?.id.toString())
-                                intent.putExtra("nombre", response.body()?.nombre)
+                                intent.putExtra("nombre", binding.txtNombre.text)
                                 intent.putExtra("apePaterno", response.body()?.apellido_paterno)
                                 intent.putExtra("apeMaterno", response.body()?.apellido_materno)
                                 intent.putExtra("dni", response.body()?.dni.toString())
@@ -151,6 +158,7 @@ open class ApiService {
                                     binding.cardAcercaNosotros.context,
                                     ReservaCitaPacienteActivity::class.java
                                 )
+                                intent.putExtra("id", response.body()?.id.toString())
                                 binding.cardAcercaNosotros.context.startActivity(intent)
                             }
                             binding.cardControlSalud.setOnClickListener {
@@ -434,9 +442,9 @@ open class ApiService {
 
     //RESERVAR CITAS
     fun getEspecilidadesPaciente(
-        binding: ActivityReservaCitaPacienteBinding
+        binding: ActivityReservaCitaPacienteBinding,id:Long
     ) {
-
+        binding.btnReservarCita.isEnabled=false
         Constant.retrofit.getAllEspecialidades()
             .enqueue(object : Callback<List<Especialidad>> {
                 override fun onResponse(
@@ -444,30 +452,40 @@ open class ApiService {
                     response: Response<List<Especialidad>>
                 ) {
                     val listEmpty = mutableListOf<String>()
+                    binding.spHorario.adapter = ArrayAdapter(
+                        binding.spEspecialidad.context,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        listEmpty
+                    )
                     listEmpty.add(0, "Seleccionar")
                     binding.spProcedimiento.adapter = ArrayAdapter(
                         binding.spEspecialidad.context,
-                        R.layout.simple_spinner_dropdown_item,
+                        android.R.layout.simple_spinner_dropdown_item,
                         listEmpty
                     )
                     binding.spTurno.adapter = ArrayAdapter(
                         binding.spEspecialidad.context,
-                        R.layout.simple_spinner_dropdown_item,
+                        android.R.layout.simple_spinner_dropdown_item,
                         listEmpty
                     )
                     binding.spMedicos.adapter = ArrayAdapter(
                         binding.spEspecialidad.context,
-                        R.layout.simple_spinner_dropdown_item,
+                        android.R.layout.simple_spinner_dropdown_item,
                         listEmpty
                     )
 
+                    val listEspecialidades = response.body()
+                    val listIdEspecialidades = mutableListOf<Long>()
                     val list = mutableListOf<String>()
                     list.add(0, "Seleccionar")
-                    val listEspecialidades = response.body()
-                    for (i in listEspecialidades!!.indices) list += listEspecialidades[i].nombre
+                    listIdEspecialidades.add(0, 0)
+                    for (i in listEspecialidades!!.indices){
+                        list += listEspecialidades[i].nombre
+                        listIdEspecialidades+=listEspecialidades[i].id
+                    }
                     binding.spEspecialidad.adapter = ArrayAdapter(
                         binding.spEspecialidad.context,
-                        R.layout.simple_spinner_dropdown_item,
+                        android.R.layout.simple_spinner_dropdown_item,
                         list
                     )
                     binding.spEspecialidad.onItemSelectedListener =
@@ -495,7 +513,7 @@ open class ApiService {
                                             }
                                             binding.spProcedimiento.adapter = ArrayAdapter(
                                                 binding.spEspecialidad.context,
-                                                R.layout.simple_spinner_dropdown_item,
+                                                android.R.layout.simple_spinner_dropdown_item,
                                                 listp
                                             )
                                             binding.spProcedimiento.onItemSelectedListener =
@@ -528,7 +546,7 @@ open class ApiService {
                                                                     binding.spTurno.adapter =
                                                                         ArrayAdapter(
                                                                             binding.spEspecialidad.context,
-                                                                            R.layout.simple_spinner_dropdown_item,
+                                                                            android.R.layout.simple_spinner_dropdown_item,
                                                                             listt
                                                                         )
                                                                     binding.spTurno.onItemSelectedListener =
@@ -575,22 +593,19 @@ open class ApiService {
                                                                                                     listIdMedicos += listMedicos[i].id
                                                                                                     val inicio=listMedicos[i].horario.horaingreso.trim().replace(":00:00","",false)
                                                                                                     val fin=listMedicos[i].horario.horasalida.replace(":00:00","",false)
+
                                                                                                     if(inicio.substring(1).toInt() == 2){
                                                                                                         for(i in inicio.substring(1).toInt()..fin.substring(1).toInt()){
                                                                                                             val h="PM"
                                                                                                             val zero="0"
-
                                                                                                             listhorario+= "$zero$i:00 $h"
                                                                                                         }
                                                                                                     }else{
                                                                                                         for(i in inicio.substring(1).toInt()..fin.substring(1).toInt()+12){
                                                                                                             var h="AM"
                                                                                                             val zero="0"
-
                                                                                                             if(i<10 ){
                                                                                                                 listhorario+= "$zero$i:00 $h"
-
-
                                                                                                             }else if(i in 10..11){
                                                                                                                 listhorario+= "$i:00 $h"
                                                                                                             }
@@ -598,6 +613,149 @@ open class ApiService {
                                                                                                                 h="PM"
                                                                                                                 listhorario+= "$i:00 $h"
                                                                                                             }
+                                                                                                        }
+                                                                                                    }
+                                                                                                    binding.spHorario.adapter=
+                                                                                                        ArrayAdapter(
+                                                                                                            binding.spEspecialidad.context,
+                                                                                                            android.R.layout.simple_spinner_dropdown_item,
+                                                                                                            listhorario
+                                                                                                        )
+                                                                                                    binding.spMedicos.onItemSelectedListener=object :
+                                                                                                        AdapterView.OnItemSelectedListener {
+                                                                                                        override fun onItemSelected(
+                                                                                                            p0: AdapterView<*>?,
+                                                                                                            p1: View?,
+                                                                                                            p2: Int,
+                                                                                                            p3: Long
+                                                                                                        ) {
+                                                                                                            if(binding.spMedicos.selectedItemPosition>=1
+                                                                                                            ){
+                                                                                                                binding.spHorario.onItemSelectedListener=object:AdapterView.OnItemSelectedListener{
+                                                                                                                    override fun onItemSelected(
+                                                                                                                        p0: AdapterView<*>?,
+                                                                                                                        p1: View?,
+                                                                                                                        p2: Int,
+                                                                                                                        p3: Long
+                                                                                                                    ) {
+                                                                                                                        if(binding.spHorario.selectedItemPosition>=1){
+                                                                                                                            binding.btnReservarCita.isEnabled=false
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                    override fun onNothingSelected(
+                                                                                                                        p0: AdapterView<*>?
+                                                                                                                    ) {
+                                                                                                                    }
+                                                                                                                }
+                                                                                                                binding.btnReservarCita.setOnClickListener {
+                                                                                                                    var horario=""
+                                                                                                                    if(binding.spHorario.selectedItem.toString().substring(4,binding.spHorario.selectedItem.toString().length) == " AM"){
+                                                                                                                        horario=binding.spHorario.selectedItem.toString().replace(" AM",":00")
+                                                                                                                    }else if (binding.spHorario.selectedItem.toString().substring(5,binding.spHorario.selectedItem.toString().length) == " PM"){
+                                                                                                                        horario=binding.spHorario.selectedItem.toString().replace(" PM",":00")
+                                                                                                                    }
+                                                                                                                    val paciente=putPaciente(id)
+                                                                                                                    val especialidad=putEspecialidad((listIdEspecialidades.elementAt(
+                                                                                                                        binding.spEspecialidad.selectedItemPosition
+                                                                                                                    )).toLong())
+                                                                                                                    val medico=putMedico((listIdMedicos.elementAt(
+                                                                                                                        binding.spMedicos.selectedItemPosition
+                                                                                                                    )).toLong())
+                                                                                                                    val procedimiento=putProcedimiento((listIdProcedimiento.elementAt(
+                                                                                                                        binding.spProcedimiento.selectedItemPosition
+                                                                                                                    )).toLong())
+                                                                                                                }
+
+                                                                                                                binding.btnDisponibilidad.setOnClickListener {
+
+                                                                                                                    var horario=""
+                                                                                                                    if(binding.spHorario.selectedItem.toString().substring(4,binding.spHorario.selectedItem.toString().length) == " AM"){
+                                                                                                                        horario=binding.spHorario.selectedItem.toString().replace(" AM",":00")
+                                                                                                                    }else if (binding.spHorario.selectedItem.toString().substring(5,binding.spHorario.selectedItem.toString().length) == " PM"){
+                                                                                                                        horario=binding.spHorario.selectedItem.toString().replace(" PM",":00")
+                                                                                                                    }
+                                                                                                                    val fechacita=binding.inDate.text.toString()+" "+horario
+
+                                                                                                                    Constant.retrofit.searchCitas(fechacita,(listIdEspecialidades.elementAt(
+                                                                                                                        binding.spEspecialidad.selectedItemPosition
+                                                                                                                    )).toLong(),(listIdMedicos.elementAt(
+                                                                                                                        binding.spMedicos.selectedItemPosition
+                                                                                                                    )).toLong(),(listIdProcedimiento.elementAt(
+                                                                                                                        binding.spProcedimiento.selectedItemPosition
+                                                                                                                    )).toLong()).enqueue(object:Callback<Cita>{
+                                                                                                                        override fun onResponse(
+                                                                                                                            call: Call<Cita>,
+                                                                                                                            response: Response<Cita>
+                                                                                                                        ) {
+
+                                                                                                                            if(response.code()==200){
+                                                                                                                                binding.btnReservarCita.isEnabled=false
+                                                                                                                                val fechacita=response.body()?.fechacita
+                                                                                                                                val listhorario2 =
+                                                                                                                                    mutableListOf<String>()
+                                                                                                                                if(inicio.substring(1).toInt() == 2){
+                                                                                                                                    for(i in inicio.substring(1).toInt()..fin.substring(1).toInt()){
+                                                                                                                                        val h="PM"
+                                                                                                                                        val zero="0"
+                                                                                                                                        Log.e("fecha",fechacita?.substring(12,
+                                                                                                                                            fechacita.length).toString().replace(":00:00","",false).toInt().toString())
+                                                                                                                                        Log.e("fecha2",i.toString())
+                                                                                                                                        if(fechacita?.substring(12,
+                                                                                                                                                fechacita.length).toString().replace(":00:00","",false).toInt()!=i){
+                                                                                                                                            listhorario2+= "$zero$i:00 $h"
+
+                                                                                                                                        }
+                                                                                                                                    }
+
+                                                                                                                                }else{
+                                                                                                                                    for(i in inicio.substring(1).toInt()..fin.substring(1).toInt()+12){
+                                                                                                                                        var h="AM"
+                                                                                                                                        val zero="0"
+                                                                                                                                        if(fechacita?.substring(12,
+                                                                                                                                                fechacita.length).toString().replace(":00:00","",false).toInt()!=i){
+                                                                                                                                            if(i<10 ){
+                                                                                                                                                listhorario2+= "$zero$i:00 $h"
+                                                                                                                                            }else if(i in 10..11){
+                                                                                                                                                listhorario2+= "$i:00 $h"
+                                                                                                                                            }
+                                                                                                                                            else{
+                                                                                                                                                h="PM"
+                                                                                                                                                listhorario2+= "$i:00 $h"
+                                                                                                                                            }
+
+                                                                                                                                        }
+                                                                                                                                    }
+
+                                                                                                                                }
+                                                                                                                                binding.spHorario.adapter=
+                                                                                                                                    ArrayAdapter(
+                                                                                                                                        binding.spEspecialidad.context,
+                                                                                                                                        android.R.layout.simple_spinner_dropdown_item,
+                                                                                                                                        listhorario2
+                                                                                                                                    )
+                                                                                                                            }else{
+
+                                                                                                                                binding.btnReservarCita.isEnabled=true
+
+                                                                                                                            }
+
+                                                                                                                        }
+                                                                                                                        override fun onFailure(
+                                                                                                                            call: Call<Cita>,
+                                                                                                                            t: Throwable
+                                                                                                                        ) {
+                                                                                                                        }
+                                                                                                                    })
+                                                                                                                }
+
+
+
+
+                                                                                                            }
+                                                                                                        }
+                                                                                                        override fun onNothingSelected(
+                                                                                                            p0: AdapterView<*>?
+                                                                                                        ) {
 
                                                                                                         }
                                                                                                     }
@@ -610,33 +768,11 @@ open class ApiService {
                                                                                             binding.spMedicos.adapter =
                                                                                                 ArrayAdapter(
                                                                                                     binding.spEspecialidad.context,
-                                                                                                    R.layout.simple_spinner_dropdown_item,
+                                                                                                    android.R.layout.simple_spinner_dropdown_item,
                                                                                                     listm
                                                                                                 )
-                                                                                            binding.spMedicos.onItemSelectedListener=object :
-                                                                                                AdapterView.OnItemSelectedListener {
-                                                                                                override fun onItemSelected(
-                                                                                                    p0: AdapterView<*>?,
-                                                                                                    p1: View?,
-                                                                                                    p2: Int,
-                                                                                                    p3: Long
-                                                                                                ) {
 
-                                                                                                    binding.spHorario.adapter=
-                                                                                                        ArrayAdapter(
-                                                                                                            binding.spEspecialidad.context,
-                                                                                                            R.layout.simple_spinner_dropdown_item,
-                                                                                                            listhorario
-                                                                                                        )
 
-                                                                                                }
-
-                                                                                                override fun onNothingSelected(
-                                                                                                    p0: AdapterView<*>?
-                                                                                                ) {
-
-                                                                                                }
-                                                                                            }
                                                                                         }
 
                                                                                     }
@@ -761,7 +897,7 @@ open class ApiService {
                 activity.runOnUiThread {
                     val list: List<Medico> = response.body()!!
                     val lesp: MutableList<Medico> = mutableListOf()
-                    Log.e("asda", list.toString())
+
                     if (esp == "null") {
                         iniRecyclerView(list)
                         binding.txtMedicos.text = "Medicos"
@@ -836,7 +972,7 @@ open class ApiService {
                                 binding.btnGuardar.context,
                                 EspecialidadesAdminActivity::class.java
                             )
-                        Thread.sleep(3000)
+
                         binding.btnGuardar.context.startActivity(intent)
                         (binding.btnGuardar.context as Activity).finish()
                         call.cancel()
@@ -903,40 +1039,51 @@ open class ApiService {
                 call: Call<Especialidad>,
                 response: Response<Especialidad>
             ) {
-                if (response.body()?.nombre != null) {
                     (binding.btnEditar.context as Activity).runOnUiThread {
-                        Toast.makeText(
-                            binding.btnEditar.context,
-                            "Se ha eliminado la Especialidad",
-                            Toast.LENGTH_SHORT
-                        )
-                            .show()
-                        val intent =
-                            Intent(
-                                binding.btnEditar.context.applicationContext,
-                                EspecialidadesAdminActivity::class.java
-                            )
-                        Thread.sleep(3000)
-                        (binding.btnEditar.context as Activity)
-                        binding.btnEditar.context.startActivity(intent)
-                    }
-                } else {
-                    val dialog = AlertDialog.Builder(binding.btnEliminar.context)
-                    dialog.setTitle("Eliminar Especialidad")
-                    dialog.setMessage("Primero debe eliminar medicos y procedimientos asoaciadas a esta especialidad")
-                    dialog.setCancelable(false)
-                    dialog.setPositiveButton("Confirmar",
-                        DialogInterface.OnClickListener { dialog, id ->
-                            val intent = Intent(
-                                binding.ivEspecialidad.context,
-                                MedicosAdminActivity::class.java
-                            )
-                            intent.putExtra("esp", esp)
-                            binding.tvNombreEspecialidad.context.startActivity(intent)
-                        }
+                        Constant.retrofit.getMedicoxEspecialidad(esp).enqueue(object :
+                            Callback<List<Medico>> {
+                            override fun onResponse(
+                                call: Call<List<Medico>>,
+                                response: Response<List<Medico>>
+                            ) {
+                                Log.e("medicos",response.body()!!.size.toString())
+                                if (response.body()!!.isNotEmpty()) {
+                                val dialog = AlertDialog.Builder(binding.btnEliminar.context)
+                                dialog.setTitle("Eliminar Especialidad")
+                                dialog.setMessage("Primero debe eliminar medicos y procedimientos asoaciadas a esta especialidad")
+                                dialog.setCancelable(false)
+                                dialog.setPositiveButton("Confirmar"
+                                ) { _, id ->
+                                    val intent = Intent(
+                                        binding.ivEspecialidad.context,
+                                        MedicosAdminActivity::class.java
+                                    )
+                                    intent.putExtra("esp", esp)
+                                    binding.tvNombreEspecialidad.context.startActivity(intent)
+                                    (binding.btnEditar.context as Activity).finish()
+                                }
+                                dialog.show()
+                                }else{
+                                    Toast.makeText(
+                                        binding.btnEditar.context,
+                                        "Se ha eliminado la Especialidad",
+                                        Toast.LENGTH_SHORT
+                                    ).show()
+                                    val intent =
+                                        Intent(
+                                            binding.btnEditar.context.applicationContext,
+                                            EspecialidadesAdminActivity::class.java
+                                        )
+                                    binding.btnEditar.context.startActivity(intent)
+                                    (binding.btnEditar.context as Activity).finish()
+                                }
+                            }
 
-                    )
-                    dialog.show()
+                            override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
+
+                            }
+                        })
+
                 }
             }
 
@@ -961,9 +1108,9 @@ open class ApiService {
                         binding.btnEditar.context.applicationContext,
                         MedicosAdminActivity::class.java
                     )
-                Thread.sleep(3000)
-                (binding.btnEditar.context as Activity)
+
                 binding.btnEditar.context.startActivity(intent)
+                (binding.btnEditar.context as Activity).finish()
             }
 
             override fun onFailure(call: Call<Medico>, t: Throwable) {
@@ -1004,14 +1151,14 @@ open class ApiService {
 
 
     //Crear Medico
-    fun createMedico(medico: createMedico, binding: ActivityMedicosAdminBinding) {
+    fun createMedico(medico: createMedico, binding: ActivityMedicoAgregarBinding) {
         Constant.retrofit.createMedico(medico).enqueue(object : Callback<createMedico> {
             override fun onResponse(
                 call: Call<createMedico>,
                 response: Response<createMedico>
             ) {
                 Toast.makeText(
-                    binding.rvMedico.context,
+                    binding.btnGuardar.context,
                     "Medico Creado",
                     Toast.LENGTH_SHORT
                 ).show()
@@ -1060,6 +1207,7 @@ open class ApiService {
 
     }
 
+
     fun getAllProcedimientosxMedico(binding: ActivityProcedimientoPacienteBinding, medicoid: Long) {
         fun iniRecyclerView(list: List<Procedimiento>) {
             binding.rvProcedimiento.layoutManager =
@@ -1100,10 +1248,10 @@ open class ApiService {
 
                 binding.spPais.adapter = ArrayAdapter(
                     binding.btnRegistrate.context,
-                    R.layout.simple_spinner_dropdown_item,
+                    android.R.layout.simple_spinner_dropdown_item,
                     list
                 )
-                if (paisid.isEmpty()) {
+                if (paisid== "null") {
                     binding.spPais.setSelection(0)
                 } else {
                     binding.spPais.setSelection(paisid.toInt())
@@ -1137,10 +1285,10 @@ open class ApiService {
 
                 binding.spPais.adapter = ArrayAdapter(
                     binding.btnGuardar.context,
-                    R.layout.simple_spinner_dropdown_item,
+                    android.R.layout.simple_spinner_dropdown_item,
                     list
                 )
-                if (paisid.isEmpty()) {
+                if (paisid== "null") {
                     binding.spPais.setSelection(0)
                 } else {
                     binding.spPais.setSelection(paisid.toInt())
@@ -1162,546 +1310,566 @@ open class ApiService {
     }
 
     fun getAllTurno(binding: ActivityMedicoAgregarBinding, turnoid: String) {
-    Constant.retrofit.getAllTurno().enqueue(
-    object : Callback<List<Turno>> {
-        override fun onResponse(
-            call: Call<List<Turno>>,
-            response: Response<List<Turno>>
-        ) {
-            val listTurno = response.body()
-            val listIdTurno = mutableListOf<Long>()
-            val listt = mutableListOf<String>()
-            listt.add(0, "Seleccionar")
-            listIdTurno.add(0, 0)
-            Log.e("Turno", listTurno.toString())
-            for (i in listTurno!!.indices) {
-                listt += listTurno[i].turno
-                listIdTurno += listTurno[i].id
-            }
-            binding.spTurno.adapter = ArrayAdapter(
-                binding.spEspecialidad.context,
-                R.layout.simple_spinner_dropdown_item,
-                listt
-            )
-            if (turnoid.isEmpty()) {
-                binding.spTurno.setSelection(0)
-            } else {
-                binding.spTurno.setSelection(turnoid.toInt())
-            }
+        Constant.retrofit.getAllTurno().enqueue(
+            object : Callback<List<Turno>> {
+                override fun onResponse(
+                    call: Call<List<Turno>>,
+                    response: Response<List<Turno>>
+                ) {
+                    val listTurno = response.body()
+                    val listIdTurno = mutableListOf<Long>()
+                    val listt = mutableListOf<String>()
+                    listt.add(0, "Seleccionar")
+                    listIdTurno.add(0, 0)
+                    Log.e("Turno", listTurno.toString())
+                    for (i in listTurno!!.indices) {
+                        listt += listTurno[i].turno
+                        listIdTurno += listTurno[i].id
+                    }
+                    binding.spTurno.adapter = ArrayAdapter(
+                        binding.spEspecialidad.context,
+                        android.R.layout.simple_spinner_dropdown_item,
+                        listt
+                    )
+                    if (turnoid== "null") {
+                        binding.spTurno.setSelection(0)
+
+                    } else {
+                        binding.spTurno.setSelection(turnoid.toInt())
+                    }
+                    binding.spTurno.onItemSelectedListener=object : AdapterView.OnItemSelectedListener {
+                        override fun onItemSelected(
+                            p0: AdapterView<*>?,
+                            p1: View?,
+                            p2: Int,
+                            p3: Long
+                        ) {
+                            if(binding.spTurno.selectedItemId.toInt() == 1){
+                                binding.txtInputHorario.setText("08:00:00 AM - 01:00:00 PM")
+                            }else if(binding.spTurno.selectedItemId.toInt() == 2){
+                                binding.txtInputHorario.setText("02:00:00 PM - 01:00:00 PM")
+                            }else{
+                                binding.txtInputHorario.setText("")
+                            }
+                        }
+                        override fun onNothingSelected(p0: AdapterView<*>?) {
+                        }
+                    }
+
+
+                }
+
+                override fun onFailure(call: Call<List<Turno>>, t: Throwable) {
+                    Toast.makeText(
+                        binding.btnGuardar.context,
+                        Constant.NoInternet,
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                }
+            })
+    }
+
+    fun getAllEspecialidades(binding: ActivityMedicoAgregarBinding, especialidadid: String) {
+        Constant.retrofit.getAllEspecialidades().enqueue(object : Callback<List<Especialidad>> {
+            override fun onResponse(
+                call: Call<List<Especialidad>>,
+                response: Response<List<Especialidad>>
+            ) {
+                val list = mutableListOf<String>()
+                list.add(0, "Seleccionar")
+                val listEspecialidad = response.body()
+                for (i in listEspecialidad!!.indices) list += listEspecialidad[i].nombre
+
+                binding.spEspecialidad.adapter = ArrayAdapter(
+                    binding.btnGuardar.context,
+                    android.R.layout.simple_spinner_dropdown_item,
+                    list
+                )
+                if (especialidadid == "null") {
+                    binding.spEspecialidad.setSelection(0)
+                } else {
+                    binding.spEspecialidad.setSelection(especialidadid.toInt())
+                }
+
 
             }
-        override fun onFailure(call: Call<List<Turno>>, t: Throwable) {
-            Toast.makeText(
-                binding.btnGuardar.context,
-                Constant.NoInternet,
-                Toast.LENGTH_LONG
-            ).show()
 
-        }
+            override fun onFailure(call: Call<List<Especialidad>>, t: Throwable) {
+                Toast.makeText(
+                    binding.btnGuardar.context,
+                    Constant.NoInternet,
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }
+
         })
     }
 
-        fun getAllEspecialidades(binding: ActivityMedicoAgregarBinding, especialidadid: String) {
-            Constant.retrofit.getAllEspecialidades().enqueue(object : Callback<List<Especialidad>> {
-                override fun onResponse(
-                    call: Call<List<Especialidad>>,
-                    response: Response<List<Especialidad>>
-                ) {
-                    val list = mutableListOf<String>()
-                    list.add(0, "Seleccionar")
-                    val listEspecialidad = response.body()
-                    for (i in listEspecialidad!!.indices) list += listEspecialidad[i].nombre
 
-                    binding.spEspecialidad.adapter = ArrayAdapter(
-                        binding.btnGuardar.context,
-                        R.layout.simple_spinner_dropdown_item,
-                        list
-                    )
-                    if (especialidadid.isEmpty()) {
-                        binding.spEspecialidad.setSelection(0)
-                    } else {
-                        binding.spEspecialidad.setSelection(especialidadid.toInt())
-                    }
-
-
-                }
-
-                override fun onFailure(call: Call<List<Especialidad>>, t: Throwable) {
-                    Toast.makeText(
-                        binding.btnGuardar.context,
-                        Constant.NoInternet,
-                        Toast.LENGTH_LONG
-                    ).show()
-
-                }
-
-            })
-        }
-
-
-        //Obtener el estadoCivil
-        fun getAllEstadoCivil(binding: ActivityRegisterBinding, estadocivilid: String) {
-            Constant.retrofit.getAllEstadoCivil().enqueue(object : Callback<List<EstadoCivil>> {
-                override fun onResponse(
-                    call: Call<List<EstadoCivil>>,
-                    response: Response<List<EstadoCivil>>
-                ) {
-                    val list = mutableListOf<String>()
-                    list.add(0, "Seleccionar")
-                    val listEstadoCivil = response.body()
-                    for (i in listEstadoCivil!!.indices) list += listEstadoCivil[i].nombre
-                    binding.spEstadoCivil.adapter = ArrayAdapter(
-                        binding.btnRegistrate.context,
-                        R.layout.simple_spinner_dropdown_item,
-                        list
-                    )
-                    if (estadocivilid.isEmpty()) {
-                        binding.spEstadoCivil.setSelection(0)
-                    } else {
-                        binding.spEstadoCivil.setSelection(estadocivilid.toInt())
-                    }
-                }
-
-                override fun onFailure(call: Call<List<EstadoCivil>>, t: Throwable) {
-                    Toast.makeText(
-                        binding.btnRegistrate.context,
-                        Constant.NoInternet,
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
-            })
-        }
-
-        fun getAllEstadoCivil(binding: ActivityMedicoAgregarBinding, estadocivilid: String) {
-            Constant.retrofit.getAllEstadoCivil().enqueue(object : Callback<List<EstadoCivil>> {
-                override fun onResponse(
-                    call: Call<List<EstadoCivil>>,
-                    response: Response<List<EstadoCivil>>
-                ) {
-                    val list = mutableListOf<String>()
-                    list.add(0, "Seleccionar")
-                    val listEstadoCivil = response.body()
-                    for (i in listEstadoCivil!!.indices) list += listEstadoCivil[i].nombre
-                    binding.spEstadoCivil.adapter = ArrayAdapter(
-                        binding.btnGuardar.context,
-                        R.layout.simple_spinner_dropdown_item,
-                        list
-                    )
-                    if (estadocivilid.isEmpty()) {
-                        binding.spEstadoCivil.setSelection(0)
-                    } else {
-                        binding.spEstadoCivil.setSelection(estadocivilid.toInt())
-                    }
-                }
-
-                override fun onFailure(call: Call<List<EstadoCivil>>, t: Throwable) {
-                    Toast.makeText(
-                        binding.btnGuardar.context,
-                        Constant.NoInternet,
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
-            })
-        }
-
-        //Obtener el Sexo
-        fun getAllSexo(binding: ActivityRegisterBinding, sexoid: String) {
-            Constant.retrofit.getAllSexo().enqueue(object : Callback<List<Sexo>> {
-                override fun onResponse(
-                    call: Call<List<Sexo>>,
-                    response: Response<List<Sexo>>
-                ) {
-                    val list = mutableListOf<String>()
-                    list.add(0, "Seleccionar")
-                    val listSexo = response.body()
-                    for (i in listSexo!!.indices) list += listSexo[i].nombre
-                    binding.spSexo.adapter = ArrayAdapter(
-                        binding.btnRegistrate.context,
-                        R.layout.simple_spinner_dropdown_item,
-                        list
-                    )
-                    if (sexoid.isEmpty()) {
-                        binding.spSexo.setSelection(0)
-                    } else {
-                        binding.spSexo.setSelection(sexoid.toInt())
-                    }
-                }
-
-                override fun onFailure(call: Call<List<Sexo>>, t: Throwable) {
-                    Toast.makeText(
-                        binding.btnRegistrate.context,
-                        Constant.NoInternet,
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
-            })
-        }
-
-        fun getAllSexo(binding: ActivityMedicoAgregarBinding, sexoid: String) {
-            Constant.retrofit.getAllSexo().enqueue(object : Callback<List<Sexo>> {
-                override fun onResponse(
-                    call: Call<List<Sexo>>,
-                    response: Response<List<Sexo>>
-                ) {
-                    val list = mutableListOf<String>()
-                    list.add(0, "Seleccionar")
-                    val listSexo = response.body()
-                    for (i in listSexo!!.indices) list += listSexo[i].nombre
-                    binding.spSexo.adapter = ArrayAdapter(
-                        binding.btnGuardar.context,
-                        R.layout.simple_spinner_dropdown_item,
-                        list
-                    )
-                    if (sexoid.isEmpty()) {
-                        binding.spSexo.setSelection(0)
-                    } else {
-                        binding.spSexo.setSelection(sexoid.toInt())
-                    }
-                }
-
-                override fun onFailure(call: Call<List<Sexo>>, t: Throwable) {
-                    Toast.makeText(
-                        binding.btnGuardar.context,
-                        Constant.NoInternet,
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
-            })
-        }
-
-
-        fun createUsuarioPacienteControlSalud(
-            binding: ActivityRegisterBinding,
-            usuarioPaciente: createUsuarioPaciente,
-
+    //Obtener el estadoCivil
+    fun getAllEstadoCivil(binding: ActivityRegisterBinding, estadocivilid: String) {
+        Constant.retrofit.getAllEstadoCivil().enqueue(object : Callback<List<EstadoCivil>> {
+            override fun onResponse(
+                call: Call<List<EstadoCivil>>,
+                response: Response<List<EstadoCivil>>
             ) {
-            Constant.retrofit.createContactoEmergencia(
-                com.example.gsi.Entity.createContactoEmergencia(
-                    ""
+                val list = mutableListOf<String>()
+                list.add(0, "Seleccionar")
+                val listEstadoCivil = response.body()
+                for (i in listEstadoCivil!!.indices) list += listEstadoCivil[i].nombre
+                binding.spEstadoCivil.adapter = ArrayAdapter(
+                    binding.btnRegistrate.context,
+                    android.R.layout.simple_spinner_dropdown_item,
+                    list
                 )
-            )
-                .enqueue(object : Callback<ContactoEmergencia> {
-                    override fun onResponse(
-                        call: Call<ContactoEmergencia>,
-                        response: Response<ContactoEmergencia>
-                    ) {
-                        val idCE = putContactoEmergencia(response.body()?.id!!)
-                        Constant.retrofit.createContactoMedico(
-                            com.example.gsi.Entity.createContactoMedico(
-                                ""
-                            )
-                        ).enqueue(object : Callback<ContactoMedico> {
-                            override fun onResponse(
-                                call: Call<ContactoMedico>,
-                                response: Response<ContactoMedico>
-                            ) {
-                                val idCM = putContactoMedico(response.body()?.id!!)
-                                Constant.retrofit.createEnfermedad(
-                                    com.example.gsi.Entity.createEnfermedad(
-                                        ""
-                                    )
-                                ).enqueue(object : Callback<Enfermedad> {
-                                    override fun onResponse(
-                                        call: Call<Enfermedad>,
-                                        response: Response<Enfermedad>
-                                    ) {
-                                        val idE = putEnfermedad(response.body()?.id!!)
-                                        Constant.retrofit.createMedicina(
-                                            com.example.gsi.Entity.createMedicina(
-                                                ""
-                                            )
-                                        ).enqueue(object : Callback<Medicina> {
-                                            override fun onResponse(
-                                                call: Call<Medicina>,
-                                                response: Response<Medicina>
-                                            ) {
-                                                val idM = putMedicina(response.body()?.id!!)
-                                                Constant.retrofit.createAlergia(
-                                                    com.example.gsi.Entity.createAlergia(
-                                                        ""
-                                                    )
-                                                )
-                                                    .enqueue(object : Callback<Alergia> {
-                                                        override fun onResponse(
-                                                            call: Call<Alergia>,
-                                                            response: Response<Alergia>
-                                                        ) {
-                                                            val idA =
-                                                                putAlergia(response.body()?.id!!)
-                                                            Constant.retrofit.createUsuario(
-                                                                usuarioPaciente
-                                                            )
-                                                                .enqueue(object :
-                                                                    Callback<Usuario> {
-                                                                    override fun onResponse(
-                                                                        call: Call<Usuario>,
-                                                                        response: Response<Usuario>
-                                                                    ) {
-                                                                        val idU =
-                                                                            putUsuario(response.body()?.id!!)
-                                                                        val pais =
-                                                                            createPais(binding.spPais.selectedItemPosition.toLong())
-                                                                        val estadoCivil =
-                                                                            createEstadoCivil(
-                                                                                binding.spEstadoCivil.selectedItemPosition.toLong()
-                                                                            )
-                                                                        val sexo =
-                                                                            putSexo(binding.spSexo.selectedItemPosition.toLong())
-                                                                        val pac =
-                                                                            com.example.gsi.Entity.createPaciente(
-                                                                                binding.editTextTexNombre.text.toString(),
-                                                                                binding.ediTextApePaterno.text.toString(),
-                                                                                binding.ediTextApeMaterno.text.toString(),
-                                                                                binding.editTextDni.text.toString()
-                                                                                    .toInt(),
-                                                                                binding.editTextDireccion.text.toString(),
-                                                                                binding.editTextTelefono.text.toString(),
-                                                                                binding.editTexEmail.text.toString(),
-                                                                                pais,
-                                                                                estadoCivil,
-                                                                                sexo,
-                                                                                idU,
-                                                                                idCE,
-                                                                                idCM,
-                                                                                idE,
-                                                                                idM,
-                                                                                idA
-                                                                            )
-                                                                        Constant.retrofit.createPaciente(
-                                                                            pac
-                                                                        ).enqueue(object :
-                                                                            Callback<Paciente> {
-                                                                            override fun onResponse(
-                                                                                call: Call<Paciente>,
-                                                                                response: Response<Paciente>
-                                                                            ) {
-                                                                                Toast.makeText(
-                                                                                    binding.btnRegistrate.context,
-                                                                                    "Usuario/Paciente Registrado con exito",
-                                                                                    Toast.LENGTH_SHORT
-                                                                                ).show()
-                                                                                (binding.btnRegistrate.context as Activity).finish()
-                                                                            }
-
-                                                                            override fun onFailure(
-                                                                                call: Call<Paciente>,
-                                                                                t: Throwable
-                                                                            ) {
-                                                                            }
-                                                                        })
-                                                                    }
-
-                                                                    override fun onFailure(
-                                                                        call: Call<Usuario>,
-                                                                        t: Throwable
-                                                                    ) {
-                                                                    }
-                                                                })
-                                                        }
-
-                                                        override fun onFailure(
-                                                            call: Call<Alergia>,
-                                                            t: Throwable
-                                                        ) {
-                                                        }
-                                                    }
-                                                    )
-                                            }
-
-                                            override fun onFailure(
-                                                call: Call<Medicina>,
-                                                t: Throwable
-                                            ) {
-                                            }
-                                        })
-                                    }
-
-                                    override fun onFailure(
-                                        call: Call<Enfermedad>,
-                                        t: Throwable
-                                    ) {
-                                    }
-                                })
-                            }
-
-                            override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
-                            }
-                        })
-                    }
-
-                    override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
-                    }
+                if (estadocivilid== "null") {
+                    binding.spEstadoCivil.setSelection(0)
+                } else {
+                    binding.spEstadoCivil.setSelection(estadocivilid.toInt())
                 }
-                )
-        }
+            }
 
-        fun updatePaciente(binding: ActivityRegisterBinding, id: Long, paciente: updatePaciente) {
-            Constant.retrofit.updatePaciente(id, paciente).enqueue(object : Callback<Paciente> {
-                override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
+            override fun onFailure(call: Call<List<EstadoCivil>>, t: Throwable) {
+                Toast.makeText(
+                    binding.btnRegistrate.context,
+                    Constant.NoInternet,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
 
-                }
-
-                override fun onFailure(call: Call<Paciente>, t: Throwable) {
-                }
-            })
-        }
-
-        fun updateUsuario(
-            binding: ActivityRegisterBinding,
-            id: Long,
-            usuario: createUsuarioPaciente
-        ) {
-            Constant.retrofit.updateUsuario(id, usuario).enqueue(object : Callback<Usuario> {
-                override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
-
-                }
-
-                override fun onFailure(call: Call<Usuario>, t: Throwable) {
-
-                }
-
-            })
-        }
-
-        fun updateAlergia(
-            id: Long,
-            alergia: createAlergia,
-            binding: ActivityAlergiaPacienteBinding,
-            usuario: String
-        ) {
-            Constant.retrofit.updateAlergia(id, alergia).enqueue(object : Callback<Alergia> {
-                override fun onResponse(call: Call<Alergia>, response: Response<Alergia>) {
-                    val intent =
-                        Intent(
-                            binding.txtAlergia.context,
-                            binding.txtAlergia.context::class.java
-                        )
-                    intent.putExtra("usuario", usuario)
-                    intent.putExtra("alergiaid", response.body()?.id.toString())
-                    intent.putExtra("alergia", response.body()?.descripcion)
-                    binding.txtAlergia.context.startActivity(intent)
-                    (binding.txtAlergia.context as Activity).finish()
-                }
-
-                override fun onFailure(call: Call<Alergia>, t: Throwable) {
-                }
-            })
-        }
-
-        fun updateContactoEmergencia(
-            id: Long,
-            contactoEmergencia: createContactoEmergencia,
-            binding: ActivityContactoEmergenciaPacienteBinding,
-            usuario: String
-        ) {
-            Constant.retrofit.updateContactoEmergencia(id, contactoEmergencia)
-                .enqueue(object : Callback<ContactoEmergencia> {
-                    override fun onResponse(
-                        call: Call<ContactoEmergencia>,
-                        response: Response<ContactoEmergencia>
-                    ) {
-                        val intent = Intent(
-                            binding.txtContactoEmergencia.context,
-                            binding.txtContactoEmergencia.context::class.java
-                        )
-                        intent.putExtra("usuario", usuario)
-                        intent.putExtra("contactoemergenciaid", response.body()?.id.toString())
-                        intent.putExtra("contactoemergencia", response.body()?.descripcion)
-                        binding.txtContactoEmergencia.context.startActivity(intent)
-                        (binding.txtContactoEmergencia.context as Activity).finish()
-                    }
-
-                    override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
-                    }
-                })
-        }
-
-        fun updateContactoMedico(
-            id: Long,
-            contactoMedico: createContactoMedico,
-            binding: ActivityContactoMedicoPacienteBinding,
-            usuario: String
-        ) {
-            Constant.retrofit.updateContactoMedico(id, contactoMedico)
-                .enqueue(object : Callback<ContactoMedico> {
-                    override fun onResponse(
-                        call: Call<ContactoMedico>,
-                        response: Response<ContactoMedico>
-                    ) {
-                        val intent = Intent(
-                            binding.txtContactoMedico.context,
-                            binding.txtContactoMedico.context::class.java
-                        )
-                        intent.putExtra("usuario", usuario)
-                        intent.putExtra("contactomedicoid", response.body()?.id.toString())
-                        intent.putExtra("contactomedico", response.body()?.descripcion)
-                        binding.txtContactoMedico.context.startActivity(intent)
-                        (binding.txtContactoMedico.context as Activity).finish()
-                    }
-
-                    override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
-                    }
-                })
-        }
-
-        fun updateEnfermedad(
-            id: Long,
-            enfermedad: createEnfermedad,
-            binding: ActivityEnfermedadPacienteBinding,
-            usuario: String
-        ) {
-            Constant.retrofit.updateEnfermedad(id, enfermedad)
-                .enqueue(object : Callback<Enfermedad> {
-                    override fun onResponse(
-                        call: Call<Enfermedad>,
-                        response: Response<Enfermedad>
-                    ) {
-                        val intent =
-                            Intent(
-                                binding.txtEnfermedad.context,
-                                binding.txtEnfermedad.context::class.java
-                            )
-                        intent.putExtra("usuario", usuario)
-                        intent.putExtra("enfermedadid", response.body()?.id.toString())
-                        intent.putExtra("enfermedad", response.body()?.descripcion)
-                        binding.txtEnfermedad.context.startActivity(intent)
-                        (binding.txtEnfermedad.context as Activity).finish()
-                    }
-
-                    override fun onFailure(call: Call<Enfermedad>, t: Throwable) {
-                    }
-                })
-        }
-
-        fun updateMedicina(
-            id: Long,
-            medicina: createMedicina,
-            binding: ActivityMedicinaPacienteBinding,
-            usuario: String
-        ) {
-            Constant.retrofit.updateMedicina(id, medicina).enqueue(object : Callback<Medicina> {
-                override fun onResponse(call: Call<Medicina>, response: Response<Medicina>) {
-                    val intent =
-                        Intent(
-                            binding.txtMedicina.context,
-                            binding.txtMedicina.context::class.java
-                        )
-                    intent.putExtra("usuario", usuario)
-                    intent.putExtra("medicinaid", response.body()?.id.toString())
-                    intent.putExtra("medicina", response.body()?.descripcion)
-                    binding.txtMedicina.context.startActivity(intent)
-                    (binding.txtMedicina.context as Activity).finish()
-                }
-
-                override fun onFailure(call: Call<Medicina>, t: Throwable) {
-                }
-            })
-        }
+        })
     }
+
+    fun getAllEstadoCivil(binding: ActivityMedicoAgregarBinding, estadocivilid: String) {
+        Constant.retrofit.getAllEstadoCivil().enqueue(object : Callback<List<EstadoCivil>> {
+            override fun onResponse(
+                call: Call<List<EstadoCivil>>,
+                response: Response<List<EstadoCivil>>
+            ) {
+                val list = mutableListOf<String>()
+                list.add(0, "Seleccionar")
+                val listEstadoCivil = response.body()
+                for (i in listEstadoCivil!!.indices) list += listEstadoCivil[i].nombre
+                binding.spEstadoCivil.adapter = ArrayAdapter(
+                    binding.btnGuardar.context,
+                    android.R.layout.simple_spinner_dropdown_item,
+                    list
+                )
+                if (estadocivilid== "null") {
+                    binding.spEstadoCivil.setSelection(0)
+                } else {
+                    binding.spEstadoCivil.setSelection(estadocivilid.toInt())
+                }
+            }
+
+            override fun onFailure(call: Call<List<EstadoCivil>>, t: Throwable) {
+                Toast.makeText(
+                    binding.btnGuardar.context,
+                    Constant.NoInternet,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+        })
+    }
+
+    //Obtener el Sexo
+    fun getAllSexo(binding: ActivityRegisterBinding, sexoid: String) {
+        Constant.retrofit.getAllSexo().enqueue(object : Callback<List<Sexo>> {
+            override fun onResponse(
+                call: Call<List<Sexo>>,
+                response: Response<List<Sexo>>
+            ) {
+                val list = mutableListOf<String>()
+                list.add(0, "Seleccionar")
+                val listSexo = response.body()
+                for (i in listSexo!!.indices) list += listSexo[i].nombre
+                binding.spSexo.adapter = ArrayAdapter(
+                    binding.btnRegistrate.context,
+                    android.R.layout.simple_spinner_dropdown_item,
+                    list
+                )
+                if (sexoid== "null") {
+                    binding.spSexo.setSelection(0)
+                } else {
+                    binding.spSexo.setSelection(sexoid.toInt())
+                }
+            }
+
+            override fun onFailure(call: Call<List<Sexo>>, t: Throwable) {
+                Toast.makeText(
+                    binding.btnRegistrate.context,
+                    Constant.NoInternet,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+        })
+    }
+
+    fun getAllSexo(binding: ActivityMedicoAgregarBinding, sexoid: String) {
+        Constant.retrofit.getAllSexo().enqueue(object : Callback<List<Sexo>> {
+            override fun onResponse(
+                call: Call<List<Sexo>>,
+                response: Response<List<Sexo>>
+            ) {
+                val list = mutableListOf<String>()
+                list.add(0, "Seleccionar")
+                val listSexo = response.body()
+                for (i in listSexo!!.indices) list += listSexo[i].nombre
+                binding.spSexo.adapter = ArrayAdapter(
+                    binding.btnGuardar.context,
+                    android.R.layout.simple_spinner_dropdown_item,
+                    list
+                )
+                if (sexoid== "null") {
+                    binding.spSexo.setSelection(0)
+                } else {
+                    binding.spSexo.setSelection(sexoid.toInt())
+                }
+            }
+
+            override fun onFailure(call: Call<List<Sexo>>, t: Throwable) {
+                Toast.makeText(
+                    binding.btnGuardar.context,
+                    Constant.NoInternet,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+        })
+    }
+
+
+    fun createUsuarioPacienteControlSalud(
+        binding: ActivityRegisterBinding,
+        usuarioPaciente: createUsuarioPaciente,
+
+        ) {
+        Constant.retrofit.createContactoEmergencia(
+            createContactoEmergencia(
+                ""
+            )
+        )
+            .enqueue(object : Callback<ContactoEmergencia> {
+                override fun onResponse(
+                    call: Call<ContactoEmergencia>,
+                    response: Response<ContactoEmergencia>
+                ) {
+                    val idCE = putContactoEmergencia(response.body()?.id!!)
+                    Constant.retrofit.createContactoMedico(
+                        createContactoMedico(
+                            ""
+                        )
+                    ).enqueue(object : Callback<ContactoMedico> {
+                        override fun onResponse(
+                            call: Call<ContactoMedico>,
+                            response: Response<ContactoMedico>
+                        ) {
+                            val idCM = putContactoMedico(response.body()?.id!!)
+                            Constant.retrofit.createEnfermedad(
+                                createEnfermedad(
+                                    ""
+                                )
+                            ).enqueue(object : Callback<Enfermedad> {
+                                override fun onResponse(
+                                    call: Call<Enfermedad>,
+                                    response: Response<Enfermedad>
+                                ) {
+                                    val idE = putEnfermedad(response.body()?.id!!)
+                                    Constant.retrofit.createMedicina(
+                                        createMedicina(
+                                            ""
+                                        )
+                                    ).enqueue(object : Callback<Medicina> {
+                                        override fun onResponse(
+                                            call: Call<Medicina>,
+                                            response: Response<Medicina>
+                                        ) {
+                                            val idM = putMedicina(response.body()?.id!!)
+                                            Constant.retrofit.createAlergia(
+                                                createAlergia(
+                                                    ""
+                                                )
+                                            )
+                                                .enqueue(object : Callback<Alergia> {
+                                                    override fun onResponse(
+                                                        call: Call<Alergia>,
+                                                        response: Response<Alergia>
+                                                    ) {
+                                                        val idA =
+                                                            putAlergia(response.body()?.id!!)
+                                                        Constant.retrofit.createUsuario(
+                                                            usuarioPaciente
+                                                        )
+                                                            .enqueue(object :
+                                                                Callback<Usuario> {
+                                                                override fun onResponse(
+                                                                    call: Call<Usuario>,
+                                                                    response: Response<Usuario>
+                                                                ) {
+                                                                    val idU =
+                                                                        putUsuario(response.body()?.id!!)
+                                                                    val pais =
+                                                                        putPais(binding.spPais.selectedItemPosition.toLong())
+                                                                    val estadoCivil =
+                                                                        putEstadoCivil(
+                                                                            binding.spEstadoCivil.selectedItemPosition.toLong()
+                                                                        )
+                                                                    val sexo =
+                                                                        putSexo(binding.spSexo.selectedItemPosition.toLong())
+                                                                    val pac =
+                                                                        createPaciente(
+                                                                            binding.editTextTexNombre.text.toString(),
+                                                                            binding.ediTextApePaterno.text.toString(),
+                                                                            binding.ediTextApeMaterno.text.toString(),
+                                                                            binding.editTextDni.text.toString()
+                                                                                .toInt(),
+                                                                            binding.editTextDireccion.text.toString(),
+                                                                            binding.editTextTelefono.text.toString(),
+                                                                            binding.editTexEmail.text.toString(),
+                                                                            pais,
+                                                                            estadoCivil,
+                                                                            sexo,
+                                                                            idU,
+                                                                            idCE,
+                                                                            idCM,
+                                                                            idE,
+                                                                            idM,
+                                                                            idA
+                                                                        )
+                                                                    Constant.retrofit.createPaciente(
+                                                                        pac
+                                                                    ).enqueue(object :
+                                                                        Callback<Paciente> {
+                                                                        override fun onResponse(
+                                                                            call: Call<Paciente>,
+                                                                            response: Response<Paciente>
+                                                                        ) {
+                                                                            Toast.makeText(
+                                                                                binding.btnRegistrate.context,
+                                                                                "Usuario/Paciente Registrado con exito",
+                                                                                Toast.LENGTH_SHORT
+                                                                            ).show()
+                                                                            (binding.btnRegistrate.context as Activity).finish()
+                                                                        }
+
+                                                                        override fun onFailure(
+                                                                            call: Call<Paciente>,
+                                                                            t: Throwable
+                                                                        ) {
+                                                                        }
+                                                                    })
+                                                                }
+
+                                                                override fun onFailure(
+                                                                    call: Call<Usuario>,
+                                                                    t: Throwable
+                                                                ) {
+                                                                }
+                                                            })
+                                                    }
+
+                                                    override fun onFailure(
+                                                        call: Call<Alergia>,
+                                                        t: Throwable
+                                                    ) {
+                                                    }
+                                                }
+                                                )
+                                        }
+
+                                        override fun onFailure(
+                                            call: Call<Medicina>,
+                                            t: Throwable
+                                        ) {
+                                        }
+                                    })
+                                }
+
+                                override fun onFailure(
+                                    call: Call<Enfermedad>,
+                                    t: Throwable
+                                ) {
+                                }
+                            })
+                        }
+
+                        override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
+                        }
+                    })
+                }
+
+                override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
+                }
+            }
+            )
+    }
+
+    fun updatePaciente(binding: ActivityRegisterBinding, id: Long, paciente: updatePaciente) {
+        Constant.retrofit.updatePaciente(id, paciente).enqueue(object : Callback<Paciente> {
+            override fun onResponse(call: Call<Paciente>, response: Response<Paciente>) {
+            }
+            override fun onFailure(call: Call<Paciente>, t: Throwable) {
+            }
+        })
+    }
+
+    fun updateUsuario(
+        binding: ActivityRegisterBinding,
+        id: Long,
+        usuario: createUsuarioPaciente
+    ) {
+        Constant.retrofit.updateUsuario(id, usuario).enqueue(object : Callback<Usuario> {
+            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
+
+            }
+
+            override fun onFailure(call: Call<Usuario>, t: Throwable) {
+
+            }
+
+        })
+    }
+
+    fun updateAlergia(
+        id: Long,
+        alergia: createAlergia,
+        binding: ActivityAlergiaPacienteBinding,
+        usuario: String
+    ) {
+        Constant.retrofit.updateAlergia(id, alergia).enqueue(object : Callback<Alergia> {
+            override fun onResponse(call: Call<Alergia>, response: Response<Alergia>) {
+                val intent =
+                    Intent(
+                        binding.txtAlergia.context,
+                        binding.txtAlergia.context::class.java
+                    )
+                intent.putExtra("usuario", usuario)
+                intent.putExtra("alergiaid", response.body()?.id.toString())
+                intent.putExtra("alergia", response.body()?.descripcion)
+                binding.txtAlergia.context.startActivity(intent)
+                (binding.txtAlergia.context as Activity).finish()
+            }
+
+            override fun onFailure(call: Call<Alergia>, t: Throwable) {
+            }
+        })
+    }
+
+    fun updateContactoEmergencia(
+        id: Long,
+        contactoEmergencia: createContactoEmergencia,
+        binding: ActivityContactoEmergenciaPacienteBinding,
+        usuario: String
+    ) {
+        Constant.retrofit.updateContactoEmergencia(id, contactoEmergencia)
+            .enqueue(object : Callback<ContactoEmergencia> {
+                override fun onResponse(
+                    call: Call<ContactoEmergencia>,
+                    response: Response<ContactoEmergencia>
+                ) {
+                    val intent = Intent(
+                        binding.txtContactoEmergencia.context,
+                        binding.txtContactoEmergencia.context::class.java
+                    )
+                    intent.putExtra("usuario", usuario)
+                    intent.putExtra("contactoemergenciaid", response.body()?.id.toString())
+                    intent.putExtra("contactoemergencia", response.body()?.descripcion)
+                    binding.txtContactoEmergencia.context.startActivity(intent)
+                    (binding.txtContactoEmergencia.context as Activity).finish()
+                }
+
+                override fun onFailure(call: Call<ContactoEmergencia>, t: Throwable) {
+                }
+            })
+    }
+
+    fun updateContactoMedico(
+        id: Long,
+        contactoMedico: createContactoMedico,
+        binding: ActivityContactoMedicoPacienteBinding,
+        usuario: String
+    ) {
+        Constant.retrofit.updateContactoMedico(id, contactoMedico)
+            .enqueue(object : Callback<ContactoMedico> {
+                override fun onResponse(
+                    call: Call<ContactoMedico>,
+                    response: Response<ContactoMedico>
+                ) {
+                    val intent = Intent(
+                        binding.txtContactoMedico.context,
+                        binding.txtContactoMedico.context::class.java
+                    )
+                    intent.putExtra("usuario", usuario)
+                    intent.putExtra("contactomedicoid", response.body()?.id.toString())
+                    intent.putExtra("contactomedico", response.body()?.descripcion)
+                    binding.txtContactoMedico.context.startActivity(intent)
+                    (binding.txtContactoMedico.context as Activity).finish()
+                }
+
+                override fun onFailure(call: Call<ContactoMedico>, t: Throwable) {
+                }
+            })
+    }
+
+    fun updateEnfermedad(
+        id: Long,
+        enfermedad: createEnfermedad,
+        binding: ActivityEnfermedadPacienteBinding,
+        usuario: String
+    ) {
+        Constant.retrofit.updateEnfermedad(id, enfermedad)
+            .enqueue(object : Callback<Enfermedad> {
+                override fun onResponse(
+                    call: Call<Enfermedad>,
+                    response: Response<Enfermedad>
+                ) {
+                    val intent =
+                        Intent(
+                            binding.txtEnfermedad.context,
+                            binding.txtEnfermedad.context::class.java
+                        )
+                    intent.putExtra("usuario", usuario)
+                    intent.putExtra("enfermedadid", response.body()?.id.toString())
+                    intent.putExtra("enfermedad", response.body()?.descripcion)
+                    binding.txtEnfermedad.context.startActivity(intent)
+                    (binding.txtEnfermedad.context as Activity).finish()
+                }
+
+                override fun onFailure(call: Call<Enfermedad>, t: Throwable) {
+                }
+            })
+    }
+
+    fun updateMedicina(
+        id: Long,
+        medicina: createMedicina,
+        binding: ActivityMedicinaPacienteBinding,
+        usuario: String
+    ) {
+        Constant.retrofit.updateMedicina(id, medicina).enqueue(object : Callback<Medicina> {
+            override fun onResponse(call: Call<Medicina>, response: Response<Medicina>) {
+                val intent =
+                    Intent(
+                        binding.txtMedicina.context,
+                        binding.txtMedicina.context::class.java
+                    )
+                intent.putExtra("usuario", usuario)
+                intent.putExtra("medicinaid", response.body()?.id.toString())
+                intent.putExtra("medicina", response.body()?.descripcion)
+                binding.txtMedicina.context.startActivity(intent)
+                (binding.txtMedicina.context as Activity).finish()
+            }
+
+            override fun onFailure(call: Call<Medicina>, t: Throwable) {
+            }
+        })
+    }
+
+}
 
 
 
