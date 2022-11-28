@@ -39,7 +39,7 @@
     <string name="lbl_acercaNosotros">ACERCA DE \nNOSOTROS</string>
     <string name="lbl_acercaNosotros2">ACERCA DE NOSOTROS</string>
     <string name="lbl_ubicacion">¿DÓNDE NOS UBICAMOS?</string>
-    <string name="lbl_perfil">Perfil</string>
+    <string name="lbl_perfil">PERFIL</string>
     <string name="lbl_controlSalud">CONTROL SALUD</string>
     <string name="lbl_paciente">PACIENTES</string>
 
@@ -56,6 +56,7 @@
     <string name="lbl_pais">Pais:</string>
     <string name="lbl_sexo">Sexo:</string>
     <string name="lbl_estadocivil">Estado Civil:</string>
+    <string name="lbl_especialidad2">Especialidad:</string>
 
     //REGISTER
     <string name="lbl_acercaGrupoSalud">Grupo de jóvenes empresarios vecinos

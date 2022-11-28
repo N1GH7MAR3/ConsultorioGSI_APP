@@ -56,6 +56,65 @@
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/layout_error_dailog.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/layout_success_dailog.xml" value="0.22543859649122808" />
         <entry key="..\:/Android/ConsultorioGSI_app/app/src/main/res/layout/layout_warning_dailog.xml" value="0.22543859649122808" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable-v24/bg_button.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable-v24/bg_degradado2.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable-v24/circle_background.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/bg_azul.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/bg_degradado.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/bottom_background_light_green.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/button_error_background.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/button_neutral_background.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/button_sucess_background.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/button_warning_background.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/card_bg.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/custom_butom.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/dialog_background.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/green_banner_background.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/grey_background.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/drawable/ic_account_box.xml" value="0.1785" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_acerca_nosotros.xml" value="0.33" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_alergia_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_cita_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_cita_registrar.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_contacto_emergencia_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_contacto_medico_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_control_salud.xml" value="0.25" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_admin.xml" value="0.278125" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_invitado.xml" value="0.278125" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_dashboard_paciente.xml" value="0.22777777777777777" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_editar_perfil_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_enfermedad_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_especialidad_editar.xml" value="0.27395833333333336" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_especialidades_admin.xml" value="0.20833333333333334" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_especialidades_paciente.xml" value="0.2101851851851852" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_lista_paciente_admin.xml" value="0.5" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_login.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_main.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_main2.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_medicina_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_agregar.xml" value="0.27395833333333336" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_detalle.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_editar.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_medico_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_medicos_admin.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_paciente_detalle.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_paciente_perfil.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_procedimiento_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_register.xml" value="0.33" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_reserva_cita_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_splash_screen.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/activity_welcome.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/custom_tolbar_principal.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/item_cita_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/item_especialidades_admin.xml" value="0.20833333333333334" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/item_especialidades_paciente.xml" value="0.26481481481481484" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/item_lista_paciente.xml" value="0.5" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/item_medico_admin.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/item_medico_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/item_procedimiento_paciente.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/layout_error_dailog.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/layout_success_dailog.xml" value="0.3109375" />
+        <entry key="..\:/Idat/CICLO VI/Proyecto Certificador de DSW 3/Proyecto Grupo 4/Programacion/ConsultorioGSI_app/app/src/main/res/layout/layout_warning_dailog.xml" value="0.3109375" />
         <entry key="..\:/WP_AndroidStucioII/ConsultorioGSI_app/app/src/main/res/drawable/bg_degradado.xml" value="0.2655" />
         <entry key="..\:/WP_AndroidStucioII/ConsultorioGSI_app/app/src/main/res/drawable/bottom_background_light_green.xml" value="0.34" />
         <entry key="..\:/WP_AndroidStucioII/ConsultorioGSI_app/app/src/main/res/drawable/card_bg.xml" value="0.277" />
