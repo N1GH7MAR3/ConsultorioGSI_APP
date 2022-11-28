@@ -118,6 +118,7 @@ interface Services {
 
     @POST("cita/registrar")
     fun createCita(@Body body:createCita):Call<Cita>
+
     @GET("cita/buscarcita/{fechacita}/{idespecialidad}/{idmedico}/{idprocedimiento}")
     fun searchCitas(@Path("fechacita")fechacita:String,@Path("idespecialidad")idespecialidad:Long,
                     @Path("idmedico")idmedico:Long,@Path("idprocedimiento")idprocedimiento:Long):Call <Cita>
