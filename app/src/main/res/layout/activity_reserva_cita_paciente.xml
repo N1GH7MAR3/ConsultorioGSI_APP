@@ -65,6 +65,39 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <EditText
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/in_date"
+        android:layout_marginTop="82dp"
+/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SELECT DATE"
+        android:id="@+id/btn_date"
+/>
+
+    <Spinner
+        android:id="@+id/spHorario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </Spinner>
+
+
+
+</LinearLayout>
+
+            <Button
+                android:id="@+id/btnReservarCita"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservar Cita"/>
         </LinearLayout>
 
     </LinearLayout>

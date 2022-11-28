@@ -2,10 +2,8 @@ package com.example.gsi.Service
 
 import android.R
 import android.app.Activity
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
-import android.os.AsyncTask
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -19,12 +17,14 @@ import com.example.gsi.Adapter.*
 import com.example.gsi.Constans.Constant
 import com.example.gsi.Entity.*
 import com.example.gsi.databinding.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.invoke.ConstantCallSite
-import kotlin.math.log
+import java.util.*
 
 @OptIn(DelicateCoroutinesApi::class)
 open class ApiService {
@@ -489,7 +489,6 @@ open class ApiService {
                                             val listp = mutableListOf<String>()
                                             listp.add(0, "Seleccionar")
                                             listIdProcedimiento.add(0, 0)
-                                            Log.e("procedimientos", listProcedimiento.toString())
                                             for (i in listProcedimiento!!.indices) {
                                                 listp += listProcedimiento[i].nombre
                                                 listIdProcedimiento += listProcedimiento[i].id
@@ -521,10 +520,7 @@ open class ApiService {
                                                                         mutableListOf<String>()
                                                                     listt.add(0, "Seleccionar")
                                                                     listIdTurno.add(0, 0)
-                                                                    Log.e(
-                                                                        "Turno",
-                                                                        listTurno.toString()
-                                                                    )
+
                                                                     for (i in listTurno!!.indices) {
                                                                         listt += listTurno[i].turno
                                                                         listIdTurno += listTurno[i].id
@@ -554,9 +550,12 @@ open class ApiService {
                                                                                         call: Call<List<Medico>>,
                                                                                         response: Response<List<Medico>>
                                                                                     ) {
+
                                                                                         val listMedicos =
                                                                                             response.body()
                                                                                         val listm =
+                                                                                            mutableListOf<String>()
+                                                                                        val listhorario =
                                                                                             mutableListOf<String>()
                                                                                         val listIdMedicos =
                                                                                             mutableListOf<Long>()
@@ -568,25 +567,76 @@ open class ApiService {
                                                                                             0,
                                                                                             0
                                                                                         )
-                                                                                        Log.e(
-                                                                                            "Medicos",
-                                                                                            listMedicos.toString()
-                                                                                        )
-                                                                                        if (listMedicos != null) {
 
+                                                                                        if (listMedicos != null) {
                                                                                             for (i in listMedicos.indices) {
                                                                                                 if (listMedicos[i].turno.turno == binding.spTurno.selectedItem.toString()) {
-                                                                                                    listm += listMedicos[i].nombre
+                                                                                                    listm += listMedicos[i].nombre+" "+listMedicos[i].apellido_paterno
                                                                                                     listIdMedicos += listMedicos[i].id
+                                                                                                    val inicio=listMedicos[i].horario.horaingreso.trim().replace(":00:00","",false)
+                                                                                                    val fin=listMedicos[i].horario.horasalida.replace(":00:00","",false)
+                                                                                                    if(inicio.substring(1).toInt() == 2){
+                                                                                                        for(i in inicio.substring(1).toInt()..fin.substring(1).toInt()){
+                                                                                                            val h="PM"
+                                                                                                            val zero="0"
+
+                                                                                                            listhorario+= "$zero$i:00 $h"
+                                                                                                        }
+                                                                                                    }else{
+                                                                                                        for(i in inicio.substring(1).toInt()..fin.substring(1).toInt()+12){
+                                                                                                            var h="AM"
+                                                                                                            val zero="0"
+
+                                                                                                            if(i<10 ){
+                                                                                                                listhorario+= "$zero$i:00 $h"
+
+
+                                                                                                            }else if(i in 10..11){
+                                                                                                                listhorario+= "$i:00 $h"
+                                                                                                            }
+                                                                                                            else{
+                                                                                                                h="PM"
+                                                                                                                listhorario+= "$i:00 $h"
+                                                                                                            }
+
+                                                                                                        }
+                                                                                                    }
+
                                                                                                 }
 
                                                                                             }
+
+
                                                                                             binding.spMedicos.adapter =
                                                                                                 ArrayAdapter(
                                                                                                     binding.spEspecialidad.context,
                                                                                                     R.layout.simple_spinner_dropdown_item,
                                                                                                     listm
                                                                                                 )
+                                                                                            binding.spMedicos.onItemSelectedListener=object :
+                                                                                                AdapterView.OnItemSelectedListener {
+                                                                                                override fun onItemSelected(
+                                                                                                    p0: AdapterView<*>?,
+                                                                                                    p1: View?,
+                                                                                                    p2: Int,
+                                                                                                    p3: Long
+                                                                                                ) {
+
+                                                                                                    binding.spHorario.adapter=
+                                                                                                        ArrayAdapter(
+                                                                                                            binding.spEspecialidad.context,
+                                                                                                            R.layout.simple_spinner_dropdown_item,
+                                                                                                            listhorario
+                                                                                                        )
+
+                                                                                                }
+
+                                                                                                override fun onNothingSelected(
+                                                                                                    p0: AdapterView<*>?
+                                                                                                ) {
+
+                                                                                                }
+                                                                                            }
                                                                                         }
 
                                                                                     }
