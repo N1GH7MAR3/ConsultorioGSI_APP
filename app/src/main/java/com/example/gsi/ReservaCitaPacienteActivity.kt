@@ -23,7 +23,7 @@ class ReservaCitaPacienteActivity : AppCompatActivity(){
         Constant.api.getEspecilidadesPaciente(binding, id.toLong())
 
 
-        binding.customPrinciapl.btnRegresar.setOnClickListener {
+        binding.btnRegresar.setOnClickListener {
             finish()
         }
         binding.btnDate.setOnClickListener {

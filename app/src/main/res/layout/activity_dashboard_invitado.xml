@@ -80,6 +80,7 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
+                android:id="@+id/linearEspeacilidades"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
@@ -146,6 +147,7 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
+                android:id="@+id/linearAcercaDe"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
@@ -212,6 +214,7 @@
             app:cardUseCompatPadding="true">
 
             <LinearLayout
+                android:id="@+id/linearUbicacion"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|center_vertical"
