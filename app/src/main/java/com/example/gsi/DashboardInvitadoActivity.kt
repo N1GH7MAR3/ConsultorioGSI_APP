@@ -22,7 +22,11 @@ class DashboardInvitadoActivity : AppCompatActivity() {
         binding.linearEspeacilidades.setOnClickListener {
             val intent= Intent(this,EspecialidadesPacienteActivity::class.java)
             startActivity(intent)
-            finish()
+
+        }
+        binding.linearAcercaDe.setOnClickListener {
+            val intent=Intent(this,AcercaNosotrosActivity::class.java)
+            startActivity(intent)
         }
     }
 }

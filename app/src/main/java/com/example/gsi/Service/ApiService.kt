@@ -113,9 +113,9 @@ open class ApiService {
                             }
 
                             if (response.body()?.sexo?.nombre == "Femenino") {
-                                binding.imagePerfil.setImageResource(R.drawable.img_girl)
+                                binding.imagePerfil.setImageResource(R.drawable.img_girl2)
                             } else {
-                                binding.imagePerfil.setImageResource(R.drawable.img_boy)
+                                binding.imagePerfil.setImageResource(R.drawable.img_boy2)
                             }
                             binding.imagePerfil.setOnClickListener {
                                 val intent = Intent(
