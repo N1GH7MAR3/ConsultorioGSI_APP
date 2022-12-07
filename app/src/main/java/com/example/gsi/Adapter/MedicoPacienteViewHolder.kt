@@ -24,7 +24,7 @@ class MedicoPacienteViewHolder (view:View):RecyclerView.ViewHolder (view){
         }else{
             binding.ivEspecialidad.setImageResource(R.drawable.img_medicom)
         }
-        itemView.setOnClickListener {
+        binding.btnProcedimiento.setOnClickListener {
             val intent= Intent(binding.ivEspecialidad.context, ProcedimientoPacienteActivity::class.java)
             intent.putExtra("medicoid",medicos.id.toString())
             binding.ivEspecialidad.context.startActivity(intent)

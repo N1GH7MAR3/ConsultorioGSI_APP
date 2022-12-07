@@ -74,20 +74,30 @@
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:padding="8dp"
 
 
             >
-
 
             <Button
                 android:id="@+id/btnDetalle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
-                android:layout_marginLeft="115dp"
+                android:gravity="center"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Detalle"
+                android:textStyle="bold" />
+            <Button
+                android:id="@+id/btnProcedimiento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/btnDetalle"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Procedimientos"
                 android:textStyle="bold" />
 
 

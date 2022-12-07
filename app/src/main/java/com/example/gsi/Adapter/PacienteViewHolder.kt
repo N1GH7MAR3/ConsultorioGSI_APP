@@ -39,7 +39,7 @@ class PacienteViewHolder (view:View):RecyclerView.ViewHolder(view){
             intent.putExtra("correo",pacientes.correo)
 
             binding.btnDetallePaciente.context.startActivity(intent)
-            (binding.btnDetallePaciente.context as Activity).finish()
+
         }
 
     }
