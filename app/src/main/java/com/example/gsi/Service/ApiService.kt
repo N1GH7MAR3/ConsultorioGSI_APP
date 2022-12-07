@@ -1201,22 +1201,21 @@ open class ApiService {
     fun deleteProcedimiento(binding: ItemProcedimientoAdminBinding, id: Long) {
         Constant.retrofit.deleteProcedimiento(id).enqueue(object : Callback<Procedimiento> {
             override fun onResponse(call: Call<Procedimiento>, response: Response<Procedimiento>) {
-                Toast.makeText(
-                    binding.btnEditar.context,
-                    "Se ha eliminado el Procedimiento ",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-                val intent =
-                    Intent(
-                        binding.btnEditar.context.applicationContext,
-                        ProcedimientoAdminActivity::class.java
-                    )
-
-                binding.btnEditar.context.startActivity(intent)
-                (binding.btnEditar.context as Activity).finish()
+                if(response.code()==500){
+                    Toast.makeText(
+                        binding.btnEditar.context,
+                        "No se puede eliminar el Procedimiento",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }else {
+                    Toast.makeText(
+                        binding.btnEditar.context,
+                        "Se ha eliminado el Procedimiento ",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    (binding.btnEditar.context as Activity).finish()
+                }
             }
-
             override fun onFailure(call: Call<Procedimiento>, t: Throwable) {
 
             }
@@ -1311,6 +1310,21 @@ open class ApiService {
 
         })
 
+    }
+
+    fun updateProcedimiento(id: Long,procedimiento: createProcedimiento,binding: ActivityProcedimientoAgregarBinding){
+        Constant.retrofit.updateProcedimiento(id,procedimiento).enqueue(object :Callback<Procedimiento>{
+            override fun onResponse(call: Call<Procedimiento>, response: Response<Procedimiento>) {
+                Toast.makeText(
+                    binding.btnGuardar.context,
+                    "Procedimiento Editado",
+                    Toast.LENGTH_SHORT
+                ).show()
+                (binding.btnGuardar.context as Activity).finish()
+            }
+            override fun onFailure(call: Call<Procedimiento>, t: Throwable) {
+            }
+        })
     }
 
 

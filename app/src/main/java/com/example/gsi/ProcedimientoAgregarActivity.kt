@@ -38,7 +38,11 @@ class ProcedimientoAgregarActivity : AppCompatActivity() {
         binding.btnGuardar.setOnClickListener {
             val especialidad= putEspecialidad(binding.spEspecialidad.selectedItemId)
             val procedimiento= createProcedimiento(binding.txtInputNombre.text.toString(), especialidad)
-            Constant.api.createProcedimiento(procedimiento,binding)
+            if(id.toString() =="null"){
+                Constant.api.createProcedimiento(procedimiento,binding)
+            }else{
+                Constant.api.updateProcedimiento(id!!.toLong(),procedimiento,binding)
+            }
         }
     }
 }

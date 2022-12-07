@@ -74,6 +74,9 @@ interface Services {
     @PUT("medico/editar/{id}")
     fun updateMedico(@Path("id") id: Long, @Body body: createMedico): Call<Medico>
 
+    @PUT("procedimiento/editar/{id}")
+    fun updateProcedimiento(@Path("id") id: Long, @Body body: createProcedimiento): Call<Procedimiento>
+
     @POST("procedimiento/registrar")
     fun createProcedimiento(@Body body: createProcedimiento): Call<createProcedimiento>
 
