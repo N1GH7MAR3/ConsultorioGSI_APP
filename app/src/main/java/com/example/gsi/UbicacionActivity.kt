@@ -24,8 +24,7 @@ class UbicacionActivity : AppCompatActivity() ,OnMapReadyCallback{
         setContentView(binding.root)
         createFragment()
         binding.btnRegresar.setOnClickListener {
-            val intent= Intent(this,DashboardInvitadoActivity::class.java)
-            startActivity(intent)
+            finish()
 
         }
     }

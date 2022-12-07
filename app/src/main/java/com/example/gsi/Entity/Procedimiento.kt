@@ -6,6 +6,7 @@ data class putProcedimiento(
     @SerializedName("id")
     @Expose
     val id: Long)
+
 data class Procedimiento(
     @SerializedName("id")
     @Expose

@@ -42,7 +42,11 @@ class DashboardPacienteActivity : AppCompatActivity() {
             val intent=Intent(this,ReservaCitaPacienteActivity::class.java)
             startActivity(intent)
         }
+        binding.cardUbi.setOnClickListener {
+            val intent= Intent(this,UbicacionActivity::class.java)
+            startActivity(intent)
 
+        }
 
 
     }
