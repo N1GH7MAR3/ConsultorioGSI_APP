@@ -1,5 +1,6 @@
 package com.example.gsi.Adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
@@ -53,7 +54,7 @@ class MedicoAdminViewHoler (view: View):RecyclerView.ViewHolder(view){
             intent.putExtra("horarioingreso",medicos.horario.horaingreso)
             intent.putExtra("horariosalida",medicos.horario.horasalida)
             binding.btnEditar.context.startActivity(intent)
-
+            
         }
         binding.btnEliminars.setOnClickListener {
             Constant.api.deleteMedico(binding,medicos.id)

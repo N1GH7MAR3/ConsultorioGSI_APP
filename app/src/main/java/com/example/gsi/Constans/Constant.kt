@@ -7,7 +7,7 @@ import com.example.gsi.Service.Services
 object Constant {
 
 
-    val BASE_URL = "http://192.168.1.7:8093/consultoriogsi/"
+    val BASE_URL = "http://192.168.1.5:8093/consultoriogsi/"
 
     val NoInternet = "Connection Error"
     val retrofit = RetrofitHelper.getRetrofit().create(Services::class.java)

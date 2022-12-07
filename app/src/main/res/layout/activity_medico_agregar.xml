@@ -276,7 +276,9 @@
                 android:layout_height="wrap_content"
                 android:text="Guardar"
                 android:fontFamily="@font/roboto_medium"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/gsiAzul"
+                android:backgroundTint="@color/gsiVerde"/>
 
             <Button
                 android:id="@+id/btnLimpiar"
@@ -285,7 +287,9 @@
                 android:layout_height="wrap_content"
                 android:text="Limpiar"
                 android:fontFamily="@font/roboto_medium"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textColor="@color/gsiAzul"
+                android:backgroundTint="@color/gsiVerde"/>
         </LinearLayout>
     </LinearLayout>
 

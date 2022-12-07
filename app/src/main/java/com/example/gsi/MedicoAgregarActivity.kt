@@ -66,7 +66,12 @@ class MedicoAgregarActivity : AppCompatActivity() {
             val turno=putTurno(binding.spTurno.selectedItemId)
             val estadoCivil=putEstadoCivil(binding.spEstadoCivil.selectedItemId)
             val medico=createMedico(binding.txtInputNombre.text.toString(),binding.txtInputPaterno.text.toString(),binding.txtInputMaterno.text.toString(),binding.txtInputDni.text.toString(),pais,estadoCivil,sexo,turno, especialidad)
-            Constant.api.createMedico(medico,binding)
+            if(id.toString() == "null"){
+                Constant.api.createMedico(medico,binding)
+            }else{
+                Constant.api.updateMedico(id!!.toLong(),medico,binding)
+            }
+
         }
     }
 }
