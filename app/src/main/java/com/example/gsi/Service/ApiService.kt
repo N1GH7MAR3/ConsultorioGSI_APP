@@ -425,7 +425,7 @@ open class ApiService {
                     (binding.rvEspecialidades.context as Activity).runOnUiThread {
                         val list: List<Especialidad> = response.body()!!
                         iniRecyclerView(list)
-                        binding.txtEspecialidad.text = "Especialidades"
+                        binding.txtEspecialidad.text = "ESPECIALIDADES"
                         call.cancel()
                     }
                 }
@@ -913,13 +913,13 @@ open class ApiService {
 
                     if (esp == "null") {
                         iniRecyclerView(list)
-                        binding.txtMedicos.text = "Medicos"
+                        binding.txtMedicos.text = "MÉDICOS"
                     } else {
                         for (i in list.indices) {
                             if (list[i].especialidad.nombre == esp) {
                                 val listaesp: List<Medico> = mutableListOf(list[i])
                                 lesp += listaesp
-                                binding.txtMedicos.text = "Medicos"
+                                binding.txtMedicos.text = "MÉDICOS"
                             }
                         }
                         iniRecyclerView(lesp)
@@ -928,6 +928,49 @@ open class ApiService {
             }
 
             override fun onFailure(call: Call<List<Medico>>, t: Throwable) {
+
+            }
+
+        })
+    }
+    //Obtener todos los procedimientos
+    fun getAllProcedimiento(
+        activity: ProcedimientoAdminActivity,
+        binding: ActivityProcedimientoAdminBinding,
+        esp: String
+    ) {
+        fun iniRecyclerView(list: List<Procedimiento>) {
+            binding.rvProcedimiento.layoutManager =
+                LinearLayoutManager(activity.applicationContext)
+            binding.rvProcedimiento.adapter = ProcedimientoAdminAdapter(list)
+        }
+        binding.txtProcedimiento.text = "Cargando Procedimientos..."
+        Constant.retrofit.getAllProcedimientos().enqueue(object : Callback<List<Procedimiento>> {
+            override fun onResponse(
+                call: Call<List<Procedimiento>>,
+                response: Response<List<Procedimiento>>
+            ) {
+                activity.runOnUiThread {
+                    val list: List<Procedimiento> = response.body()!!
+                    val lesp: MutableList<Procedimiento> = mutableListOf()
+
+                    if (esp == "null") {
+                        iniRecyclerView(list)
+                        binding.txtProcedimiento.text = "PROCEDIMIENTOS"
+                    } else {
+                        for (i in list.indices) {
+                            if (list[i].especialidad.nombre == esp) {
+                                val listaesp: List<Procedimiento> = mutableListOf(list[i])
+                                lesp += listaesp
+                                binding.txtProcedimiento.text = "PROCEDIMIENTOS"
+                            }
+                        }
+                        iniRecyclerView(lesp)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<Procedimiento>>, t: Throwable) {
 
             }
 
@@ -955,7 +998,7 @@ open class ApiService {
                     activity.runOnUiThread {
                         val list: List<Especialidad> = response.body()!!
                         iniRecyclerView(list)
-                        binding.txtEspecialidad.text = "Especialidades"
+                        binding.txtEspecialidad.text = "ESPECIALIDADES"
                         call.cancel()
 
                     }
@@ -1132,6 +1175,31 @@ open class ApiService {
 
         })
     }
+    fun deleteProcedimiento(binding: ItemProcedimientoAdminBinding, id: Long) {
+        Constant.retrofit.deleteProcedimiento(id).enqueue(object : Callback<Procedimiento> {
+            override fun onResponse(call: Call<Procedimiento>, response: Response<Procedimiento>) {
+                Toast.makeText(
+                    binding.btnEditar.context,
+                    "Se ha eliminado el Procedimiento ",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+                val intent =
+                    Intent(
+                        binding.btnEditar.context.applicationContext,
+                        ProcedimientoAdminActivity::class.java
+                    )
+
+                binding.btnEditar.context.startActivity(intent)
+                (binding.btnEditar.context as Activity).finish()
+            }
+
+            override fun onFailure(call: Call<Procedimiento>, t: Throwable) {
+
+            }
+
+        })
+    }
 
     //Obtener Citas del Paciente
     fun getCitasPaciente(
@@ -1185,6 +1253,28 @@ open class ApiService {
 
     }
 
+    //Crear Procedimiento
+    fun createProcedimiento(procedimiento: createProcedimiento, binding: ActivityProcedimientoAgregarBinding) {
+        Constant.retrofit.createProcedimiento(procedimiento).enqueue(object : Callback<createProcedimiento> {
+            override fun onResponse(
+                call: Call<createProcedimiento>,
+                response: Response<createProcedimiento>
+            ) {
+                Toast.makeText(
+                    binding.btnGuardar.context,
+                    "Procedimiento Creado",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+
+            override fun onFailure(call: Call<createProcedimiento>, t: Throwable) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+    }
+
 
     //Obtener Medicos para la vista del Paciente
     fun getAllMedicoPaciente(
@@ -1207,7 +1297,7 @@ open class ApiService {
                 (binding.rvMedico.context as Activity).runOnUiThread {
                     val list: List<Medico> = response.body()!!
                     iniRecyclerView(list)
-                    binding.txtMedicos.text = "Medicos"
+                    binding.txtMedicos.text = "MÉDICOS"
                     call.cancel()
                 }
             }
@@ -1234,7 +1324,7 @@ open class ApiService {
                     call: Call<List<Procedimiento>>,
                     response: Response<List<Procedimiento>>
                 ) {
-                    binding.txtProcedimiento.text = "Procedimientos"
+                    binding.txtProcedimiento.text = "PROCEDIMIENTOS"
                     val list: List<Procedimiento> = response.body()!!
                     iniRecyclerView(list)
                     call.cancel()
@@ -1384,6 +1474,42 @@ open class ApiService {
     }
 
     fun getAllEspecialidades(binding: ActivityMedicoAgregarBinding, especialidadid: String) {
+        Constant.retrofit.getAllEspecialidades().enqueue(object : Callback<List<Especialidad>> {
+            override fun onResponse(
+                call: Call<List<Especialidad>>,
+                response: Response<List<Especialidad>>
+            ) {
+                val list = mutableListOf<String>()
+                list.add(0, "Seleccionar")
+                val listEspecialidad = response.body()
+                for (i in listEspecialidad!!.indices) list += listEspecialidad[i].nombre
+
+                binding.spEspecialidad.adapter = ArrayAdapter(
+                    binding.btnGuardar.context,
+                    android.R.layout.simple_spinner_dropdown_item,
+                    list
+                )
+                if (especialidadid == "null") {
+                    binding.spEspecialidad.setSelection(0)
+                } else {
+                    binding.spEspecialidad.setSelection(especialidadid.toInt())
+                }
+
+
+            }
+
+            override fun onFailure(call: Call<List<Especialidad>>, t: Throwable) {
+                Toast.makeText(
+                    binding.btnGuardar.context,
+                    Constant.NoInternet,
+                    Toast.LENGTH_LONG
+                ).show()
+
+            }
+
+        })
+    }
+    fun getAllEspecialidades(binding: ActivityProcedimientoAgregarBinding, especialidadid: String) {
         Constant.retrofit.getAllEspecialidades().enqueue(object : Callback<List<Especialidad>> {
             override fun onResponse(
                 call: Call<List<Especialidad>>,

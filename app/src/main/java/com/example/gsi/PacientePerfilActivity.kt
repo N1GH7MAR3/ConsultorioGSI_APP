@@ -38,6 +38,11 @@ class PacientePerfilActivity : AppCompatActivity() {
         binding.txtApellidoMaterno.text=apeMaterno
         binding.txtTelefono.text=telefono
         binding.txtPais.text=paisnombre
+        if (sexonombre.equals("Femenino")){
+            binding.imageView2.setImageResource(R.drawable.img_girl2)
+        }else{
+            binding.imageView2.setImageResource(R.drawable.img_boy2)
+        }
 
         binding.llRegresar.setOnClickListener {
             val intent=Intent(this,DashboardPacienteActivity::class.java)

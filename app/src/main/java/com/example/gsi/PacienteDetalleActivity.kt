@@ -34,7 +34,11 @@ class PacienteDetalleActivity : AppCompatActivity() {
 
         binding.txtPais.setText(pais)
         binding.txtCorreo.setText(correo)
-
+        if (sexo.equals("Femenino")){
+            binding.imgPaciente.setImageResource(R.drawable.img_girl2)
+        }else{
+            binding.imgPaciente.setImageResource(R.drawable.img_boy2)
+        }
         binding.btnRegresar.setOnClickListener {
             finish()
         }

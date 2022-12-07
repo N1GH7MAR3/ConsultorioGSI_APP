@@ -55,9 +55,9 @@ class MedicoAdminViewHoler (view: View):RecyclerView.ViewHolder(view){
             binding.btnEditar.context.startActivity(intent)
 
         }
-binding.btnEliminars.setOnClickListener {
-    Constant.api.deleteMedico(binding,medicos.id)
-}
+        binding.btnEliminars.setOnClickListener {
+            Constant.api.deleteMedico(binding,medicos.id)
+        }
 
 
     }
