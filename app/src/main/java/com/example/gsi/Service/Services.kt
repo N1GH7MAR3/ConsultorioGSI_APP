@@ -62,11 +62,17 @@ interface Services {
     @DELETE("medico/borrar/{id}")
     fun deleteMedico(@Path("id") id: Long): Call<Medico>
 
+    @DELETE("procedimiento/borrar/{id}")
+    fun deleteProcedimiento(@Path("id") id: Long): Call<Procedimiento>
+
     @POST("especialidad/registrar")
     fun createEspecialidad(@Body body: createEspecialidad): Call<createEspecialidad>
 
     @POST("medico/registrar")
     fun createMedico(@Body body: createMedico): Call<createMedico>
+
+    @POST("procedimiento/registrar")
+    fun createProcedimiento(@Body body: createProcedimiento): Call<createProcedimiento>
 
     @POST("paciente/registrar")
     fun createPaciente(@Body body: createPaciente): Call<Paciente>

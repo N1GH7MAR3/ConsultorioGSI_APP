@@ -48,7 +48,6 @@ class MedicoDetalleActivity : AppCompatActivity() {
             binding.imgMedico.setImageResource(R.drawable.img_medicom)
         }
 
-
         binding.btnRegresar.setOnClickListener {
             finish()
         }

@@ -5,11 +5,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -22,10 +21,17 @@
         android:theme="@style/Theme.GSI"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
+        <activity
+            android:name=".ProcedimientoAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ProcedimientoAgregarActivity"
+            android:exported="false" />
 
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCH0O4nTCNaDSOj2zH2Nbcimm2sEke5xlo"/>
+            android:value="AIzaSyCH0O4nTCNaDSOj2zH2Nbcimm2sEke5xlo" />
+
         <activity
             android:name=".MainActivity3"
             android:exported="false"
@@ -64,7 +70,6 @@
         <activity
             android:name=".ContactoEmergenciaPacienteActivity"
             android:exported="false" />
-
         <activity
             android:name=".PacientePerfilActivity"
             android:exported="false" />

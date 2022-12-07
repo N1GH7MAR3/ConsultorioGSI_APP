@@ -7,6 +7,14 @@ data class putProcedimiento(
     @Expose
     val id: Long)
 
+data class createProcedimiento(
+    @SerializedName("nombre")
+    @Expose
+    val nombre: String,
+    @SerializedName("especialidad")
+    @Expose
+    val especialidad: putEspecialidad
+)
 data class Procedimiento(
     @SerializedName("id")
     @Expose
