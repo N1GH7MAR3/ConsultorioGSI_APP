@@ -6,10 +6,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.EditText
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gsi.*
@@ -21,6 +18,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.HttpUrl.Companion.toHttpUrl
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -873,10 +871,35 @@ open class ApiService {
                 ) {
                     (binding.rvPaciente.context as Activity).runOnUiThread {
                         val list: List<Paciente> = response.body()!!
+                        var listpac:MutableList<Paciente> = mutableListOf()
                         iniRecyclerView(list)
                         binding.txtPaciente.text = "PACIENTES"
+                        binding.SearchPaciente.setOnQueryTextListener(object  : SearchView.OnQueryTextListener{
+                            override fun onQueryTextSubmit(t: String?): Boolean {
 
+                                return false
+                            }
+
+                            override fun onQueryTextChange(t: String?): Boolean {
+                                if(t!!.isEmpty()){
+                                    iniRecyclerView(list)
+                                }else{
+                                    for (i in list.indices){
+                                        if(list[i].dni==t.toString().toInt()){
+                                            val pac: List<Paciente> = mutableListOf(list[i])
+                                            listpac+=pac
+                                            iniRecyclerView(listpac)
+                                        }
+
+                                    }
+                                }
+                                return false
+                            }
+
+                        })
                     }
+
+
                 }
 
                 override fun onFailure(call: Call<List<Paciente>>, t: Throwable) {
@@ -1153,20 +1176,20 @@ open class ApiService {
     fun deleteMedico(binding: ItemMedicoAdminBinding, id: Long) {
         Constant.retrofit.deleteMedico(id).enqueue(object : Callback<Medico> {
             override fun onResponse(call: Call<Medico>, response: Response<Medico>) {
-                Toast.makeText(
-                    binding.btnEditar.context,
-                    "Se ha eliminado el Medico ",
-                    Toast.LENGTH_SHORT
-                )
-                    .show()
-                val intent =
-                    Intent(
-                        binding.btnEditar.context.applicationContext,
-                        MedicosAdminActivity::class.java
-                    )
-
-                binding.btnEditar.context.startActivity(intent)
-                (binding.btnEditar.context as Activity).finish()
+                if(response.code()==500){
+                    Toast.makeText(
+                        binding.btnEditar.context,
+                        "No se puede eliminar el Medico",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }else{
+                    Toast.makeText(
+                        binding.btnEditar.context,
+                        "Se ha eliminado el Medico",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    (binding.btnEditar.context as Activity).finish()
+                }
             }
 
             override fun onFailure(call: Call<Medico>, t: Throwable) {
@@ -1246,11 +1269,26 @@ open class ApiService {
             }
 
             override fun onFailure(call: Call<createMedico>, t: Throwable) {
-                TODO("Not yet implemented")
+
             }
 
         })
 
+    }
+
+    fun updateMedico(id: Long,medico: createMedico,binding: ActivityMedicoAgregarBinding){
+        Constant.retrofit.updateMedico(id,medico).enqueue(object :Callback<Medico>{
+            override fun onResponse(call: Call<Medico>, response: Response<Medico>) {
+                Toast.makeText(
+                    binding.btnGuardar.context,
+                    "Medico Editado",
+                    Toast.LENGTH_SHORT
+                ).show()
+                (binding.btnGuardar.context as Activity).finish()
+            }
+            override fun onFailure(call: Call<Medico>, t: Throwable) {
+            }
+        })
     }
 
     //Crear Procedimiento
