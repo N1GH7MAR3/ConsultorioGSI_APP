@@ -23,6 +23,9 @@ interface Services {
     @GET("medico/listar")
     fun getAllMedico(): Call<List<Medico>>
 
+    @GET("cita/listar")
+    fun getAllCita(): Call<List<Cita>>
+
     @GET("medico_procedimiento/listarpxm/{id}")
     fun getAllProcedimientosxMedico(@Path("id") id: Long): Call<List<Procedimiento>>
 

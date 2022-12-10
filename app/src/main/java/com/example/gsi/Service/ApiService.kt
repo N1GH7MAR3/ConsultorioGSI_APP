@@ -1173,6 +1173,36 @@ open class ApiService {
         })
     }
 
+    //Obtener todas las citas
+    fun getAllCita(
+        activity: CitaAdminActivity,
+        binding: ActivityCitaAdminBinding,
+    ) {
+        fun iniRecyclerView(list: List<Cita>) {
+            binding.rvCita.layoutManager =
+                LinearLayoutManager(activity.applicationContext)
+            binding.rvCita.adapter = CitaAdminAdapter(list)
+        }
+        binding.txtCita.text = "Cargando Citas..."
+        Constant.retrofit.getAllCita().enqueue(object : Callback<List<Cita>> {
+            override fun onResponse(
+                call: Call<List<Cita>>,
+                response: Response<List<Cita>>
+            ) {
+                activity.runOnUiThread {
+                    val list: List<Cita> = response.body()!!
+                    iniRecyclerView(list)
+                    binding.txtCita.text = "CITAS"
+                    call.cancel()
+                }
+            }
+            override fun onFailure(call: Call<List<Cita>>, t: Throwable) {
+                Toast.makeText(activity, Constant.NoInternet, Toast.LENGTH_LONG).show()
+            }
+
+        })
+    }
+
 
     //Obtener las especialidades para la vista del Admin
     fun getEspecilidadesAdmin(

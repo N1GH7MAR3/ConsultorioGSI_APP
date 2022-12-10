@@ -5,8 +5,14 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gsi.Adapter.CitaPacienteAdapter
 import com.example.gsi.Constans.Constant
+import com.example.gsi.Entity.Cita
 import com.example.gsi.databinding.ActivityCitaPacienteBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CitaPacienteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCitaPacienteBinding
@@ -23,3 +29,4 @@ class CitaPacienteActivity : AppCompatActivity() {
 
     }
 }
+

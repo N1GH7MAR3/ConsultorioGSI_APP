@@ -37,6 +37,10 @@ class DashboardAdminActivity : AppCompatActivity() {
             val intent=Intent(this,ProcedimientoAdminActivity::class.java)
             startActivity(intent)
         }
+        binding.cardCitas.setOnClickListener {
+            val intent=Intent(this,CitaAdminActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     
