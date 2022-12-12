@@ -34,7 +34,16 @@
                 android:text="Nombre :"
                 android:textSize="17dp"
                 />
+            <TextView
+                android:id="@+id/txtDni"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
 
+
+                android:text="Dni :"
+                android:textSize="17dp"
+                />
             <TextView
                 android:id="@+id/txt3"
                 android:layout_width="wrap_content"
@@ -86,7 +95,16 @@
                 android:text="Nombre            :"
                 android:textSize="17dp"
                 />
+            <TextView
+                android:id="@+id/tvDni"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
 
+
+                android:text="Nombre            :"
+                android:textSize="17dp"
+                />
             <TextView
                 android:id="@+id/tvFecharegistro"
                 android:layout_width="wrap_content"

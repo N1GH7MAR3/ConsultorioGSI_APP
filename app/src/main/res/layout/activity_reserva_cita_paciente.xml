@@ -666,13 +666,16 @@
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="40dp"
                 android:backgroundTint="@color/gsiAzul"
-                android:textColor="@color/gsiVerde"
                 android:text="Reservar Cita"
+                android:textColor="@color/gsiVerde"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnDisponibilidad"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="0.0"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gsi.*
 import com.example.gsi.Adapter.*
@@ -446,7 +447,8 @@ open class ApiService {
     fun getEspecilidadesPaciente(
         binding: ActivityReservaCitaPacienteBinding, id: Long
     ) {
-        binding.btnReservarCita.isEnabled = false
+        binding.btnReservarCita.isVisible = false
+        binding.btnReservarCita.isEnabled = true
         Constant.retrofit.getAllEspecialidades()
             .enqueue(object : Callback<List<Especialidad>> {
                 override fun onResponse(
@@ -665,26 +667,7 @@ open class ApiService {
                                                                                                             ) {
                                                                                                                 if (binding.spMedicos.selectedItemPosition >= 1
                                                                                                                 ) {
-                                                                                                                    binding.spHorario.onItemSelectedListener =
-                                                                                                                        object :
-                                                                                                                            AdapterView.OnItemSelectedListener {
-                                                                                                                            override fun onItemSelected(
-                                                                                                                                p0: AdapterView<*>?,
-                                                                                                                                p1: View?,
-                                                                                                                                p2: Int,
-                                                                                                                                p3: Long
-                                                                                                                            ) {
-                                                                                                                                if (binding.spHorario.selectedItemPosition >= 1) {
-                                                                                                                                    binding.btnReservarCita.isEnabled =
-                                                                                                                                        false
-                                                                                                                                }
-                                                                                                                            }
 
-                                                                                                                            override fun onNothingSelected(
-                                                                                                                                p0: AdapterView<*>?
-                                                                                                                            ) {
-                                                                                                                            }
-                                                                                                                        }
 
 
                                                                                                                     binding.btnDisponibilidad.setOnClickListener {
@@ -737,10 +720,11 @@ open class ApiService {
                                                                                                                                         call: Call<Cita>,
                                                                                                                                         response: Response<Cita>
                                                                                                                                     ) {
-
                                                                                                                                         if (response.code() == 200) {
-                                                                                                                                            binding.btnReservarCita.isEnabled =
+
+                                                                                                                                            binding.btnReservarCita.isVisible =
                                                                                                                                                 false
+                                                                                                                                            binding.btnReservarCita.isEnabled = true
                                                                                                                                             val fechacita =
                                                                                                                                                 response.body()?.fechacita
                                                                                                                                             val listhorario2 =
@@ -780,6 +764,10 @@ open class ApiService {
                                                                                                                                                 }
 
                                                                                                                                             } else {
+                                                                                                                                                binding.btnReservarCita.isVisible =
+                                                                                                                                                    true
+                                                                                                                                                binding.btnReservarCita.isEnabled =
+                                                                                                                                                    true
                                                                                                                                                 for (i in inicio.substring(
                                                                                                                                                     1
                                                                                                                                                 )
@@ -815,92 +803,7 @@ open class ApiService {
 
                                                                                                                                                     }
                                                                                                                                                 }
-                                                                                                                                                binding.btnReservarCita.setOnClickListener {
-                                                                                                                                                    var horario =
-                                                                                                                                                        ""
-                                                                                                                                                    if (binding.spHorario.selectedItem.toString()
-                                                                                                                                                            .substring(
-                                                                                                                                                                4,
-                                                                                                                                                                binding.spHorario.selectedItem.toString().length
-                                                                                                                                                            ) == " AM"
-                                                                                                                                                    ) {
-                                                                                                                                                        horario =
-                                                                                                                                                            binding.spHorario.selectedItem.toString()
-                                                                                                                                                                .replace(
-                                                                                                                                                                    " AM",
-                                                                                                                                                                    ":00"
-                                                                                                                                                                )
-                                                                                                                                                    } else if (binding.spHorario.selectedItem.toString()
-                                                                                                                                                            .substring(
-                                                                                                                                                                5,
-                                                                                                                                                                binding.spHorario.selectedItem.toString().length
-                                                                                                                                                            ) == " PM"
-                                                                                                                                                    ) {
-                                                                                                                                                        horario =
-                                                                                                                                                            binding.spHorario.selectedItem.toString()
-                                                                                                                                                                .replace(
-                                                                                                                                                                    " PM",
-                                                                                                                                                                    ":00"
-                                                                                                                                                                )
-                                                                                                                                                    }
-                                                                                                                                                    val fechacita =
-                                                                                                                                                        binding.inDate.text.toString() + " " + horario
-                                                                                                                                                    val paciente =
-                                                                                                                                                        putPaciente(
-                                                                                                                                                            id
-                                                                                                                                                        )
-                                                                                                                                                    val especialidad =
-                                                                                                                                                        putEspecialidad(
-                                                                                                                                                            (listIdEspecialidades.elementAt(
-                                                                                                                                                                binding.spEspecialidad.selectedItemPosition
-                                                                                                                                                            )).toLong()
-                                                                                                                                                        )
-                                                                                                                                                    val medico =
-                                                                                                                                                        putMedico(
-                                                                                                                                                            (listIdMedicos.elementAt(
-                                                                                                                                                                binding.spMedicos.selectedItemPosition
-                                                                                                                                                            )).toLong()
-                                                                                                                                                        )
-                                                                                                                                                    val procedimiento =
-                                                                                                                                                        putProcedimiento(
-                                                                                                                                                            (listIdProcedimiento.elementAt(
-                                                                                                                                                                binding.spProcedimiento.selectedItemPosition
-                                                                                                                                                            )).toLong()
-                                                                                                                                                        )
-                                                                                                                                                    val cita =
-                                                                                                                                                        createCita(
-                                                                                                                                                            fechacita,
-                                                                                                                                                            medico,
-                                                                                                                                                            paciente,
-                                                                                                                                                            especialidad,
-                                                                                                                                                            procedimiento
-                                                                                                                                                        )
-                                                                                                                                                    Constant.retrofit.createCita(
-                                                                                                                                                        cita
-                                                                                                                                                    )
-                                                                                                                                                        .enqueue(
-                                                                                                                                                            object :
-                                                                                                                                                                Callback<Cita> {
-                                                                                                                                                                override fun onResponse(
-                                                                                                                                                                    call: Call<Cita>,
-                                                                                                                                                                    response: Response<Cita>
-                                                                                                                                                                ) {
-                                                                                                                                                                    Toast.makeText(
-                                                                                                                                                                        binding.spEspecialidad.context,
-                                                                                                                                                                        "Cita Registada, lo esperamos",
-                                                                                                                                                                        Toast.LENGTH_SHORT
-                                                                                                                                                                    )
-                                                                                                                                                                        .show()
 
-                                                                                                                                                                }
-
-                                                                                                                                                                override fun onFailure(
-                                                                                                                                                                    call: Call<Cita>,
-                                                                                                                                                                    t: Throwable
-                                                                                                                                                                ) {
-                                                                                                                                                                }
-                                                                                                                                                            })
-                                                                                                                                                }
                                                                                                                                             }
                                                                                                                                             binding.spHorario.adapter =
                                                                                                                                                 ArrayAdapter(
@@ -909,10 +812,96 @@ open class ApiService {
                                                                                                                                                     listhorario2
                                                                                                                                                 )
                                                                                                                                         } else {
-
+                                                                                                                                            binding.btnReservarCita.isVisible =
+                                                                                                                                                true
                                                                                                                                             binding.btnReservarCita.isEnabled =
                                                                                                                                                 true
+                                                                                                                                        }
+                                                                                                                                        binding.btnReservarCita.setOnClickListener {
+                                                                                                                                            var horario =
+                                                                                                                                                ""
+                                                                                                                                            if (binding.spHorario.selectedItem.toString()
+                                                                                                                                                    .substring(
+                                                                                                                                                        4,
+                                                                                                                                                        binding.spHorario.selectedItem.toString().length
+                                                                                                                                                    ) == " AM"
+                                                                                                                                            ) {
+                                                                                                                                                horario =
+                                                                                                                                                    binding.spHorario.selectedItem.toString()
+                                                                                                                                                        .replace(
+                                                                                                                                                            " AM",
+                                                                                                                                                            ":00"
+                                                                                                                                                        )
+                                                                                                                                            } else if (binding.spHorario.selectedItem.toString()
+                                                                                                                                                    .substring(
+                                                                                                                                                        5,
+                                                                                                                                                        binding.spHorario.selectedItem.toString().length
+                                                                                                                                                    ) == " PM"
+                                                                                                                                            ) {
+                                                                                                                                                horario =
+                                                                                                                                                    binding.spHorario.selectedItem.toString()
+                                                                                                                                                        .replace(
+                                                                                                                                                            " PM",
+                                                                                                                                                            ":00"
+                                                                                                                                                        )
+                                                                                                                                            }
+                                                                                                                                            val fechacita =
+                                                                                                                                                binding.inDate.text.toString() + " " + horario
+                                                                                                                                            val paciente =
+                                                                                                                                                putPaciente(
+                                                                                                                                                    id
+                                                                                                                                                )
+                                                                                                                                            val especialidad =
+                                                                                                                                                putEspecialidad(
+                                                                                                                                                    (listIdEspecialidades.elementAt(
+                                                                                                                                                        binding.spEspecialidad.selectedItemPosition
+                                                                                                                                                    )).toLong()
+                                                                                                                                                )
+                                                                                                                                            val medico =
+                                                                                                                                                putMedico(
+                                                                                                                                                    (listIdMedicos.elementAt(
+                                                                                                                                                        binding.spMedicos.selectedItemPosition
+                                                                                                                                                    )).toLong()
+                                                                                                                                                )
+                                                                                                                                            val procedimiento =
+                                                                                                                                                putProcedimiento(
+                                                                                                                                                    (listIdProcedimiento.elementAt(
+                                                                                                                                                        binding.spProcedimiento.selectedItemPosition
+                                                                                                                                                    )).toLong()
+                                                                                                                                                )
+                                                                                                                                            val cita =
+                                                                                                                                                createCita(
+                                                                                                                                                    fechacita,
+                                                                                                                                                    medico,
+                                                                                                                                                    paciente,
+                                                                                                                                                    especialidad,
+                                                                                                                                                    procedimiento
+                                                                                                                                                )
+                                                                                                                                            Constant.retrofit.createCita(
+                                                                                                                                                cita
+                                                                                                                                            )
+                                                                                                                                                .enqueue(
+                                                                                                                                                    object :
+                                                                                                                                                        Callback<Cita> {
+                                                                                                                                                        override fun onResponse(
+                                                                                                                                                            call: Call<Cita>,
+                                                                                                                                                            response: Response<Cita>
+                                                                                                                                                        ) {
+                                                                                                                                                            Toast.makeText(
+                                                                                                                                                                binding.spEspecialidad.context,
+                                                                                                                                                                "Cita Registada, lo esperamos",
+                                                                                                                                                                Toast.LENGTH_SHORT
+                                                                                                                                                            )
+                                                                                                                                                                .show()
 
+                                                                                                                                                        }
+
+                                                                                                                                                        override fun onFailure(
+                                                                                                                                                            call: Call<Cita>,
+                                                                                                                                                            t: Throwable
+                                                                                                                                                        ) {
+                                                                                                                                                        }
+                                                                                                                                                    })
                                                                                                                                         }
 
                                                                                                                                     }
@@ -1193,6 +1182,41 @@ open class ApiService {
                     val list: List<Cita> = response.body()!!
                     iniRecyclerView(list)
                     binding.txtCita.text = "CITAS"
+
+
+
+
+                        binding.SearchCita.setOnQueryTextListener(object :
+                            SearchView.OnQueryTextListener {
+                            override fun onQueryTextSubmit(t: String?): Boolean {
+
+                                return false
+                            }
+
+                            override fun onQueryTextChange(t: String?): Boolean {
+                                val listacita: MutableList<Cita> = mutableListOf()
+                                if (t!!.isEmpty()) {
+                                    iniRecyclerView(list)
+                                } else {
+                                    for (p in list.indices) {
+                                        val r1 = Regex(t.toString())
+                                        val cita: MutableList<Cita> = mutableListOf(list[p])
+                                        if (list[p].paciente.dni.toString().contains(r1) ) {
+                                            listacita += cita
+                                            iniRecyclerView(listacita)
+                                        } else {
+                                            cita.clear()
+                                            iniRecyclerView(listacita)
+
+
+                                        }
+                                    }
+                                }
+                                return false
+                            }
+
+                        })
+
                     call.cancel()
                 }
             }

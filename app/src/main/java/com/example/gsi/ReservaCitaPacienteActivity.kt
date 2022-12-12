@@ -35,11 +35,11 @@ class ReservaCitaPacienteActivity : AppCompatActivity(){
                 this,
                 { _, year, monthOfYear, dayOfMonth ->
 
-                    binding.btnDisponibilidad.isEnabled=true
+
                     binding.inDate.setText("$year-${monthOfYear + 1}-$dayOfMonth")
                     if(day+1!=dayOfMonth && binding.inDate.text.toString()!="null"){
                         Constant.api.getEspecilidadesPaciente(binding, id.toLong())
-                        binding.btnDisponibilidad.isEnabled=false
+
                     }
                     },
                 year,

@@ -21,7 +21,7 @@ class AcercaNosotrosActivity : AppCompatActivity() {
         val paginaurl  ="https://majosua.wixsite.com/gruposaludintegral?fbclid=IwAR3IRs-HwTnyunByFBfMeZAcddz-DhmIJLzxeCmEmu0PPe1U0ORzsoXe4zY";
         val paginaid  ="https://majosua.wixsite.com/gruposaludintegral?fbclid=IwAR3IRs-HwTnyunByFBfMeZAcddz-DhmIJLzxeCmEmu0PPe1U0ORzsoXe4zY";
 
-        val usuario = intent.getStringExtra("usuario")
+
         //AbrirWhatsApp()
         binding.imageBtnWhatsapp.setOnClickListener {
 

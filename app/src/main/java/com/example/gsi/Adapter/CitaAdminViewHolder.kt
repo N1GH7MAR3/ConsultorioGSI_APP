@@ -11,6 +11,7 @@ class CitaAdminViewHolder (view: View): RecyclerView.ViewHolder(view){
     private val binding = ItemCitaAdminBinding.bind(view)
     fun render(citas: Cita){
         binding.tvNombre.text=citas.paciente.nombre
+        binding.tvDni.text=citas.paciente.dni.toString()
         binding.tvEspecialidad.text=citas.especialidad.nombre
         val fecha= SimpleDateFormat("dd-MM-yy")
         binding.tvFechacita.text= citas.fechacita
