@@ -721,6 +721,7 @@ open class ApiService {
                                                                                                                                         response: Response<Cita>
                                                                                                                                     ) {
                                                                                                                                         if (response.code() == 200) {
+                                                                                                                                            Toast.makeText(binding.spEspecialidad.context,"Hora No Disponible",Toast.LENGTH_SHORT).show()
 
                                                                                                                                             binding.btnReservarCita.isVisible =
                                                                                                                                                 false
